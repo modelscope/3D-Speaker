@@ -4,8 +4,9 @@
 
 <strong>3D-Speaker</strong> is a repository for single- and multi-modal speaker verification, speaker recognition, and speaker diarization.
 
+## Models 
+Temporarily we support Regularized DINO and CAM++ model, other models are coming soon.
 
-
-# License
+## License
 
 <strong>3D-Speaker</strong> is released under the [Apache License 2.0](LICENSE).
