@@ -8,4 +8,4 @@
 
 # License
 
-<strong>3D-Speaker</strong> is released under the [Apache License 2.0](LICENSE). This project contains various third-party components under other open source licenses. 
+<strong>3D-Speaker</strong> is released under the [Apache License 2.0](LICENSE).
