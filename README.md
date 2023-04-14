@@ -27,7 +27,7 @@ Here is another simple example for directly extracting embeddings. It downloads 
 ``` sh
 # install modelscope
 pip install modelscope
-# extract embeddings from the pretrained models
+# extract embeddings based on pretrained models
 # CAM++ on VoxCeleb
 model_id=damo/speech_campplus_sv_en_voxceleb_16k
 model_revision=v1.0.2
