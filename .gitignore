@@ -1,0 +1,9 @@
+.idea
+./__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+.DS_Store
+*/*/*/data
+*/*/*/exp
+./pretrained
