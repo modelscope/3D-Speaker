@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ## Pretrained model
 3D-Speaker sharing the pretrained models on [ModelScope](https://www.modelscope.cn/models)
 | Task | Dataset | Model | Performance |
-|:-----:|:------:|:------:|
+|:-----:|:------:|:------:|:------:|
 | speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | EER=0.73% |
 
 Here is another simple example to directly extract embeddings. It will download the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generate embeddings.
