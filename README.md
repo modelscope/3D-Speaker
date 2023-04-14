@@ -1,9 +1,9 @@
 # 3D-Speaker
 
-<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models can be accessed in [ModelScope](https://www.modelscope.cn/models).
+<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 ## News
-- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN), adopting a novel multi-granularity pooling to conduct context-aware masking. CAM++ achieve 0.73% EER in Voxceleb and 6.78% EER in CN-Celeb, outperforming other main-stream speaker embedding models such as ECAPA-TDNN and ResNet32 with lower computational cost and faster inference speed.
+- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of 0.73% in Voxceleb and 6.78% in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
 - [2023.4] Releasing RDINO model.
@@ -18,12 +18,12 @@ pip install -r requirements.txt
 ```
 
 ## Pretrained model
-3D-Speaker sharing the pretrained models on [ModelScope](https://www.modelscope.cn/models)
+3D-Speaker shares pretrained models on [ModelScope](https://www.modelscope.cn/models).
 | Task | Dataset | Model | Performance |
 |:-----:|:------:|:------:|:------:|
 | speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | EER=0.73% |
 
-Here is another simple example to directly extract embeddings. It will download the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generate embeddings.
+Here is another simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
 ``` sh
 # install modelscope
 pip install modelscope
@@ -38,7 +38,7 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_r
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
 ## Acknowledge
-3D-Speaker contains third-party components and code modified from some open source repos, including:
+3D-Speaker contains third-party components and code modified from some open-source repos, including:
 
 - [speechbrain](https://github.com/speechbrain/speechbrain)
 - [wespeaker](https://github.com/wenet-e2e/wespeaker)

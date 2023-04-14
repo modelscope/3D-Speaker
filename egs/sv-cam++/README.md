@@ -14,9 +14,9 @@
 | CAM++ | 7.18M  | 0.73 | 0.0911 |
 
 ## pretrained model
-Voxceleb: [ModelScope](https://www.modelscope.cn/home)：[speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
+Voxceleb: [ModelScope](https://www.modelscope.cn/models)：[speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
 
-Here is a simple example to directly extract embeddings based on the pretrained model. It will download the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generate embeddings.
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
 ``` sh
 # install modelscope
 pip install modelscope
