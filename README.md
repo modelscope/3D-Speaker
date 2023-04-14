@@ -3,7 +3,7 @@
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models can be accessed in [ModelScope](https://www.modelscope.cn/models).
 
 ## News
-- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN), adopting a novel multi-granularity pooling to conduct context-aware masking. CAM++ achieve 0.73% EER in Voxceleb and 6.78% EER in CN-Celeb, outperforming other main-stream speaker embedding models such as ECAPA-TDNN and ResNet32 with lower computational cost and faster inference speed.
+- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN), adopting a novel multi-granularity pooling to conduct context-aware masking. CAM++ achieve 0.73% EER in Voxceleb and 6.78% EER in CN-Celeb, outperforming other main-stream speaker embedding models such as ECAPA-TDNN and ResNet34 with lower computational cost and faster inference speed.
 
 ## To be expected
 - [2023.4] Releasing RDINO model.
