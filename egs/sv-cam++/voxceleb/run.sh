@@ -26,7 +26,7 @@ fi
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   # In this stage we prepare the data index files for training.
   echo "Stage2: Preparing training data index files..."
-  python local/prepare_train_csv.py --data_dir $data/vox2_dev
+  python local/prepare_data_csv.py --data_dir $data/vox2_dev
 fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
