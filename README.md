@@ -1,7 +1,7 @@
 # 3D-Speaker
 
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
-[![license](https://img.shields.io/github/license/modelscope/modelscope.svg)]
+![license](https://img.shields.io/github/license/modelscope/modelscope.svg)
 <a href=""><img src="https://img.shields.io/badge/OS-Linux-brightgreen.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Python->=3.8,<=3.10-aff.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Pytorch->=1.10,<=2.0-blue"></a>
