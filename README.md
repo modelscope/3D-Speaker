@@ -7,7 +7,6 @@
     <br>
 <p>
 
-<div align="center">
 
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
 ![license](https://img.shields.io/github/license/modelscope/modelscope.svg)
