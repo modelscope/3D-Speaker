@@ -18,11 +18,11 @@
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 ## News
-- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of 0.73% in Voxceleb and 6.78% in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
+- [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers. 
+- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of 0.73% in Voxceleb and 6.78% in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
 - [2023.4] Releasing RDINO model.
-- [2023.5] Releasing CAM++ model trained on over 100k labeled speakers. 
 
 ## Installation
 ``` sh
@@ -43,9 +43,13 @@ Here is another simple example for directly extracting embeddings. It downloads 
 # install modelscope
 pip install modelscope
 # extract embeddings based on pretrained models
-# CAM++ on VoxCeleb
+# CAM++ trained on VoxCeleb
 model_id=damo/speech_campplus_sv_en_voxceleb_16k
 model_revision=v1.0.2
+python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
+# CAM++ trained on 200k labeled speakers
+model_id=damo/speech_campplus_sv_zh-cn_16k-common
+model_revision=v1.0.0
 python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
 ```
 

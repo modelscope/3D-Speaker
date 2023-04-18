@@ -31,12 +31,13 @@ CAMPPLUS = {
     'obj': 'speakerlab.models.campplus.DTDNN.CAMPPlus',
     'args': {
         'feat_dim': 80,
-        'embedding_size': 512,
+        'embedding_size': None,
     },
 }
 
 supports = {
     'damo/speech_campplus_sv_en_voxceleb_16k': CAMPPLUS,
+    'damo/speech_campplus_sv_zh-cn_16k-common': CAMPPLUS,
 }
 
 def main():
@@ -67,7 +68,6 @@ def main():
                 dst.unlink()
             except FileNotFoundError:
                 pass
-
             dst.symlink_to(src)
 
     # read config
@@ -79,6 +79,11 @@ def main():
 
     # load model
     model = supports[args.model_id]
+    if 'emb_size' in conf['model']['model_config']:
+        embedding_size = int(conf['model']['model_config']['emb_size'])
+    else:
+        embedding_size = 512
+    model['args']['embedding_size'] = embedding_size
     embedding_model = dynamic_import(model['obj'])(**model['args'])
     embedding_model.load_state_dict(pretrained_state)
     embedding_model.eval()
@@ -111,7 +116,7 @@ def main():
     save_path = embedding_dir / (
         '%s.npy' % (os.path.basename(args.wav_path).rsplit('.', 1)[0]))
     np.save(save_path, embedding)
-    print(f'Extracted embedding from {args.wav_path} saved in {save_path}.')
+    print(f'The extracted {embedding_size}-dim embedding from {args.wav_path} is saved to {save_path}.')
 
 if __name__ == '__main__':
     main()
