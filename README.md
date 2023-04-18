@@ -1,5 +1,14 @@
 # 3D-Speaker
 
+
+<p align="center">
+    <br>
+    <img src="https://modelscope.oss-cn-beijing.aliyuncs.com/modelscope.gif" width="400"/>
+    <br>
+<p>
+
+<div align="center">
+
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
 ![license](https://img.shields.io/github/license/modelscope/modelscope.svg)
 <a href=""><img src="https://img.shields.io/badge/OS-Linux-orange.svg"></a>
