@@ -1,8 +1,8 @@
 # 3D-Speaker
 
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
-[![license](https://img.shields.io/github/license/modelscope/modelscope.svg)](https://github.com/modelscope/modelscope/blob/master/LICENSE)
-[![open issues](https://isitmaintained.com/badge/open/modelscope/modelscope.svg)](https://github.com/modelscope/modelscope/issues)
+[![license](https://img.shields.io/github/license/3D-Speaker/3D-Speaker.svg)](https://github.com/3D-Speaker/3D-Speaker/blob/master/LICENSE)
+[![open issues](https://isitmaintained.com/badge/open/3D-Speaker/3D-Speaker.svg)](https://github.com/3D-Speaker/3D-Speaker/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/modelscope/modelscope.svg)](https://GitHub.com/modelscope/modelscope/pull/)
 [![GitHub latest commit](https://badgen.net/github/last-commit/modelscope/modelscope)](https://GitHub.com/modelscope/modelscope/commit/)
 [![Leaderboard](https://img.shields.io/badge/ModelScope-Check%20Your%20Contribution-orange)](https://opensource.alibaba.com/contribution_leaderboard/details?projectValue=modelscope)
