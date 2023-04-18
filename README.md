@@ -1,5 +1,3 @@
-# 3D-Speaker
-
 
 <p align="center">
     <br>
