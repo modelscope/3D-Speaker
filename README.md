@@ -3,7 +3,7 @@
 
 <p align="center">
     <br>
-    <img src="https://modelscope.oss-cn-beijing.aliyuncs.com/modelscope.gif" width="400"/>
+<!--     <img src="https://modelscope.oss-cn-beijing.aliyuncs.com/modelscope.gif" width="400"/> -->
     <br>
 <p>
     
