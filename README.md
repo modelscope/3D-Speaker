@@ -2,16 +2,10 @@
 
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
 [![license](https://img.shields.io/github/license/modelscope/modelscope.svg)](https://github.com/modelscope/modelscope/blob/master/LICENSE)
+<a href=""><img src="https://img.shields.io/badge/OS-Linux-brightgreen.svg"></a>
+<a href=""><img src="https://img.shields.io/badge/Python->=3.8,<=3.10-aff.svg"></a>
+<a href=""><img src="https://img.shields.io/badge/Pytorch->=1.10,<=2.0-blue"></a>
 
-
-<!-- [![GitHub contributors](https://img.shields.io/github/contributors/modelscope/modelscope.svg)](https://GitHub.com/modelscope/modelscope/graphs/contributors/) -->
-<!-- [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) -->
-
-<p align="left">
-    <a href=""><img src="https://img.shields.io/badge/OS-Linux-brightgreen.svg"></a>
-    <a href=""><img src="https://img.shields.io/badge/Python->=3.8,<=3.10-aff.svg"></a>
-    <a href=""><img src="https://img.shields.io/badge/Pytorch->=1.10,<=2.0-blue"></a>
-</p>
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 ## News
