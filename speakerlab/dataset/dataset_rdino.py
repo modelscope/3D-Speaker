@@ -121,12 +121,6 @@ class RDINODataset(Dataset):
         return audio
 
 def gene_rir_audio(audio, rir, filterGain):
-    # rir: path of rir wav
-    # _, rir = wavfile.read(rir)
-    # if len(rir.shape) == 2:
-    #     rir = rir[:, 0]
-    # rir = np.multiply(rir, pow(10, 0.1 * filterGain))
-    # audio_rir = signal.convolve(audio, rir, mode = 'full')[ : len(audio)]
     rir = np.multiply(rir, pow(10, 0.1 * filterGain))    
     audio_rir = signal.convolve(audio, rir, mode = 'full')[ : len(audio)]  
 
@@ -163,11 +157,6 @@ def fill_split(filename, max_frames, eval_mode=False, num_eval=10):
 def Gener_glob_loc_audio(filename, max_frames, glb_num, local_num):
     # Maximum audio length
     max_audio_size = max_frames * 160
-    # try:
-    #     sample_rate, audio = wavfile.read(filename)
-    # except:
-    #     print('-------------filename----------')
-    #     print(filename)
     sample_rate, audio = wavfile.read(filename)
     if len(audio.shape) == 2:
         audio = audio[:, 0]

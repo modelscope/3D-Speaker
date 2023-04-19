@@ -50,7 +50,7 @@ def main():
     teacher_model = build('teacher_model', config)
 
     # Recover the embedding params of last epoch
-    ckp_path = f"{args.exp_dir}/models/checkpoint.pth"
+    ckp_path = f"{args.exp_dir}/models/checkpoint0060.pth"
     checkpoint = torch.load(ckp_path, map_location=device)
     teacher_model = load_params(teacher_model, checkpoint['teacher'])
 
