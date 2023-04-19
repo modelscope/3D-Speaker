@@ -18,7 +18,7 @@ exp_dir=$exp/$name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   echo "Stage1: Preparing Voxceleb dataset ..."
-  ./local/prepare_data_rdino.sh --stage 4 --stop_stage 4 --data ${data}
+  ./local/prepare_data_rdino.sh --stage 1 --stop_stage 4 --data ${data}
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then

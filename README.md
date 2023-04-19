@@ -18,7 +18,7 @@
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 ## News
-- [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. RDINO is a self-supervised learning framework in speaker verification aiming to alleviate model collapse in non-contrastive methods. It contains teacher and student network with an identical architecture but different parameters. Two regularization terms are proposed in RDINO, namely diversity regularization and redundancy elimination regularization. RDINO achieve 3.05% EER and 0.220 MinDCF in VoxCeleb using single-stage self-supervised training.
+- [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-rdino/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. RDINO is a self-supervised learning framework in speaker verification aiming to alleviate model collapse in non-contrastive methods. It contains teacher and student network with an identical architecture but different parameters. Two regularization terms are proposed in RDINO, namely diversity regularization and redundancy elimination regularization. RDINO achieve 3.05% EER and 0.220 MinDCF in VoxCeleb using single-stage self-supervised training.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers. 
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of 0.73% in Voxceleb and 6.78% in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
@@ -39,6 +39,7 @@ pip install -r requirements.txt
 | Task | Dataset | Model | Performance |
 |:-----:|:------:|:------:|:------:|
 | speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | EER=0.73% |
+| speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | EER=3.29% |
 
 Here is another simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
 ``` sh
@@ -65,11 +66,11 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_r
 ## Acknowledge
 3D-Speaker contains third-party components and code modified from some open-source repos, including:
 
-- [speechbrain] (https://github.com/speechbrain/speechbrain)
-- [wespeaker] (https://github.com/wenet-e2e/wespeaker)
-- [D-TDNN] (https://github.com/yuyq96/D-TDNN)
-- [dino] (https://github.com/facebookresearch/dino)
-- [vicreg] (https://github.com/facebookresearch/vicreg)
+- [speechbrain](https://github.com/speechbrain/speechbrain)
+- [wespeaker](https://github.com/wenet-e2e/wespeaker)
+- [D-TDNN](https://github.com/yuyq96/D-TDNN)
+- [dino](https://github.com/facebookresearch/dino)
+- [vicreg](https://github.com/facebookresearch/vicreg)
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
