@@ -24,8 +24,7 @@ parser.add_argument('--c_fa', default=1, type=float, help='c_fa in DCF')
 
 def main():
     args = parser.parse_args(sys.argv[1:])
-    scores_dir = os.path.join(args.scores_dir, 'scores')
-    os.makedirs(scores_dir, exist_ok=True)
+    os.makedirs(args.scores_dir, exist_ok=True)
 
     result_path = os.path.join(args.scores_dir, 'result.metrics')
     logger = get_logger(fpath=result_path, fmt = "%(message)s")
