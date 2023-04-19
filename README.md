@@ -15,36 +15,42 @@
     
 </div>
     
-<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
+<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 ## Quickstart
+### Install 3D-Speaker
 ``` sh
 git clone https://github.com/alibaba-damo-academy/3D-Speaker.git && cd 3D-Speaker
 conda create -n 3D-Speaker python=3.8
 conda activate 3D-Speaker
 pip install -r requirements.txt
-cd egs/sv-rdino/voxceleb/
-./run.sh
 ```
-
-## Load pretrained model
-3D-Speaker shares pretrained models on [ModelScope](https://www.modelscope.cn/models). It downloads the model and generates embeddings.
+### Running experiments
 ``` sh
-# install modelscope
+# Speaker verification: CAM++ on voxceleb
+cd egs/sv-cam++/voxceleb/
+bash run.sh
+# Self-supervised speaker verification: RDINO on voxceleb
+cd egs/sv-rdino/voxceleb/
+bash run.sh
+```
+### Inference using pretrained models from Modelscope
+All pretrained models are released on [Modelscope](https://www.modelscope.cn/models).
+
+``` sh
+# Install modelscope
 pip install modelscope
-# extract embeddings based on pretrained models
 # CAM++ trained on VoxCeleb
 model_id=damo/speech_campplus_sv_en_voxceleb_16k
-model_revision=v1.0.2
-python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
 # CAM++ trained on 200k labeled speakers
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
-model_revision=v1.0.0
-python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
+
 | Task | Dataset | Model | Performance |
 |:-----:|:------:|:------:|:------:|
-| supervised speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | EER = 0.73% |
+| speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | EER = 0.73% |
 | self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | EER = 3.24% |
 
 ## News
