@@ -3,10 +3,18 @@
 
 """
 This script will download the pretrained models from modelscope (https://www.modelscope.cn/models)
-based on the given model id and model version, and extract the embeddings from the given audio file.
+based on the given model id, and extract the embeddings from the given audio files.
+Usage:
+    1. extract the embedding from the wav file.
+        `python infer_sv.py --model_id $model_id --wavs $wav_path `
+    2. extract embeddings from two wav files and compute the similarity score.
+        `python infer_sv.py --model_id $model_id --wavs $wav_path1 $wav_path2 `
+    3. extract embeddings from the wav list.
+        `python infer_sv.py --model_id $model_id --wavs $wav_list `
 """
 
 import os
+import sys
 import json
 import re
 import pathlib
@@ -15,7 +23,12 @@ import argparse
 import torch
 import torchaudio
 
-from speakerlab.process.processor import FBank
+try:
+    from speakerlab.process.processor import FBank
+except ImportError:
+    sys.path.append('%s/../..'%os.path.dirname(__file__))
+    from speakerlab.process.processor import FBank
+
 from speakerlab.utils.builder import dynamic_import
 
 from modelscope.hub.snapshot_download import snapshot_download
@@ -23,21 +36,37 @@ from modelscope.pipelines.util import is_official_hub_path
 
 parser = argparse.ArgumentParser(description='Extract embeddings for evaluation.')
 parser.add_argument('--model_id', default='', type=str, help='Model id in modelscope')
-parser.add_argument('--model_revision', default=None, type=str, help='Model revision in modelscope')
-parser.add_argument('--wav_path', default='', type=str, help='Wav path')
+parser.add_argument('--wavs', nargs='+', type=str, help='Wavs')
 parser.add_argument('--local_model_dir', default='pretrained', type=str, help='Local model dir')
 
-CAMPPLUS = {
+CAMPPLUS_VOX = {
     'obj': 'speakerlab.models.campplus.DTDNN.CAMPPlus',
     'args': {
         'feat_dim': 80,
-        'embedding_size': None,
+        'embedding_size': 512,
+    },
+}
+
+CAMPPLUS_COMMON = {
+    'obj': 'speakerlab.models.campplus.DTDNN.CAMPPlus',
+    'args': {
+        'feat_dim': 80,
+        'embedding_size': 192,
     },
 }
 
 supports = {
-    'damo/speech_campplus_sv_en_voxceleb_16k': CAMPPLUS,
-    'damo/speech_campplus_sv_zh-cn_16k-common': CAMPPLUS,
+    'damo/speech_campplus_sv_en_voxceleb_16k': {
+        'revision': 'v1.0.2', 
+        'model': CAMPPLUS_VOX, 
+        'model_pt': 'campplus_voxceleb.bin', 
+    },
+
+    'damo/speech_campplus_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.0', 
+        'model': CAMPPLUS_COMMON,
+        'model_pt': 'campplus_cn_common.bin',
+    },
 }
 
 def main():
@@ -49,10 +78,11 @@ def main():
     save_dir =  pathlib.Path(save_dir)
     save_dir.mkdir(exist_ok=True, parents=True)
 
+    conf = supports[args.model_id]
     # download models from modelscope according to model_id
     cache_dir = snapshot_download(
                 args.model_id,
-                revision=args.model_revision,
+                revision=conf['revision'],
                 )
     cache_dir = pathlib.Path(cache_dir)
 
@@ -60,7 +90,7 @@ def main():
     embedding_dir.mkdir(exist_ok=True, parents=True)
 
     # link
-    download_files = ['examples', '.json', '.bin']
+    download_files = ['examples', conf['model_pt']]
     for src in cache_dir.glob('*'):
         if re.search('|'.join(download_files), src.name):
             dst = save_dir / src.name
@@ -70,53 +100,87 @@ def main():
                 pass
             dst.symlink_to(src)
 
-    # read config
-    config_file = save_dir / 'configuration.json'
-    conf = json.load(open(config_file))
-
-    pretrained_model = save_dir / conf['model']['pretrained_model']
+    pretrained_model = save_dir / conf['model_pt']
     pretrained_state = torch.load(pretrained_model, map_location='cpu')
 
     # load model
-    model = supports[args.model_id]
-    if 'emb_size' in conf['model']['model_config']:
-        embedding_size = int(conf['model']['model_config']['emb_size'])
-    else:
-        embedding_size = 512
-    model['args']['embedding_size'] = embedding_size
+    model = conf['model']
     embedding_model = dynamic_import(model['obj'])(**model['args'])
     embedding_model.load_state_dict(pretrained_state)
     embedding_model.eval()
 
+    def load_wav(wav_file, obj_fs=16000):
+        wav, fs = torchaudio.load(wav_file)
+        if fs != obj_fs:
+            print(f'[INFO]: The sample rate of {wav_file} is not {obj_fs}, resample it.')
+            wav, fs = torchaudio.sox_effects.apply_effects_tensor(
+                wav, fs, effects=[['rate', str(obj_fs)]]
+            )
+            if wav.shape[0] > 1:
+                wav = wav[0, :].unsqueeze(0)
+        return wav
+
+    feature_extractor = FBank(80, sample_rate=16000, mean_nor=True)
+    def compute_embedding(wav_file, save=True):
+        # load wav
+        wav = load_wav(wav_file)
+        # compute feat
+        feat = feature_extractor(wav).unsqueeze(0)
+        # compute embedding
+        with torch.no_grad():
+            embedding = embedding_model(feat).detach().cpu().numpy()
+        
+        if save:
+            save_path = embedding_dir / (
+            '%s.npy' % (os.path.basename(wav_file).rsplit('.', 1)[0]))
+            np.save(save_path, embedding)
+            print(f'[INFO]: The extracted embedding from {wav_file} is saved to {save_path}.')
+        
+        return embedding
+
     # extract embeddings
-    if len(args.wav_path) == 0:
-        examples_dir = save_dir / 'examples'
-        try:
-            # use example wav
-            args.wav_path = list(examples_dir.glob('*.wav'))[0]
-            print(f'Wav_path is not specified, use {args.wav_path} instead.')
-        except IndexError:
-            assert FileNotFoundError('Invalid wav path.')
+    print(f'[INFO]: Extracting embeddings...')
 
-    wav, fs = torchaudio.load(args.wav_path)
-    if 'sample_rate' in conf['model']['model_config']:
-        assert fs == int(conf['model']['model_config']['sample_rate']), \
-        f"The sample rate of wav is {fs} and inconsistent with that of the pretrained model."
+    if args.wavs is None or len(args.wavs) == 2:
+        if args.wavs is None:
+            try:
+                # use example wavs
+                examples_dir = save_dir / 'examples'
+                wav_path1, wav_path2 = list(examples_dir.glob('*.wav'))[0:2]
+                print(f'[INFO]: No wavs input, use example wavs instead.')
+            except:
+                assert Exception('Invalid input wav.')
+        else:
+            # use input wavs
+            wav_path1, wav_path2 = args.wavs
 
-    if wav.shape[0] > 1:
-        wav = wav[0, :].unsqueeze(0)
+        embedding1 = compute_embedding(wav_path1)
+        embedding2 = compute_embedding(wav_path2)
 
-    feature_extractor = FBank(80, fs, mean_nor=True)
-    feat = feature_extractor(wav)
-    feat = feat.unsqueeze(0)
-    with torch.no_grad():
-        embedding = embedding_model(feat).detach().cpu().numpy()
-
-    # save embeddings
-    save_path = embedding_dir / (
-        '%s.npy' % (os.path.basename(args.wav_path).rsplit('.', 1)[0]))
-    np.save(save_path, embedding)
-    print(f'The extracted {embedding_size}-dim embedding from {args.wav_path} is saved to {save_path}.')
+        # compute similarity score
+        print('[INFO]: Computing the similarity score...')
+        similarity = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
+        scores = similarity(torch.from_numpy(embedding1), torch.from_numpy(embedding2)).item()
+        print('[INFO]: The similarity score between two input wavs is %.4f' % scores)
+    elif len(args.wavs) == 1:
+        # input one wav file
+        if args.wavs[0].endswith('.wav'):
+            # input is wav path
+            wav_path = args.wavs[0]
+            embedding = compute_embedding(wav_path)
+        else:
+            try:
+                # input is wav list
+                wav_list_file = args.wavs[0]
+                with open(wav_list_file,'r') as f:
+                    wav_list = f.readlines()
+            except:
+                raise Exception('[ERROR]: Input should be wav file or wav list.')
+            for wav_path in wav_list:
+                wav_path = wav_path.strip()
+                embedding = compute_embedding(wav_path)
+    else:
+        raise Exception('[ERROR]: Supports up to two input files')
 
 if __name__ == '__main__':
     main()
