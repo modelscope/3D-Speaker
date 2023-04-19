@@ -54,10 +54,6 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_r
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
 model_revision=v1.0.0
 python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
-# RDINO on VoxCeleb
-model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
-model_revision=v1.0.1
-python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
 ```
 
 ## License
