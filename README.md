@@ -17,7 +17,7 @@
     
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
-## Installation
+## Quickstart
 ``` sh
 git clone https://github.com/alibaba-damo-academy/3D-Speaker.git && cd 3D-Speaker
 conda create -n 3D-Speaker python=3.8
