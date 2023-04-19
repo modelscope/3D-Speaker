@@ -61,7 +61,6 @@ supports = {
         'model': CAMPPLUS_VOX, 
         'model_pt': 'campplus_voxceleb.bin', 
     },
-
     'damo/speech_campplus_sv_zh-cn_16k-common': {
         'revision': 'v1.0.0', 
         'model': CAMPPLUS_COMMON,
@@ -181,6 +180,7 @@ def main():
                 embedding = compute_embedding(wav_path)
     else:
         raise Exception('[ERROR]: Supports up to two input files')
+
 
 if __name__ == '__main__':
     main()
