@@ -6,17 +6,14 @@
 <p>
     
 <div align="center">
-
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
 ![license](https://img.shields.io/github/license/modelscope/modelscope.svg)
 <a href=""><img src="https://img.shields.io/badge/OS-Linux-orange.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Python->=3.8-aff.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Pytorch->=1.10-blue"></a>
-    
 </div>
     
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
-
 
 ## Installation
 ``` sh
@@ -24,10 +21,12 @@ git clone https://github.com/alibaba-damo-academy/3D-Speaker.git && cd 3D-Speake
 conda create -n 3D-Speaker python=3.8
 conda activate 3D-Speaker
 pip install -r requirements.txt
+cd egs/sv-rdino/voxceleb/
+./run.sh
 ```
 
 ## Load pretrained model
-3D-Speaker shares pretrained models on [ModelScope](https://www.modelscope.cn/models). It downloads the pretrained model and generates embeddings.
+3D-Speaker shares pretrained models on [ModelScope](https://www.modelscope.cn/models). It downloads the model and generates embeddings.
 ``` sh
 # install modelscope
 pip install modelscope
