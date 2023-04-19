@@ -11,7 +11,7 @@
 
 | Model | EER(%) | MinDCF |
 |:-----:|:------:|:------:|
-| RDINO performance in the paper |  3.29  |  0.247 |
+| RDINO performance in the paper |  3.24  |  0.252 |
 | RDINO perforance reproduced with this code |  3.05  |  0.220 |
 
 Note: The original checkpoint is uploaded to ModelScope. The batchsize would affect the learning rate and the number of iterations. It could get the same or similar results if the parameters are unchanged.
