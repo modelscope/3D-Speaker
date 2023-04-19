@@ -6,11 +6,13 @@
 <p>
     
 <div align="center">
+    
 <!-- [![Documentation Status](https://readthedocs.org/projects/easy-cv/badge/?version=latest)](https://easy-cv.readthedocs.io/en/latest/) -->
 ![license](https://img.shields.io/github/license/modelscope/modelscope.svg)
 <a href=""><img src="https://img.shields.io/badge/OS-Linux-orange.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Python->=3.8-aff.svg"></a>
 <a href=""><img src="https://img.shields.io/badge/Pytorch->=1.10-blue"></a>
+    
 </div>
     
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pre-trained models are accessible on [ModelScope](https://www.modelscope.cn/models).
