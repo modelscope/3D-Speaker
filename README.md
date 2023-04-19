@@ -1,7 +1,7 @@
 
 <p align="center">
     <br>
-    <img src="docs/images/3D-Speaker.png" width="400"/>
+    <img src="docs/images/3D-Speaker-logo.png" width="400"/>
     <br>
 <p>
     
