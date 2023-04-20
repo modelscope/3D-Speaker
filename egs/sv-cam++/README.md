@@ -14,15 +14,19 @@
 | CAM++ | 7.18M  | 0.73 | 0.0911 |
 
 ## pretrained model
-Voxceleb: [ModelScope](https://www.modelscope.cn/models)：[speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
-Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
+- Voxceleb: ：[speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
+- 200k labeled speakers: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
+
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and extracts embeddings.
 ``` sh
-# install modelscope
+# Install modelscope
 pip install modelscope
-# extract embeddings from the pretrained models
-# CAM++ on VoxCeleb
+# CAM++ trained on VoxCeleb
 model_id=damo/speech_campplus_sv_en_voxceleb_16k
-model_revision=v1.0.2
-python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
+# CAM++ trained on 200k labeled speakers
+model_id=damo/speech_campplus_sv_zh-cn_16k-common
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```

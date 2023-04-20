@@ -3,7 +3,8 @@
 
 """
 This script will download the pretrained models from modelscope (https://www.modelscope.cn/models)
-based on the given model id, and extract the embeddings from the given audio files.
+based on the given model id, and extract the embeddings from the given audio files. 
+Please pre-install "modelscope".
 Usage:
     1. extract the embedding from the wav file.
         `python infer_sv.py --model_id $model_id --wavs $wav_path `
@@ -111,7 +112,7 @@ def main():
     def load_wav(wav_file, obj_fs=16000):
         wav, fs = torchaudio.load(wav_file)
         if fs != obj_fs:
-            print(f'[INFO]: The sample rate of {wav_file} is not {obj_fs}, resample it.')
+            print(f'[WARNING]: The sample rate of {wav_file} is not {obj_fs}, resample it.')
             wav, fs = torchaudio.sox_effects.apply_effects_tensor(
                 wav, fs, effects=[['rate', str(obj_fs)]]
             )
