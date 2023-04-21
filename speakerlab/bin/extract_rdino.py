@@ -20,7 +20,6 @@ parser.add_argument('--data', default='', type=str, help='Data dir')
 parser.add_argument('--use_gpu', action='store_true', help='Use gpu or not')
 parser.add_argument('--gpu', nargs='+', help='GPU id to use.')
 
-
 def main():
     args = parser.parse_args(sys.argv[1:])
     config_file = os.path.join(args.exp_dir, 'config.yaml')
