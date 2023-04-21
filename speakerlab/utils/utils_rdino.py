@@ -6,11 +6,11 @@ import time
 import math
 import datetime
 import numpy as np
-from collections import defaultdict, deque
 
 import torch
 from torch import nn
 import torch.distributed as dist
+from collections import defaultdict, deque
 
 def get_params_groups(model):
         regularized = []
