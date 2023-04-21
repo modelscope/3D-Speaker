@@ -21,11 +21,10 @@ Note: The original checkpoint is uploaded to ModelScope. The batchsize would aff
 
 Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
 ``` sh
-# install modelscope
+# Install modelscope
 pip install modelscope
-# extract embeddings from the pretrained models
-# RDINO on VoxCeleb
+# RDINO trained on VoxCeleb
 model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
-model_revision=v1.0.1
-python speakerlab/bin/infer_sv.py --model_id $model_id --model_revision $model_revision --wav_path $wav_path
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
