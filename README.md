@@ -44,10 +44,13 @@ pip install modelscope
 model_id=damo/speech_campplus_sv_en_voxceleb_16k
 # CAM++ trained on 200k labeled speakers
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
+# Run cam++ inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+
 # RDINO trained on VoxCeleb
 model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
-# Run inference
-python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+# Run rdino inference
+python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
 | Task | Dataset | Model | Performance |
