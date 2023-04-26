@@ -57,7 +57,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 |:-----:|:------:|:------:|:------:|
 | speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.73% |
 | self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | Vox1-O EER = 3.24% |
-| speaker verification | 200k-speaker Mandarin dataset | [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 4.32% |
+| speaker verification | 200k-speaker dataset | [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 4.32% |
 
 ## News
 - [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-rdino/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. RDINO is a self-supervised learning framework in speaker verification aiming to alleviate model collapse in non-contrastive methods. It contains teacher and student network with an identical architecture but different parameters. Two regularization terms are proposed in RDINO, namely diversity regularization and redundancy elimination regularization. RDINO achieve <strong>3.05%</strong> EER and <strong>0.220</strong> MinDCF in VoxCeleb using single-stage self-supervised training.
