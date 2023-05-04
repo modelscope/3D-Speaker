@@ -28,13 +28,6 @@ class WavReader(object):
         assert sr == self.sample_rate
         wav = wav[0]
 
-        # if wav.shape[0] > int(4.0 * sr):
-        #     snt_len_sample = int(4.0 * sr)
-        #     duration_sample = wav.shape[0]
-        #     start = random.randint(0, duration_sample - snt_len_sample)
-        #     stop = start + snt_len_sample
-        #     wav = wav[start:stop]
-
         if self.speed_pertub:
             speeds = [1.0, 0.9, 1.1]
             speed_idx = random.randint(0, 2)
