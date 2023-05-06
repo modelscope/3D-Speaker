@@ -35,7 +35,7 @@ from speakerlab.utils.builder import dynamic_import
 from modelscope.hub.snapshot_download import snapshot_download
 from modelscope.pipelines.util import is_official_hub_path
 
-parser = argparse.ArgumentParser(description='Extract embeddings for evaluation.')
+parser = argparse.ArgumentParser(description='Extract speaker embeddings.')
 parser.add_argument('--model_id', default='', type=str, help='Model id in modelscope')
 parser.add_argument('--wavs', nargs='+', type=str, help='Wavs')
 parser.add_argument('--local_model_dir', default='pretrained', type=str, help='Local model dir')

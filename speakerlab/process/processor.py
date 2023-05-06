@@ -34,6 +34,9 @@ class WavReader(object):
             if speed_idx > 0:
                 wav, _ = torchaudio.sox_effects.apply_effects_tensor(
                     wav.unsqueeze(0), self.sample_rate, [['speed', str(speeds[speed_idx])], ['rate', str(self.sample_rate)]])
+        else:
+            speed_idx = 0
+
         wav = wav.squeeze(0)
         data_len = wav.shape[0]
 
@@ -54,7 +57,7 @@ class SpkLabelEncoder(object):
         self.starting_index = -1
         self.load(data_file)
 
-    def __call__(self, spk, speed_idx):
+    def __call__(self, spk, speed_idx=0):
         spkid = self.lab2ind[spk]
         spkid = spkid + len(self.lab2ind) * speed_idx
         return spkid

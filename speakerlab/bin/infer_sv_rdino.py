@@ -38,7 +38,7 @@ from speakerlab.utils.utils import load_params
 from modelscope.hub.snapshot_download import snapshot_download
 from modelscope.pipelines.util import is_official_hub_path
 
-parser = argparse.ArgumentParser(description='Extract embeddings for evaluation.')
+parser = argparse.ArgumentParser(description='Extract speaker embeddings.')
 parser.add_argument('--yaml', default='conf/rdino.yaml', type=str, help='Config file')
 parser.add_argument('--model_id', default='', type=str, help='Model id in modelscope')
 parser.add_argument('--wavs', nargs='+', type=str, help='Wavs')

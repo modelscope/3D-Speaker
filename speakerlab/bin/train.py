@@ -50,7 +50,10 @@ def main():
     # model
     embedding_model = build('embedding_model', config)
     if hasattr(config, 'speed_pertub') and config.speed_pertub:
-        config.num_classes = len(config.label_encoder)*3
+        config.num_classes = len(config.label_encoder) * 3
+    else:
+        config.num_classes = len(config.label_encoder)
+
     classifier = build('classifier', config)
     model = nn.Sequential(embedding_model, classifier)
     model.cuda()
@@ -145,7 +148,7 @@ def train(train_loader, model, criterion, optimizer, epoch, lr_scheduler, margin
         loss = criterion(output, y)
         acc1 = accuracy(output, y)
 
-        # compute gradient and do SGD step
+        # compute gradient and do optimizer step
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
