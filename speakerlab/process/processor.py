@@ -13,13 +13,11 @@ from speakerlab.utils.fileio import load_data_csv
 
 class WavReader(object):
     def __init__(self,
-        duration: float = 3.0,
-        random: bool = True,
         sample_rate = 16000,
+        duration: float = 3.0,
         speed_pertub: bool = False,
     ):
         self.duration = duration
-        self.random = random
         self.sample_rate = sample_rate
         self.speed_pertub = speed_pertub
 

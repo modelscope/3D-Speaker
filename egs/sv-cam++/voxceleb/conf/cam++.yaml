@@ -34,7 +34,6 @@ wav_reader:
   obj: speakerlab.process.processor.WavReader
   args:
     duration: <wav_len>
-    random: True
     sample_rate: <sample_rate>
     speed_pertub: <speed_pertub>
 
@@ -46,7 +45,7 @@ label_encoder:
 feature_extractor:
   obj: speakerlab.process.processor.FBank
   args:
-    n_mels: 80
+    n_mels: <fbank_dim>
     sample_rate: <sample_rate>
     mean_nor: True
 
