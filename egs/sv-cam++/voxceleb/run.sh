@@ -5,7 +5,7 @@
 set -e
 . ./path.sh || exit 1
 
-stage=3
+stage=1
 stop_stage=5
 
 data=data
