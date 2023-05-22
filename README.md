@@ -69,7 +69,7 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 | speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
 
 ## News
-- [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb] released. ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local 
+- [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local 
 feature fusion fuses the features within one single residual block to extract the local signal. The global feature fusion takes 
 acoustic features of different scales as input to aggregate global signal.
 - [2023.5] [ERes2Net](https://www.modelscope.cn/models/damo/damo/speech_eres2net_sv_en_voxceleb_16k) pretrained model released, trained on VoxCeleb.
@@ -78,7 +78,7 @@ acoustic features of different scales as input to aggregate global signal.
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of <strong>0.73%</strong> in Voxceleb and <strong>6.78%</strong> in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
-- [2023.5] Releasing ERes2Net model trained on over 100k labeled speakers.
+- [2023.5] Releasing ERes2Net model trained on over 200k labeled speakers.
 - [2023.6] Releasing 3D-Speaker Dataset.
 ## License
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
