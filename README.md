@@ -33,6 +33,9 @@ bash run.sh
 # Self-supervised speaker verification: RDINO on voxceleb
 cd egs/sv-rdino/voxceleb/
 bash run.sh
+# Speaker verification: ERes2Net on voxceleb
+cd egs/sv-eres2net/voxceleb/
+bash run.sh
 ```
 ### Inference using pretrained models from Modelscope
 All pretrained models are released on [Modelscope](https://www.modelscope.cn/models).
@@ -51,23 +54,32 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
 # Run rdino inference
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
+
+# ERes2Net trained on VoxCeleb
+model_id=damo/speech_eres2net_sv_en_voxceleb_16k
+# Run ERes2Net inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
 | Task | Dataset | Model | Performance |
 |:-----:|:------:|:------:|:------:|
 | speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.73% |
-| self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | Vox1-O EER = 3.24% |
+| self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | Vox1-O EER = 3.16% |
 | speaker verification | 200k-speaker dataset | [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 4.32% |
+| speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
 
 ## News
-- [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-rdino/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. RDINO is a self-supervised learning framework in speaker verification aiming to alleviate model collapse in non-contrastive methods. It contains teacher and student network with an identical architecture but different parameters. Two regularization terms are proposed in RDINO, namely diversity regularization and redundancy elimination regularization. RDINO achieve <strong>3.05%</strong> EER and <strong>0.220</strong> MinDCF in VoxCeleb using single-stage self-supervised training.
+- [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb] released. ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local 
+feature fusion fuses the features within one single residual block to extract the local signal. The global feature fusion takes 
+acoustic features of different scales as input to aggregate global signal.
+- [2023.5] [ERes2Net](https://www.modelscope.cn/models/damo/damo/speech_eres2net_sv_en_voxceleb_16k) pretrained model released, trained on VoxCeleb.
+- [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-rdino/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. RDINO is a self-supervised learning framework in speaker verification aiming to alleviate model collapse in non-contrastive methods. It contains teacher and student network with an identical architecture but different parameters. Two regularization terms are proposed in RDINO, namely diversity regularization and redundancy elimination regularization. RDINO achieve <strong>3.16%</strong> EER and <strong>0.223</strong> MinDCF in VoxCeleb using single-stage self-supervised training.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers. It achieves an EER of <strong>4.32%</strong> in CN-Celeb test set.
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of <strong>0.73%</strong> in Voxceleb and <strong>6.78%</strong> in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
-- [2023.5] Releasing ERes2Net (Enhanced Res2Net) training framework.
 - [2023.5] Releasing ERes2Net model trained on over 100k labeled speakers.
-
+- [2023.6] Releasing 3D-Speaker Dataset.
 ## License
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
