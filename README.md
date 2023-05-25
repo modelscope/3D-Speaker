@@ -98,10 +98,11 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 ## Citations
 ```BibTeX
-@inproceedings{rdino,
+@inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
-  author={Yafeng Chen and Siqi Zheng and Hui Wang and Luyao Cheng and Qian Chen},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
   booktitle={ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={1--5},
   year={2023},
   organization={IEEE}
 }
@@ -109,13 +110,14 @@ If you have any comment or question about 3D-Speaker, please contact us by
   title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
   author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
   booktitle={Interspeech 2023},
-  year={2023}
+  year={2023},
+  organization={IEEE}
 }
 @article{eres2net,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
   author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
   booktitle={Interspeech 2023},
-  url={https://arxiv.org/pdf/2305.12838.pdf}
-  year={2023}
+  year={2023},
+  organization={IEEE}
 }
 ```
