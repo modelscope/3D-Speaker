@@ -108,13 +108,13 @@ If you have any comment or question about 3D-Speaker, please contact us by
 @article{cam++,
   title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
   author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
-  journal={arXiv preprint arXiv:2303.00332},
+  booktitle={Interspeech 2023},
   year={2023}
 }
 @article{eres2net,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
   author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
-  journal={arXiv preprint arXiv:2305.12838},
+  booktitle={Interspeech 2023},
   url={https://arxiv.org/pdf/2305.12838.pdf}
   year={2023}
 }
