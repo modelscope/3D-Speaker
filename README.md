@@ -80,6 +80,15 @@ acoustic features of different scales as input to aggregate global signal.
 ## To be expected
 - [2023.5] Releasing ERes2Net model trained on over 200k labeled speakers.
 - [2023.6] Releasing 3D-Speaker Dataset.
+
+## Contact
+If you have any comment or question about 3D-Speaker, please contact us by
+- email: chenyafeng.cyf@alibaba-inc.com, tongmu.wh@alibaba-inc.com
+
+|Dingding group |
+|:---:|
+|<div align="center"><img src="docs/images/dingding.jpg" width="250"/> |
+
 ## License
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
@@ -92,13 +101,6 @@ acoustic features of different scales as input to aggregate global signal.
 - [dino](https://github.com/facebookresearch/dino)
 - [vicreg](https://github.com/facebookresearch/vicreg)
 
-## Contact
-If you have any comment or question about 3D-Speaker, please contact us by
-- email: chenyafeng.cyf@alibaba-inc.com, tongmu.wh@alibaba-inc.com
-
-|Dingding group |
-|:---:|
-|<div align="center"><img src="docs/images/dingding.jpg" width="250"/> |
 
 ## Citations
 ```BibTeX
