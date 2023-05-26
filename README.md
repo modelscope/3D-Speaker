@@ -98,7 +98,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 |Dingding group |
 |:---:|
-|<div align="left"><img src="docs/images/dingding.jpg" width="250"/> |
+|<div align="center"><img src="docs/images/dingding.jpg" width="250"/> |
 
 ## Citations
 ```BibTeX
