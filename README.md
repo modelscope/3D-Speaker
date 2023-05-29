@@ -83,8 +83,7 @@ acoustic features of different scales as input to aggregate global signal.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
-- email: zsq174630@alibaba-inc.com, chenyafeng.cyf@alibaba-inc.com,   
-         tongmu.wh@alibaba-inc.com, shuli.cly@alibaba-inc.com
+- email: {zsq174630, chenyafeng.cyf, tongmu.wh, shuli.cly}@alibaba-inc.com
 
 ## License
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
