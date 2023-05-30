@@ -92,9 +92,6 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   if [ ! -d ${data}/vox1/trials ]; then
     echo "Download trials for vox1 ..."
     mkdir -p ${data}/vox1/trials
-    #wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/veri_test.txt -O ${data}/vox1/trials/vox1-O.txt
-    #wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/list_test_hard.txt -O ${data}/vox1/trials/vox1-H.txt
-    #wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/list_test_all.txt -O ${data}/vox1/trials/vox1-E.txt
     wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/veri_test2.txt -O ${data}/vox1/trials/vox1-O\(cleaned\).txt
     wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/list_test_hard2.txt -O ${data}/vox1/trials/vox1-H\(cleaned\).txt
     wget --no-check-certificate https://www.robots.ox.ac.uk/~vgg/data/voxceleb/meta/list_test_all2.txt -O ${data}/vox1/trials/vox1-E\(cleaned\).txt
