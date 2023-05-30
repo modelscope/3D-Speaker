@@ -84,7 +84,6 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   find $(pwd)/${rawdata_dir}/musan/noise/free-sound -name "*.wav" | awk -F"/" '{print $(NF-2)"/"$(NF-1)"/"$NF,$0}' >${data}/musan/wav.scp
   # rirs
   awk '{print $5}' $(pwd)/${rawdata_dir}/RIRS_NOISES/real_rirs_isotropic_noises/rir_list | xargs -I {} echo {} $(pwd)/${rawdata_dir}/{} > ${data}/rirs/wav.scp
-  # find $(pwd)/${rawdata_dir}/RIRS_NOISES/simulated_rirs -name "*.wav" | awk -F"/" '{print $(NF-2)"/"$(NF-1)"/"$NF,$0}' >${data}/rirs/wav.scp
   # vox1
   find $(pwd)/${rawdata_dir}/voxceleb1 -name "*.wav" | awk -F"/" '{print $(NF-2)"/"$(NF-1)"/"$NF,$0}' | sort >${data}/vox1/wav.scp
   awk '{print $1}' ${data}/vox1/wav.scp | awk -F "/" '{print $0,$1}' >${data}/vox1/utt2spk
