@@ -162,7 +162,7 @@ def Gener_glob_loc_audio(filename, max_frames, glb_num, local_num):
         audio = audio[:, 0]
     audio_size = audio.shape[0]
 
-    if audio_size < max_audio_size:
+    if audio_size <= max_audio_size:
         shortage = max_audio_size - audio_size + glb_num
         audio = np.pad(audio, (0, shortage), 'constant', constant_values=0)
         audio_size = audio.shape[0]
