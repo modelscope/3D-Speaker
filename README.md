@@ -78,8 +78,8 @@ acoustic features of different scales as input to aggregate global signal.
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of <strong>0.73%</strong> in Voxceleb and <strong>6.78%</strong> in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
-- [2023.5] Releasing ERes2Net model trained on over 200k labeled speakers.
-- [2023.6] Releasing 3D-Speaker Dataset.
+- [2023.6] Releasing ERes2Net model trained on over 200k labeled speakers.
+- [2023.6] Releasing 3D-Speaker dataset and its corresponding benchmarks.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
