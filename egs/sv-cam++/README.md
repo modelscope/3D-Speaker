@@ -31,6 +31,7 @@ model_id=damo/speech_campplus_sv_zh-cn_16k-common
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
+## Citations
 If you are using CAM++ model in your research, please cite: 
 ```BibTeX
 @article{cam++,
