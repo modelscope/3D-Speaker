@@ -28,6 +28,7 @@ model_id=damo/speech_eres2net_sv_en_voxceleb_16k
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
+## Citations
 If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
 @article{eres2net,
