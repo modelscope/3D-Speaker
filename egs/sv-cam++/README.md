@@ -30,3 +30,14 @@ model_id=damo/speech_campplus_sv_zh-cn_16k-common
 # Run inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
+
+If you are using CAM++ model in your research, please cite: 
+```BibTeX
+@article{cam++,
+  title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
+  author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
+  booktitle={Interspeech 2023},
+  year={2023},
+  organization={IEEE}
+}
+```
