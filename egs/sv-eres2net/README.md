@@ -27,3 +27,14 @@ model_id=damo/speech_eres2net_sv_en_voxceleb_16k
 # Run inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
+
+If you are using ERes2Net model in your research, please cite: 
+```BibTeX
+@article{eres2net,
+  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
+  author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
+  booktitle={Interspeech 2023},
+  year={2023},
+  organization={IEEE}
+}
+```
