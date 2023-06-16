@@ -85,7 +85,5 @@ def main():
     msg = "VAD json is prepared in %s" % (args.out_file)
     print(f'[INFO]: {msg}')
 
-
-
 if __name__ == '__main__':
     main()

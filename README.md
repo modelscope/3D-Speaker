@@ -97,6 +97,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
+If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
@@ -106,6 +107,10 @@ If you have any comment or question about 3D-Speaker, please contact us by
   year={2023},
   organization={IEEE}
 }
+```
+
+If you are using CAM++ model in your research, please cite: 
+```BibTeX
 @article{cam++,
   title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
   author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
@@ -113,6 +118,10 @@ If you have any comment or question about 3D-Speaker, please contact us by
   year={2023},
   organization={IEEE}
 }
+```
+
+If you are using ERes2Net model in your research, please cite: 
+```BibTeX
 @article{eres2net,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
   author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},

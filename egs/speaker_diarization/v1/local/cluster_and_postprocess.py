@@ -74,7 +74,7 @@ def main():
         new_labels = np.zeros(len(labels),dtype=int)
         uniq = np.unique(labels)
         for i in range(len(uniq)):
-            new_labels[labels==uniq[i]] = i + 1
+            new_labels[labels==uniq[i]] = i 
         seg_list = [(i,j) for i,j in zip(segids, new_labels)]
         rec_id = embs_file.name.rsplit('.', 1)[0]
         out_rttm = os.path.join(args.rttm_dir, rec_id+'.rttm')

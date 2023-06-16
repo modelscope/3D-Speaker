@@ -94,7 +94,6 @@ def main():
             obj_list = [None]
         dist.broadcast_object_list(obj_list, 0)
         cache_dir = obj_list[0]
-        print(cache_dir)
         pretrained_model = os.path.join(cache_dir, model_config['model_pt'])
         conf['embedding_model'] = model_config['model']
         conf['pretrained_model'] = pretrained_model
@@ -102,11 +101,10 @@ def main():
     else:
         assert pretrained_model is not None, \
             "[ERROR] One of the params `model_id` and `pretrained_model` must be set."
-        # use the local training models
+        # use the local pretrained model
         conf['pretrained_model'] = pretrained_model
     
     os.makedirs(args.embs_out, exist_ok=True)
-    
     with open(args.subseg_json, "r") as f:
         subseg_json = json.load(f)
 
@@ -132,7 +130,6 @@ def main():
         metadata[rec_id]=subset
 
     print("[INFO] Start computing embeddings...")
-
     local_rec_ids = all_rec_ids[rank::threads_num]
 
     if args.use_gpu:

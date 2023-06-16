@@ -1,4 +1,4 @@
-# Stage-wise Speaker diarization
+# Speaker diarization
 
 ## Introduction
 This recipe offers a speaker diarization pipeline that addresses the problem of "who spoke when". It comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering.
@@ -7,8 +7,8 @@ This recipe offers a speaker diarization pipeline that addresses the problem of 
 - Voice activity detection model: [speech_fsmn_vad_zh-cn-16k-common-pytorch](https://modelscope.cn/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/summary)
 - Speaker embedding model: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
 - Speaker clustering. 
-  - Spectral clustering. Suitable for medium-length audio with relatively few speakers.
-  - UMAP-HDBSCAN. Suitable for long-length audio with a relatively large number of speakers.
+  - Spectral Clustering: Suitable for medium-length audio with relatively few speakers.
+  - UMAP-HDBSCAN: Suitable for long-length audio with a relatively large number of speakers.
 
 ## Usage
 First, prepare a list of WAV files. Then, run:
