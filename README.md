@@ -66,6 +66,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 | speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
 
 ## News
+- [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/speaker_diarization/v1) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 - [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local 
 feature fusion fuses the features within one single residual block to extract the local signal. The global feature fusion takes 
 acoustic features of different scales as input to aggregate global signal.
