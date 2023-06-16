@@ -17,17 +17,16 @@ except ImportError:
 
 
 class SpectralCluster:
-    r"""A spectral clustering mehtod using unnormalized Laplacian of affinity matrix.
+    """A spectral clustering mehtod using unnormalized Laplacian of affinity matrix.
     This implementation is adapted from https://github.com/speechbrain/speechbrain.
     """
 
-    def __init__(self, min_num_spks=1, max_num_spks=15, pval=0.02, min_pnum=6, min_cluster_size=4, oracle_num=None):
+    def __init__(self, min_num_spks=1, max_num_spks=10, pval=0.02, min_pnum=6, oracle_num=None):
         self.min_num_spks = min_num_spks
         self.max_num_spks = max_num_spks
         self.min_pnum = min_pnum
         self.pval = pval
         self.k = oracle_num
-        self.min_cluster_size = min_cluster_size
 
     def __call__(self, X, pval=None, oracle_num=None):
         # Similarity matrix computation
@@ -107,7 +106,7 @@ class SpectralCluster:
 
 
 class UmapHdbscan:
-    r"""
+    """
     Reference:
     - Siqi Zheng, Hongbin Suo. Reformulating Speaker Diarization as Community Detection With 
       Emphasis On Topological Structure. ICASSP2022
@@ -132,7 +131,7 @@ class UmapHdbscan:
 
 
 class CommonClustering:
-    r"""Perfom clustering for input embeddings and output the labels.
+    """Perfom clustering for input embeddings and output the labels.
     """
 
     def __init__(self, cluster_type, cluster_line=10, mer_cos=None, min_cluster_size=4, **kwargs):
