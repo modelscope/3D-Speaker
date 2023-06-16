@@ -117,7 +117,7 @@ def main():
             "No recording IDs found! Please check if json file is accuratly generated."
             )
     if len(all_rec_ids) <= rank:
-        print("WARNING: Threads num is more than wav num. Close redundant threads")
+        print("WARNING: The number of threads exceeds the number of files")
         sys.exit()
 
     metadata={}

@@ -20,11 +20,6 @@ json_dir=$exp/json
 embs_dir=$exp/embs
 rttm_dir=$exp/rttm
 
-#####
-# You can download the example wav by:
-# 1. wget "https://modelscope.cn/api/v1/models/damo/speech_campplus_speaker-diarization_common/repo?Revision=master&FilePath=examples/2speakers_example.wav" -O examples/2speakers_example.wav
-# 2. find examples -name "*.wav" > examples/wav.list
-#####
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   echo "Stage1: Do vad for input wavs..."

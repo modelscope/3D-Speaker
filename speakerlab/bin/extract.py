@@ -62,7 +62,7 @@ def main():
     data_k = list(data.keys())
     local_k = data_k[rank::world_size]
     if len(local_k) == 0:
-        msg = "The number of threads exceeded the number of files"
+        msg = "The number of threads exceeds the number of files"
         logger.info(msg)
         sys.exit()
 

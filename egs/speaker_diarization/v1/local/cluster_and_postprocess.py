@@ -55,7 +55,7 @@ def main():
     embs_files = list(embs_dir.glob('*.pkl'))
     embs_files.sort()
     if len(embs_files) <= rank:
-        print("WARNING: Threads num is more than wav num. Close redundant threads")
+        print("WARNING: The number of threads exceeds the number of files")
         sys.exit()
 
     os.makedirs(args.rttm_dir, exist_ok=True)
