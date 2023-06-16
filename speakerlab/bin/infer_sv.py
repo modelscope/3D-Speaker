@@ -2,8 +2,8 @@
 # Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 """
-This script will download the pretrained models from modelscope (https://www.modelscope.cn/models)
-based on the given model id, and extract the embeddings from the given audio files. 
+This script will download pretrained models from modelscope (https://www.modelscope.cn/models)
+based on the given model id, and extract embeddings from input audio. 
 Please pre-install "modelscope".
 Usage:
     1. extract the embedding from the wav file.
@@ -16,7 +16,6 @@ Usage:
 
 import os
 import sys
-import json
 import re
 import pathlib
 import numpy as np
@@ -116,8 +115,8 @@ def main():
             wav, fs = torchaudio.sox_effects.apply_effects_tensor(
                 wav, fs, effects=[['rate', str(obj_fs)]]
             )
-            if wav.shape[0] > 1:
-                wav = wav[0, :].unsqueeze(0)
+        if wav.shape[0] > 1:
+            wav = wav[0, :].unsqueeze(0)
         return wav
 
     feature_extractor = FBank(80, sample_rate=16000, mean_nor=True)

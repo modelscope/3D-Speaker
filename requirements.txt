@@ -3,8 +3,8 @@ torchaudio>=0.10.1,<1.0
 tqdm>=4.42.0
 scipy>=1.7.0
 numpy>=1.20.0,<1.24
+scikit-learn==1.0.2
 soundfile
 kaldiio
-scikit-learn
 pyyaml
 matplotlib
