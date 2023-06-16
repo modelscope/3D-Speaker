@@ -66,6 +66,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 | speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
 
 ## News
+- [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/speaker_diarization/v1) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 - [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local 
 feature fusion fuses the features within one single residual block to extract the local signal. The global feature fusion takes 
 acoustic features of different scales as input to aggregate global signal.
@@ -96,7 +97,6 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
-If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
@@ -106,10 +106,6 @@ If you are using RDINO model in your research, please cite:
   year={2023},
   organization={IEEE}
 }
-```
-
-If you are using CAM++ model in your research, please cite: 
-```BibTeX
 @article{cam++,
   title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
   author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
@@ -117,10 +113,6 @@ If you are using CAM++ model in your research, please cite:
   year={2023},
   organization={IEEE}
 }
-```
-
-If you are using ERes2Net model in your research, please cite: 
-```BibTeX
 @article{eres2net,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
   author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
