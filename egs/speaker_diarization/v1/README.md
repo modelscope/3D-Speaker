@@ -11,7 +11,13 @@ This recipe offers a speaker diarization pipeline that addresses the problem of 
   - UMAP-HDBSCAN: Suitable for long-length audio with a relatively large number of speakers.
 
 ## Usage
-First, prepare a list of WAV files. Then, run:
+First prepare a wav list file:
+``` sh
+mkdir examples
+wget "https://modelscope.cn/api/v1/models/damo/speech_campplus_speaker-diarization_common/repo?Revision=master&FilePath=examples/2speakers_example.wav" -O examples/2speakers_example.wav
+find examples -name "*.wav" > examples/wav.list
+```
+Then run:
 ``` sh
 pip install -r requirements.txt
 bash run.sh
