@@ -7,8 +7,8 @@ This recipe offers a speaker diarization pipeline that addresses the problem of 
 - Voice activity detection model: [speech_fsmn_vad_zh-cn-16k-common-pytorch](https://modelscope.cn/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/summary)
 - Speaker embedding model: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
 - Speaker clustering. 
-  - Spectral Clustering: Suitable for medium-length audio with relatively few speakers.
-  - UMAP-HDBSCAN: Suitable for long-length audio with a relatively large number of speakers.
+  - Spectral Clustering: Suitable for medium-length audio (<30min) with relatively few speakers (<6).
+  - UMAP-HDBSCAN: Suitable for long-length audio (>30min) with a relatively large number of speakers (>5).
 
 ## Usage
 First prepare a example wav list:
