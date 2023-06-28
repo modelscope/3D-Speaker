@@ -64,6 +64,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 | self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | Vox1-O EER = 3.16% |
 | speaker verification | 200k-speaker dataset | [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 4.32% |
 | speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
+| speaker verification | 200k-speaker dataset | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 2.80% |
 
 ## News
 - [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/speaker_diarization/v1) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
@@ -76,7 +77,6 @@ acoustic features of different scales as input to aggregate global signal.
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released. CAM++ is a fast and efficient speaker embedding extractor based on a densely connected time-delay neural network (D-TDNN). It adopts a novel multi-granularity pooling method to conduct context-aware masking. CAM++ achieves an EER of <strong>0.73%</strong> in Voxceleb and <strong>6.78%</strong> in CN-Celeb, outperforming other mainstream speaker embedding models such as ECAPA-TDNN and ResNet34, while having lower computational cost and faster inference speed.
 
 ## To be expected
-- [2023.6] Releasing ERes2Net model trained on over 200k labeled speakers.
 - [2023.6] Releasing 3D-Speaker dataset and its corresponding benchmarks.
 
 ## Contact
