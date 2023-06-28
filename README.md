@@ -15,7 +15,11 @@
     
 </div>
     
-<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
+<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models). Furthermore, we present a large-scale speech corpus called [3D-Speaker](https://3dspeaker.github.io/) to facilitate the research of speech representation disentanglement.
+
+## 3D-Speaker Dataset
+Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
+Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
 
 ## Quickstart
 ### Install 3D-Speaker
