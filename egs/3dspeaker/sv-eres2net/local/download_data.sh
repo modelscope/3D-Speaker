@@ -27,12 +27,12 @@ if [ ! -f ${download_dir}/musan.tar.gz ]; then
   [ $md5 != "0c472d4fc0c5141eca47ad1ffeb2a7df" ] && echo "Wrong md5sum of musan.tar.gz" && exit 1
 fi
 
-if [ ! -f ${download_dir}/rirs_noises.zip ]; then
-  echo "Downloading rirs_noises.zip ..."
-  wget --no-check-certificate https://us.openslr.org/resources/28/rirs_noises.zip -P ${download_dir}
-  md5=$(md5sum ${download_dir}/rirs_noises.zip | awk '{print $1}')
-  [ $md5 != "e6f48e257286e05de56413b4779d8ffb" ] && echo "Wrong md5sum of rirs_noises.zip" && exit 1
-fi
+# if [ ! -f ${download_dir}/rirs_noises.zip ]; then
+#   echo "Downloading rirs_noises.zip ..."
+#   wget --no-check-certificate https://us.openslr.org/resources/28/rirs_noises.zip -P ${download_dir}
+#   md5=$(md5sum ${download_dir}/rirs_noises.zip | awk '{print $1}')
+#   [ $md5 != "e6f48e257286e05de56413b4779d8ffb" ] && echo "Wrong md5sum of rirs_noises.zip" && exit 1
+# fi
 
 if [ ! -f ${download_dir}/test.tar.gz ]; then
     echo "Downloading 3dspeaker test.tar.gz"
@@ -43,7 +43,7 @@ fi
 
 if [ ! -f ${download_dir}/train.tar.gz ]; then
     echo "Downloading 3dspeaker train.tar.gz"
-    for part in a b c d e; do
+    for part in a b c d e f; do
         wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
     done
     wait

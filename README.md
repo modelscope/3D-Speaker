@@ -31,14 +31,17 @@ pip install -r requirements.txt
 ```
 ### Running experiments
 ``` sh
-# Speaker verification: CAM++ on voxceleb
-cd egs/sv-cam++/voxceleb/
+# Speaker verification: ERes2Net on 3D Speaker
+cd egs/3dspeaker/sv-eres2net/
 bash run.sh
-# Self-supervised speaker verification: RDINO on voxceleb
-cd egs/sv-rdino/voxceleb/
+# Speaker verification: CAM++ on 3D Speaker
+cd egs/3dspeaker/sv-cam++/
 bash run.sh
-# Speaker verification: ERes2Net on voxceleb
-cd egs/sv-eres2net/voxceleb/
+# Self-supervised speaker verification: RDINO on 3D Speaker
+cd egs/3dspeaker/sv-rdino/
+bash run.sh
+# Speaker diarization:
+cd egs/3dspeaker/speaker-diarization/
 bash run.sh
 ```
 ### Inference using pretrained models from Modelscope
@@ -61,14 +64,6 @@ model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
 # Run rdino inference
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
-
-| Task | Dataset | Model | Performance |
-|:-----:|:------:|:------:|:------:|
-| speaker verification | VoxCeleb | [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.73% |
-| speaker verification | VoxCeleb | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) | Vox1-O EER = 0.97% |
-| self-supervised speaker verification | VoxCeleb | [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary) | Vox1-O EER = 3.16% |
-| speaker verification | 200k-speaker dataset | [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 2.80% |
-| speaker verification | 200k-speaker dataset | [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) | CN-Celeb-test EER = 4.32% |
 
 ## News
 - [2023.6] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.

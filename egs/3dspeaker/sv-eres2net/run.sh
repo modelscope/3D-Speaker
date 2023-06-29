@@ -5,8 +5,8 @@
 set -e
 . ./path.sh || exit 1
 
-stage=3
-stop_stage=5
+stage=1
+stop_stage=1
 
 data=data
 exp=exp
@@ -19,7 +19,7 @@ exp_dir=$exp/$name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we prepare the raw datasets, including Voxceleb1 and Voxceleb2.
-  echo "Stage1: Preparing Voxceleb dataset..."
+  echo "Stage1: Preparing 3D Speaker dataset..."
   ./local/prepare_data.sh --stage 1 --stop_stage 4 --data ${data}
 fi
 
