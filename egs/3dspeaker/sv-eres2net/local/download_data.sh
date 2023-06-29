@@ -38,7 +38,7 @@ if [ ! -f ${download_dir}/test.tar.gz ]; then
     echo "Downloading 3dspeaker test.tar.gz"
     wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/test.tar.gz -P ${download_dir}
     md5=$(md5sum ${download_dir}/test.tar.gz | awk '{print $1}')
-    [ $md5 != "3a11cfd7d41a129c7c5d426f2e577e8f" ] && echo "Wrong md5sum of 3dspeaker test.tar.gz" && exit 1
+    [ $md5 != "45972606dd10d3f7c1c31f27acdfbed7" ] && echo "Wrong md5sum of 3dspeaker test.tar.gz" && exit 1
 fi
 
 if [ ! -f ${download_dir}/train.tar.gz ]; then
@@ -49,14 +49,12 @@ if [ ! -f ${download_dir}/train.tar.gz ]; then
     wait
     cat ${download_dir}/train.tar.gz-part-* > ${download_dir}/train.tar.gz
     md5=$(md5sum ${download_dir}/train.tar.gz | awk '{print $1}')
-    [ $md5 != "1714519c310e3cf87b47fddc9214700e" ] && echo "Wrong md5sum of 3dspeaker train.tar.gz" && exit 1
+    [ $md5 != "c2cea55fd22a2b867d295fb35a2d3340" ] && echo "Wrong md5sum of 3dspeaker train.tar.gz" && exit 1
 fi
 
 if [ ! -f ${download_dir}/3dspeaker_files.tar.gz ]; then
     echo "Downloading 3dspeaker utterances files"
     wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/3dspeaker_files.tar.gz -P ${download_dir}
-    md5=$(md5sum ${download_dir}/3dspeaker_files.tar.gz | awk '{print $1}')
-    [ $md5 != "54e73c2bae49005d7ba424df837414e7" ] && echo "Wrong md5sum of 3dspeaker train.tar.gz" && exit 1
 fi
 
 echo "Download success !!!"
