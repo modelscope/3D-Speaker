@@ -1,6 +1,3 @@
-3D-Speaker dataset contains over 10,000+ speakers, each of whom are simultaneously recorded by multiple
-Devices, locating at different Distances, and some speakers are speaking multiple Dialects.
-
 Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
 Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
 
@@ -16,12 +13,13 @@ bash run.sh
 cd egs/3dspeaker/sv-rdino/
 bash run.sh
 ```
+ Performance of systems (EER) on different tracks 
 | Model | Cross-Device | Cross-Distance | Cross-Dialect |
 |:-----:|:------:|:------:|:------:|
-| ECAPA-TDNN | 8.87 | 12.26 | 14.53 |
-| CAM++ Base | 7.75 | 11.29 | 13.44 |
-| ERes2Net Base | 7.21 | 10.18 | 12.52 |
-| ERes2Net Large | 6.89 | 10.36 | 11.97 |
+| ECAPA-TDNN | 8.87% | 12.26% | 14.53% |
+| CAM++ Base | 7.75% | 11.29% | 13.44% |
+| ERes2Net Base | 7.21% | 10.18% | 12.52% |
+| ERes2Net Large | 6.89% | 10.36% | 11.97% |
 
 ### Inference using pretrained models from Modelscope
 All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models). <br>

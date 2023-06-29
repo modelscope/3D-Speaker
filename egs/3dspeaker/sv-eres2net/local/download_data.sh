@@ -34,23 +34,23 @@ fi
 #   [ $md5 != "e6f48e257286e05de56413b4779d8ffb" ] && echo "Wrong md5sum of rirs_noises.zip" && exit 1
 # fi
 
-if [ ! -f ${download_dir}/test.tar.gz ]; then
-    echo "Downloading 3dspeaker test.tar.gz"
-    wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/test.tar.gz -P ${download_dir}
-    md5=$(md5sum ${download_dir}/test.tar.gz | awk '{print $1}')
-    [ $md5 != "45972606dd10d3f7c1c31f27acdfbed7" ] && echo "Wrong md5sum of 3dspeaker test.tar.gz" && exit 1
-fi
+# if [ ! -f ${download_dir}/test.tar.gz ]; then
+#     echo "Downloading 3dspeaker test.tar.gz"
+#     wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/test.tar.gz -P ${download_dir}
+#     md5=$(md5sum ${download_dir}/test.tar.gz | awk '{print $1}')
+#     [ $md5 != "45972606dd10d3f7c1c31f27acdfbed7" ] && echo "Wrong md5sum of 3dspeaker test.tar.gz" && exit 1
+# fi
 
-if [ ! -f ${download_dir}/train.tar.gz ]; then
-    echo "Downloading 3dspeaker train.tar.gz"
-    for part in a b c d e f; do
-        wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
-    done
-    wait
-    cat ${download_dir}/train.tar.gz-part-* > ${download_dir}/train.tar.gz
-    md5=$(md5sum ${download_dir}/train.tar.gz | awk '{print $1}')
-    [ $md5 != "c2cea55fd22a2b867d295fb35a2d3340" ] && echo "Wrong md5sum of 3dspeaker train.tar.gz" && exit 1
-fi
+# if [ ! -f ${download_dir}/train.tar.gz ]; then
+#     echo "Downloading 3dspeaker train.tar.gz"
+#     for part in a b c d e f; do
+#         wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
+#     done
+#     wait
+#     cat ${download_dir}/train.tar.gz-part-* > ${download_dir}/train.tar.gz
+#     md5=$(md5sum ${download_dir}/train.tar.gz | awk '{print $1}')
+#     [ $md5 != "c2cea55fd22a2b867d295fb35a2d3340" ] && echo "Wrong md5sum of 3dspeaker train.tar.gz" && exit 1
+# fi
 
 if [ ! -f ${download_dir}/3dspeaker_files.tar.gz ]; then
     echo "Downloading 3dspeaker utterances files"

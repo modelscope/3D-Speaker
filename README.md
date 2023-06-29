@@ -66,6 +66,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
 ## News
+- [2023.6] Releasing 3D-Speaker dataset and its corresponding benchmarks.
 - [2023.6] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/speaker_diarization/v1) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 - [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-eres2net/voxceleb) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
@@ -75,7 +76,10 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/sv-cam++/voxceleb) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
 
 ## To be expected
-- [2023.6] Releasing 3D-Speaker dataset and its corresponding benchmarks.
+- [2023.7] Releasing CAM++, ERes2Net-Base, ERes2Net-Large pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
+- [2023.7] Releasing Dialogue Detection model in speaker diarization.
+- [2023.7] Releasing Semantic Speaker Change Detection model in speaker diarization.
+- [2023.7] Releasing CAM++ model in language recognition.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
@@ -95,6 +99,16 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
+If you are using 3D Speaker dataset in your research, please cite:
+```BibTeX
+@inproceedings{chen2023pushing,
+  title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
+  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
+  url={https://arxiv.org/pdf/2306.15354.pdf},
+  year={2023}
+}
+```
+
 If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,
