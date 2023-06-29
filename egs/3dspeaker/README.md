@@ -13,13 +13,13 @@ bash run.sh
 cd egs/3dspeaker/sv-rdino/
 bash run.sh
 ```
- Performance of systems (EER) on different tracks 
-| Model | Cross-Device | Cross-Distance | Cross-Dialect |
-|:-----:|:------:|:------:|:------:|
-| ECAPA-TDNN | 8.87% | 12.26% | 14.53% |
-| CAM++ Base | 7.75% | 11.29% | 13.44% |
-| ERes2Net Base | 7.21% | 10.18% | 12.52% |
-| ERes2Net Large | 6.89% | 10.36% | 11.97% |
+ Performance of systems (EER) on different tracks.
+| Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
+|:-----:|:------:| :------:|:------:|:------:|
+| ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
+| CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
+| ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
+| ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
 
 ### Inference using pretrained models from Modelscope
 All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models). <br>

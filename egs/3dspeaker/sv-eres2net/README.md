@@ -9,10 +9,11 @@
 - Train set: 3D-Speaker-train
 - Test set: 3D-Speaker-test
 
-| Model | EER(%) | MinDCF |
-|:-----:|:------:|:------:|
-| ERes2Net-Base |  7.21  |  0.678 |
-| ERes2Net-Large |  6.89  |  0.660 |
+| Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
+|:-----:|:------:| :------:|:------:|:------:|
+| ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
+| ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
+| ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
 
 ## Citations
 If you are using ERes2Net model in your research, please cite: 

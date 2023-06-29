@@ -9,9 +9,9 @@
 - Train set: Voxceleb2-dev, 5994 speakers
 - Test set: Voxceleb1-O
 
-| Model | EER(%) | MinDCF |
-|:-----:|:------:|:------:|
-| RDINO perforance |  3.16  |  0.223 |
+| Model | Params | EER(%) | MinDCF |
+|:-----:|:------:|:------:|:------:|
+| RDINO perforance | 45.4M | 3.16  |  0.223 |
 
 Note: The original checkpoint is uploaded to ModelScope. The batchsize would affect the learning rate and the number of iterations. It could get the same or similar results if the parameters are unchanged.
 
