@@ -36,25 +36,25 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   echo "Decompress all archives ..."
   echo "This could take some time ..."
 
-  for archive in musan.tar.gz rirs_noises.zip train.tar.gz test.tar.gz 3dspeaker_files.tar.gz; do
-    [ ! -f ${download_dir}/$archive ] && echo "Archive $archive not exists !!!" && exit 1
-  done
-  [ ! -d ${rawdata_dir} ] && mkdir -p ${rawdata_dir}
+  # for archive in musan.tar.gz rirs_noises.zip train.tar.gz test.tar.gz 3dspeaker_files.tar.gz; do
+  #   [ ! -f ${download_dir}/$archive ] && echo "Archive $archive not exists !!!" && exit 1
+  # done
+  # [ ! -d ${rawdata_dir} ] && mkdir -p ${rawdata_dir}
 
-  if [ ! -d ${rawdata_dir}/musan ]; then
-    tar -xzvf ${download_dir}/musan.tar.gz -C ${rawdata_dir}
-  fi
+  # if [ ! -d ${rawdata_dir}/musan ]; then
+  #   tar -xzvf ${download_dir}/musan.tar.gz -C ${rawdata_dir}
+  # fi
 
-  if [ ! -d ${rawdata_dir}/RIRS_NOISES ]; then
-    unzip ${download_dir}/rirs_noises.zip -d ${rawdata_dir}
-  fi
+  # if [ ! -d ${rawdata_dir}/RIRS_NOISES ]; then
+  #   unzip ${download_dir}/rirs_noises.zip -d ${rawdata_dir}
+  # fi
 
   if [ ! -d ${rawdata_dir}/3dspeaker ]; then
     mkdir -p ${rawdata_dir}/3dspeaker
     mkdir -p ${rawdata_dir}/3dspeaker/test ${rawdata_dir}/3dspeaker/train ${rawdata_dir}/3dspeaker/files
-    tar -xzvf ${download_dir}/train.tar.gz -d ${rawdata_dir}/3dspeaker/train
-    tar -xzvf ${download_dir}/test.tar.gz -d ${rawdata_dir}/3dspeaker/test
-    tar -xzvf ${download_dir}/3dspeaker_files.tar.gz -d ${rawdata_dir}/3dspeaker/files
+    tar -zxvf ${download_dir}/train.tar.gz -C ${rawdata_dir}/3dspeaker/
+    tar -xzvf ${download_dir}/test.tar.gz -C ${rawdata_dir}/3dspeaker/
+    tar -xzvf ${download_dir}/3dspeaker_files.tar.gz -C ${rawdata_dir}/3dspeaker/files
   fi
 
   echo "Decompress success !!!"

@@ -9,9 +9,9 @@
 - Train set: 3D-Speaker-train
 - Test set: 3D-Speaker-test
 
-| Model | EER(%) | MinDCF |
-|:-----:|:------:|:------:|
-| RDINO perforance |  20.41  |  0.972 |
+| Model | Params | EER(%) | MinDCF |
+|:-----:|:------:|:------:|:------:|
+| RDINO perforance | 45.4M | 20.41  |  0.972 |
 
 ## Citations
 If you are using RDINO model in your research, please cite: 

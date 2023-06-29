@@ -11,7 +11,7 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| ERes2Net | 4.6M | 0.97  |  0.090 |
+| ERes2Net-Base | 4.6M | 0.97  |  0.090 |
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
