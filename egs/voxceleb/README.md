@@ -13,7 +13,7 @@ cd egs/voxceleb/sv-rdino/
 bash run.sh
 ```
 ### Inference using pretrained models from Modelscope
-All pretrained models are released on [Modelscope](https://www.modelscope.cn/models).
+All pretrained models are released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 ``` sh
 # Install modelscope

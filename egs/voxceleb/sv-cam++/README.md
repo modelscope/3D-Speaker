@@ -14,7 +14,7 @@
 | CAM++ | 7.18M  | 0.73 | 0.0911 |
 
 ## pretrained model
-Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - Voxceleb: [speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
 - 200k labeled speakers: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)

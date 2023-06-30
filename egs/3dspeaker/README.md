@@ -24,7 +24,7 @@ bash run.sh
 | ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
 
 ### Inference using pretrained models from Modelscope
-All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models). <br>
+All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). <br>
 Please look forward to it.
 
 ## Citations

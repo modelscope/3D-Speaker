@@ -15,7 +15,7 @@
 | CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
 
 ## pretrained model
-Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).<br>
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>
 Please look forward it.
 
 ## Citations

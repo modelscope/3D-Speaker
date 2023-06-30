@@ -15,6 +15,10 @@
 | ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
 | ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
 
+## pretrained model
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>
+Please look forward it.
+
 ## Citations
 If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
