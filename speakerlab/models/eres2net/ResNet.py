@@ -2,9 +2,11 @@
 # Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 """ Res2Net implementation is adapted from https://github.com/wenet-e2e/wespeaker.
-    ERes2Net incorporates both local and global feature fusion techniques to improve the performance. The local feature
-    fusion (LFF) fuses the features within one single residual block to extract the local signal.
+    ERes2Net incorporates both local and global feature fusion techniques to improve the performance. 
+    The local feature fusion (LFF) fuses the features within one single residual block to extract the local signal.
     The global feature fusion (GFF) takes acoustic features of different scales as input to aggregate global signal.
+    ERes2Net-Large is an upgraded version of ERes2Net that uses a larger number of parameters to achieve better 
+    recognition performance. Parameters expansion, baseWidth, and scale can be modified to obtain optimal performance.
 """
 
 

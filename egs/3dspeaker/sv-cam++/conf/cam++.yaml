@@ -9,25 +9,26 @@ reverb:
 exp_dir:
 
 # basic
-num_epoch: 70
-save_epoch_freq: 10
+num_epoch: 60
+save_epoch_freq: 5
 log_batch_freq: 100
 
 wav_len: 3.0 # duration(s) for each training sample.
 sample_rate: 16000
 aug_prob: 0.8
 speed_pertub: True
-lr: 0.2
-min_lr: !!float 5e-5
+lr: 0.1
+min_lr: !!float 1e-4
 
 # dataloader
-batch_size: 512
-num_workers: 32
+batch_size: 256
+num_workers: 16
 
 # model
 fbank_dim: 80
-embedding_size: 192
+embedding_size: 512
 num_classes: 5994
+
 
 wav_reader:
   obj: speakerlab.process.processor.WavReader
@@ -82,7 +83,7 @@ dataloader:
     drop_last: True
 
 embedding_model:
-  obj: speakerlab.models.eres2net.ResNet.ERes2Net
+  obj: speakerlab.models.campplus.DTDNN.CAMPPlus
   args:
     feat_dim: <fbank_dim>
     embedding_size: <embedding_size>
@@ -116,7 +117,7 @@ loss:
   obj: speakerlab.loss.margin_loss.ArcMarginLoss
   args:
     scale: 32.0
-    margin: 0.3
+    margin: 0.2
     easy_margin: False
 
 margin_scheduler:
@@ -124,9 +125,9 @@ margin_scheduler:
   args:
     criterion: <loss>
     initial_margin: 0.0
-    final_margin: 0.3
-    increase_start_epoch: 20
-    fix_epoch: 50
+    final_margin: 0.2
+    increase_start_epoch: 15
+    fix_epoch: 25
     step_per_epoch:
 
 checkpointer:
@@ -137,4 +138,3 @@ checkpointer:
       embedding_model: <embedding_model>
       classifier: <classifier>
       epoch_counter: <epoch_counter>
-

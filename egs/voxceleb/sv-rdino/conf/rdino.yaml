@@ -1,0 +1,132 @@
+# Training config
+
+# inputs
+data:
+noise:
+reverb:
+
+# outputs
+exp_dir:
+
+# Data loader
+max_frames: 400
+eval_frames: 350
+batch_size_per_gpu: 52
+nDataLoaderThread: 10
+
+# Optimizer
+optimizer: "sgd"
+lr: 0.4
+min_lr: !!float 1e-5
+weight_decay: !!float 5e-5
+weight_decay_end: !!float 5e-5
+epochs: 70
+saveckp_freq: 10
+
+# Parameters for RDINO
+glb_num: 2
+local_num: 4
+crop_total_num: 6
+
+norm_last_layer: "True"
+freeze_last_layer: 1
+clip_grad: 3.0
+use_bn_in_head: True
+momentum_teacher: 0.996
+std_coeff: 10.0
+cov_coeff: 1.0
+lambd: 0.2
+
+# Warming up
+warmup_epochs: 10
+warmup_teacher_temp: 0.04
+teacher_temp: 0.04
+warmup_teacher_temp_epochs: 10
+
+# Model definition and saving
+n_mels: 80
+embed_dim: 512
+out_dim: 65536
+
+# Evaluation metrics
+dcf_p_target: 0.05
+dcf_c_miss: 1
+dcf_c_fa: 1
+
+dataset:
+  obj: speakerlab.dataset.dataset_rdino.RDINODataset
+  args:
+    data: <data>
+    noise: <noise>
+    reverb: <reverb>
+    max_frames: <max_frames>
+    n_mels: <n_mels>
+    glb_num: <glb_num>
+    local_num: <local_num>
+
+dataloader:
+  obj: torch.utils.data.DataLoader
+  args:
+    dataset: <dataset>
+    batch_size: <batch_size_per_gpu>
+    num_workers: <nDataLoaderThread>
+    pin_memory: True
+    drop_last: True
+
+
+student_ecapa:
+  obj: speakerlab.models.rdino.ECAPA_TDNN.ECAPA_TDNN
+  args:
+    input_size: <n_mels>
+    channels: [1024, 1024, 1024, 1024, 3072]
+
+teacher_ecapa:
+  obj: speakerlab.models.rdino.ECAPA_TDNN.ECAPA_TDNN
+  args:
+    input_size: <n_mels>
+    channels: [1024, 1024, 1024, 1024, 3072]
+
+student_head:
+  obj: speakerlab.models.rdino.RDINO_Head.RDINOHead
+  args:
+    in_dim: <embed_dim>
+    out_dim: <out_dim>
+    use_bn: <use_bn_in_head>
+
+teacher_head:
+  obj: speakerlab.models.rdino.RDINO_Head.RDINOHead
+  args:
+    in_dim: <embed_dim>
+    out_dim: <out_dim>
+    use_bn: <use_bn_in_head>
+
+student_model:
+  obj: speakerlab.models.rdino.combiner.Combiner
+  args:
+    backbone: <student_ecapa>
+    head: <student_head>
+
+teacher_model:
+  obj: speakerlab.models.rdino.combiner.Combiner
+  args:
+    backbone: <teacher_ecapa>
+    head: <teacher_head>
+
+dino_loss:
+  obj: speakerlab.loss.dino_loss.DINOLoss
+  args:
+    out_dim: <out_dim>
+    ncrops: <crop_total_num>
+    warmup_teacher_temp: <warmup_teacher_temp>
+    teacher_temp: <teacher_temp>
+    warmup_teacher_temp_epochs: <warmup_teacher_temp_epochs>
+    nepochs: <epochs>
+
+
+regularized_loss:
+  obj: speakerlab.loss.dino_loss.RegLoss
+  args:
+    out_dim: <out_dim>
+    std_coeff: <std_coeff>
+    cov_coeff: <cov_coeff>
+    per_batch_size: <batch_size_per_gpu>
