@@ -18,7 +18,7 @@ exp_dir=$exp/$name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   echo "Stage1: Preparing 3D Speaker dataset ..."
-  ./local/prepare_data_rdino.sh --stage 1 --stop_stage 4 --data ${data}
+  ./local/prepare_data_rdino.sh --stage 1 --stop_stage 3 --data ${data}
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
@@ -30,8 +30,7 @@ fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "Stage4: Extracting speaker embeddings ..."
-  nj=4
-  torchrun --nproc_per_node=$nj speakerlab/bin/extract_rdino.py --exp_dir $exp_dir \
+  torchrun --nproc_per_node=8 speakerlab/bin/extract_rdino.py --exp_dir $exp_dir \
            --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
 fi
 

@@ -5,7 +5,7 @@
 set -e
 . ./path.sh || exit 1
 
-stage=4
+stage=1
 stop_stage=5
 
 data=data
@@ -33,7 +33,7 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   # Train the speaker embedding model.
   echo "Stage3: Training the speaker model..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
-  torchrun --nproc_per_node=$num_gpu --master_port=29506 speakerlab/bin/train.py --config conf/cam++.yaml --gpu $gpus \
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/cam++.yaml --gpu $gpus \
            --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
 fi
 
@@ -41,8 +41,7 @@ fi
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   # Extract embeddings of test datasets.
   echo "Stage4: Extracting speaker embeddings..."
-  nj=8
-  torchrun --nproc_per_node=$nj --master_port=29506 speakerlab/bin/extract.py --exp_dir $exp_dir \
+  torchrun --nproc_per_node=8 speakerlab/bin/extract.py --exp_dir $exp_dir \
            --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
 fi
 
