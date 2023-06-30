@@ -15,7 +15,7 @@ log_batch_freq: 100
 
 wav_len: 3.0 # duration(s) for each training sample.
 sample_rate: 16000
-aug_prob: 0.2
+aug_prob: 0.8
 speed_pertub: True
 lr: 0.1
 min_lr: !!float 1e-4

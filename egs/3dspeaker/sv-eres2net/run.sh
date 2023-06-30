@@ -5,13 +5,13 @@
 set -e
 . ./path.sh || exit 1
 
-stage=1
-stop_stage=1
+stage=3
+stop_stage=5
 
 data=data
 exp=exp
 name=eres2net
-gpus="0 1 2 3"
+gpus="4 5 6 7"
 
 . utils/parse_options.sh || exit 1
 
@@ -20,7 +20,7 @@ exp_dir=$exp/$name
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we prepare the raw datasets, including Voxceleb1 and Voxceleb2.
   echo "Stage1: Preparing 3D Speaker dataset..."
-  ./local/prepare_data.sh --stage 2 --stop_stage 2 --data ${data}
+  ./local/prepare_data.sh --stage 1 --stop_stage 3 --data ${data}
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
@@ -41,7 +41,7 @@ fi
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   # Extract embeddings of test datasets.
   echo "Stage4: Extracting speaker embeddings..."
-  torchrun --nproc_per_node=$num_gpu speakerlab/bin/extract.py --exp_dir $exp_dir \
+  torchrun --nproc_per_node=4 speakerlab/bin/extract.py --exp_dir $exp_dir \
            --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
 fi
 

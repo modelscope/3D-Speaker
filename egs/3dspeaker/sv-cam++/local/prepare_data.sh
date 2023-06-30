@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2022 Hongji Wang (jijijiang77@gmail.com)
-#               2023 Hui Wang (tongmu.wh@alibaba-inc.com)
+# Copyright (c) 2023 Yafeng Chen (chenyafeng.cyf@alibaba-inc.com)
 #               2023 Luyao Cheng (shuli.cly@alibaba-inc.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,9 +51,9 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   if [ ! -d ${rawdata_dir}/3dspeaker ]; then
     mkdir -p ${rawdata_dir}/3dspeaker
     mkdir -p ${rawdata_dir}/3dspeaker/test ${rawdata_dir}/3dspeaker/train ${rawdata_dir}/3dspeaker/files
-    tar -xzvf ${download_dir}/train.tar.gz -d ${rawdata_dir}/3dspeaker/train
-    tar -xzvf ${download_dir}/test.tar.gz -d ${rawdata_dir}/3dspeaker/test
-    tar -xzvf ${download_dir}/3dspeaker_files.tar.gz -d ${rawdata_dir}/3dspeaker/files
+    tar -zxvf ${download_dir}/train.tar.gz -C ${rawdata_dir}/3dspeaker/
+    tar -xzvf ${download_dir}/test.tar.gz -C ${rawdata_dir}/3dspeaker/
+    tar -xzvf ${download_dir}/3dspeaker_files.tar.gz -C ${rawdata_dir}/3dspeaker/
   fi
 
   echo "Decompress success !!!"
@@ -72,26 +71,26 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   # 3dspeaker
   base_path=${data}/3dspeaker/
   ## train
-  train_base_path=${data}/train
-  train_rawdata_path=${rawdata_dir}/3dspeaker/train
+  train_base_path=${data}/3dspeaker/train
+  train_rawdata_path=${rawdata_dir}/3dspeaker/
   mkdir -p $train_base_path
   awk -v base_path="${train_rawdata_path}" '{print $1" "base_path $2}' ${rawdata_dir}/3dspeaker/files/train_wav.scp > ${train_base_path}/all_wav.scp
   cp ${rawdata_dir}/3dspeaker/files/train_utt2info.csv ${train_base_path}/utt2info.csv
   cp ${rawdata_dir}/3dspeaker/files/train_utt2spk ${train_base_path}/all_utt2spk
   grep -v "Device09" ${train_base_path}/all_wav.scp > ${train_base_path}/wav.scp
   grep -v "Device09" ${train_base_path}/all_utt2spk > ${train_base_path}/utt2spk
-  ./utils/utt2spk_to_spk2utt.pl ${data}/3dspeaker/utt2spk >${train_base_path}/3dspeaker/spk2utt
+  ./utils/utt2spk_to_spk2utt.pl ${train_base_path}/utt2spk > ${train_base_path}/spk2utt
 
   ## test
   test_base_path=${base_path}/test
-  test_rawdata_path=${rawdata_dir}/3dspeaker/test
+  test_rawdata_path=${rawdata_dir}/3dspeaker/
   mkdir -p $test_base_path
   awk -v base_path="${test_rawdata_path}" '{print $1" "base_path $2}' ${rawdata_dir}/3dspeaker/files/test_wav.scp > ${test_base_path}/all_wav.scp
   cp ${rawdata_dir}/3dspeaker/files/test_utt2info.csv ${test_base_path}/utt2info.csv
   cp ${rawdata_dir}/3dspeaker/files/test_utt2spk ${test_base_path}/all_utt2spk
   grep -v "Device09" ${test_base_path}/all_wav.scp > ${test_base_path}/wav.scp
   grep -v "Device09" ${test_base_path}/all_utt2spk > ${test_base_path}/utt2spk
-  ./utils/utt2spk_to_spk2utt.pl ${data}/3dspeaker/utt2spk >${test_base_path}/3dspeaker/spk2utt
+  ./utils/utt2spk_to_spk2utt.pl ${test_base_path}/utt2spk >${test_base_path}/spk2utt
 
   ## trials
   mkdir -p ${base_path}/trials

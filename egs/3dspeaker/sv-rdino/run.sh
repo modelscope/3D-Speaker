@@ -17,7 +17,7 @@ gpus="0 1 2 3"
 exp_dir=$exp/$name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
-  echo "Stage1: Preparing Voxceleb dataset ..."
+  echo "Stage1: Preparing 3D Speaker dataset ..."
   ./local/prepare_data_rdino.sh --stage 1 --stop_stage 4 --data ${data}
 fi
 

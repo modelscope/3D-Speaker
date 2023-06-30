@@ -2,13 +2,13 @@
 
 ### Running experiments
 ``` sh
-# Speaker verification: ERes2Net on 3D Speaker
+# Speaker verification: ERes2Net on VoxCeleb
 cd egs/voxceleb/sv-eres2net/
 bash run.sh
-# Speaker verification: CAM++ on 3D Speaker
+# Speaker verification: CAM++ on VoxCeleb
 cd egs/voxceleb/sv-cam++/
 bash run.sh
-# Self-supervised speaker verification: RDINO on 3D Speaker
+# Self-supervised speaker verification: RDINO on VoxCeleb
 cd egs/voxceleb/sv-rdino/
 bash run.sh
 ```

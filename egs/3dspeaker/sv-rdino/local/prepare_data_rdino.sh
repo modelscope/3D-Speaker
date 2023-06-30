@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2022 Hongji Wang (jijijiang77@gmail.com)
-#               2023 Hui Wang (tongmu.wh@alibaba-inc.com)
+# Copyright (c) 2023 Yafeng Chen (chenyafeng.cyf@alibaba-inc.com)
 #               2023 Luyao Cheng (shuli.cly@alibaba-inc.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

@@ -17,6 +17,7 @@
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models).
 
 - Voxceleb: [speech_eres2net_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary)
+- 200k labeled speakers: [speech_eres2net_sv_zh-cn_16k-common](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary)
 
 Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and extracts embeddings.
 ``` sh
