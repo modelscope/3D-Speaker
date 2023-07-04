@@ -2,6 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 import random
+import pickle
 import torch
 import torchaudio
 import torch.nn.functional as F
@@ -53,14 +54,14 @@ class SpkLabelEncoder(object):
         self.lab2ind = {}
         self.ind2lab = {}
         self.starting_index = -1
-        self.load(data_file)
+        self.load_from_csv(data_file)
 
     def __call__(self, spk, speed_idx=0):
         spkid = self.lab2ind[spk]
         spkid = spkid + len(self.lab2ind) * speed_idx
         return spkid
 
-    def load(self, path):
+    def load_from_csv(self, path):
         self.data = load_data_csv(path)
         for key in self.data:
             self.add(self.data[key]['spk'])
@@ -78,6 +79,18 @@ class SpkLabelEncoder(object):
 
     def __len__(self):
         return len(self.lab2ind)
+
+    def save(self, path, device=None):
+        with open(path, 'wb') as f:
+            pickle.dump(self.lab2ind, f)
+
+    def load(self, path, device=None):
+        self.lab2ind = {}
+        self.ind2lab = {}
+        with open(path, 'rb') as f:
+            self.lab2ind = pickle.load(f)
+        for label in self.lab2ind:
+            self.ind2lab[self.lab2ind[label]] = label
 
 
 class SpkVeriAug(object):

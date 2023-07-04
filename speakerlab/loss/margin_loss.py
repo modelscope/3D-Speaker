@@ -47,3 +47,18 @@ class ArcMarginLoss(nn.Module):
         self.mm = math.sin(math.pi - margin) * margin
         self.m = self.margin
         self.mmm = 1.0 + math.cos(math.pi - margin)
+
+
+class EntropyLoss(nn.Module):
+    def __init__(self,**kwargs):
+        super(EntropyLoss, self).__init__()
+        self.criterion = nn.CrossEntropyLoss()
+
+    def forward(self, x, label):
+        # x : [batch, numclasses].
+        # label : [batch, ].
+        loss = self.criterion(x, label)
+        return loss
+
+    def update(self, margin=None):
+        pass

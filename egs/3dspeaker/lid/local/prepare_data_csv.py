@@ -162,9 +162,8 @@ def main(args):
     logger.info("Starting preparation for %s." % args.data_dir)
     start_time = time.time()
 
-    name = os.path.basename(args.data_dir)
-    wavscp_dict = get_wavscp_dict(wavscp, name)
-    utt2spk_dict = get_utt2spk_dict(utt2spk, name)
+    wavscp_dict = get_wavscp_dict(wavscp)
+    utt2spk_dict = get_utt2spk_dict(utt2spk)
 
     spk2utt_dict={}
     for utt,spk in utt2spk_dict.items():

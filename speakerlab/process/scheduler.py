@@ -46,6 +46,38 @@ class WarmupCosineScheduler:
         else:
             return self.min_lr
 
+
+class StepScheduler:
+    def __init__(
+        self,
+        optimizer,
+        lr,
+        step_per_epoch,
+        step_epoch_size,
+    ):
+        self.optimizer = optimizer
+        self.lr = lr
+        self.step_size = step_epoch_size * step_per_epoch
+        self.current_step = 0.0
+
+    def set_lr(self,):
+        new_lr = self.clr(self.current_step)
+        for param_group in self.optimizer.param_groups:
+            param_group['lr'] = new_lr
+        return new_lr
+
+    def step(self, step=None):
+        if step is not None:
+            self.current_step = step
+        new_lr = self.set_lr()
+        self.current_step += 1
+        return new_lr
+
+    def clr(self, step):
+        ratio = 0.1**(step // self.step_size)
+        return self.lr * ratio
+
+
 class MarginScheduler:
     def __init__(
         self,
