@@ -9,12 +9,12 @@ stop_stage=4
 
 data=data
 exp=exp
-name=rdino
+exp_name=rdino
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
 
-exp_dir=$exp/$name
+exp_dir=$exp/$exp_name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   echo "Stage1: Preparing 3D Speaker dataset ..."

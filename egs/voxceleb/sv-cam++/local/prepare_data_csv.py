@@ -241,7 +241,7 @@ if __name__ == "__main__":
                         help="train data dir")
     parser.add_argument('--seg_dur',
                         type=float,
-                        default=4.0,
+                        default=3.0,
                         help="seg len")
     parser.add_argument('--sample_rate',
                         type=int,

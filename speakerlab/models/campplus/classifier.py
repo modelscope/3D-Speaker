@@ -39,3 +39,32 @@ class CosineClassifier(nn.Module):
         # normalized
         x = F.linear(F.normalize(x), F.normalize(self.weight))
         return x
+
+class LinearClassifier(nn.Module):
+    def __init__(
+        self,
+        input_dim,
+        num_blocks=0,
+        inter_dim=512,
+        out_neurons=1000,
+    ):
+
+        super().__init__()
+        self.blocks = nn.ModuleList()
+
+        self.nonlinear = nn.ReLU(inplace=True)
+        for index in range(num_blocks):
+            self.blocks.append(
+                DenseLayer(input_dim, inter_dim, bias=True)
+            )
+            input_dim = inter_dim
+
+        self.linear = nn.Linear(input_dim, out_neurons, bias=True)
+
+    def forward(self, x):
+        # x: [B, dim]
+        x = self.nonlinear(x)
+        for layer in self.blocks:
+            x = layer(x)
+        x = self.linear(x)
+        return x

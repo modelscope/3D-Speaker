@@ -10,12 +10,12 @@ stop_stage=5
 
 data=data
 exp=exp
-name=cam++
+exp_name=cam++
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
 
-exp_dir=$exp/$name
+exp_dir=$exp/$exp_name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we prepare the raw datasets, including Voxceleb1 and Voxceleb2.
