@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Copyright (c) 2022 Hongji Wang (jijijiang77@gmail.com)
+# Copyright (c) 2023 Yafeng Chen (chenyafeng.cyf@alibaba-inc.com)
+#               2023 Luyao Cheng (shuli.cly@alibaba-inc.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,7 +44,7 @@ fi
 
 if [ ! -f ${download_dir}/train.tar.gz ]; then
     echo "Downloading 3dspeaker train.tar.gz"
-    for part in a b c d e; do
+    for part in a b c d e f; do
         wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
     done
     wait

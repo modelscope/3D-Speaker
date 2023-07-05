@@ -44,7 +44,7 @@ fi
 
 if [ ! -f ${download_dir}/train.tar.gz ]; then
     echo "Downloading 3dspeaker train.tar.gz"
-    for part in a b c d e; do
+    for part in a b c d e f; do
         wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
     done
     wait
