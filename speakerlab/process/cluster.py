@@ -17,7 +17,7 @@ except ImportError:
 
 
 class SpectralCluster:
-    """A spectral clustering mehtod using unnormalized Laplacian of affinity matrix.
+    """A spectral clustering method using unnormalized Laplacian of affinity matrix.
     This implementation is adapted from https://github.com/speechbrain/speechbrain.
     """
 
