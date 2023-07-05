@@ -88,7 +88,7 @@ supports = {
         'model_pt': 'pretrained_eres2net.ckpt',
     },
     'damo/speech_eres2net_sv_zh-cn_16k-common': {
-        'revision': 'v1.0.1', 
+        'revision': 'v1.0.4', 
         'model': ERes2Net_COMMON,
         'model_pt': 'pretrained_eres2net_aug.ckpt',
     },
