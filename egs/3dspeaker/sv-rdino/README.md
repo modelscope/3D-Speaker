@@ -7,11 +7,12 @@
 
 ## 3D-Speaker Results
 - Train set: 3D-Speaker-train
-- Test set: 3D-Speaker-test
+- Test set: Cross-Device, Cross-Distance, Cross-Dialect
 
-| Model | Params | EER(%) | MinDCF |
-|:-----:|:------:|:------:|:------:|
-| RDINO perforance | 45.4M | 20.41  |  0.972 |
+ Performance of systems (EER) on different trials.
+| Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
+| RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
+
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>

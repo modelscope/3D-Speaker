@@ -22,6 +22,7 @@ bash run.sh
 | CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
 | ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
 | ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
+| RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
 ### Inference using pretrained models from Modelscope
 All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). <br>
