@@ -11,6 +11,7 @@
 
  Performance of systems (EER) on different trials.
 | Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
+|:-----:|:------:| :------:|:------:|:------:|
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
 
