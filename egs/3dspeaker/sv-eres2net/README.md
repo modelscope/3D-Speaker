@@ -12,8 +12,8 @@
 | Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
 |:-----:|:------:| :------:|:------:|:------:|
 | ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
-| ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
-| ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
+| ERes2Net Base | 4.6M | 7.06% | 9.95% | 12.76% |
+| ERes2Net Large | 18.3M | 6.55% | 9.45% | 11.01% |
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>

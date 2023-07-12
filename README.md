@@ -56,6 +56,10 @@ model_id=damo/speech_campplus_sv_en_voxceleb_16k
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
 # ERes2Net trained on VoxCeleb
 model_id=damo/speech_eres2net_sv_en_voxceleb_16k
+# ERes2Net trained on 3D-Speaker
+model_id=damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k
+# ERes2Net trained on 200k labeled speakers
+mode_id=damo/speech_eres2net_sv_zh-cn_16k-common
 # Run CAM++ or ERes2Net inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 
@@ -66,6 +70,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
 ## News
+- [2023.7] Releasing [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
 - [2023.6] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
@@ -76,9 +81,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
 
 ## To be expected
-- [2023.7] Releasing CAM++, ERes2Net-Base, ERes2Net-Large pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing Dialogue Detection model and Semantic Speaker Change Detection model in speaker diarization.
-- [2023.7] Releasing CAM++ model in language recognition.
+- [2023.7] Releasing CAM++ model and ERes2Net model in language recognition.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by

@@ -20,8 +20,8 @@ bash run.sh
 |:-----:|:------:| :------:|:------:|:------:|
 | ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
 | CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
-| ERes2Net Base | 4.6M | 7.21% | 10.18% | 12.52% |
-| ERes2Net Large | 18.3M | 6.89% | 10.36% | 11.97% |
+| ERes2Net Base | 4.6M | 7.06% | 9.95% | 12.76% |
+| ERes2Net Large | 18.3M | 6.55% | 9.45% | 11.01% |
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
 ### Inference using pretrained models from Modelscope
