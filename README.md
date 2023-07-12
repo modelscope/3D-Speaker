@@ -59,7 +59,7 @@ mode_id=damo/speech_eres2net_sv_zh-cn_16k-common
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 ## News
-- [2023.7] Releasing [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
+- [2023.7] Releasing [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary), [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
 - [2023.6] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
@@ -81,14 +81,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
 ## Acknowledge
-3D-Speaker contains third-party components and code modified from some open-source repos, including:
-
-- [speechbrain](https://github.com/speechbrain/speechbrain)
-- [wespeaker](https://github.com/wenet-e2e/wespeaker)
-- [D-TDNN](https://github.com/yuyq96/D-TDNN)
-- [dino](https://github.com/facebookresearch/dino)
-- [vicreg](https://github.com/facebookresearch/vicreg)
-
+3D-Speaker contains third-party components and code modified from some open-source repos, including: [speechbrain](https://github.com/speechbrain/speechbrain), [wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [dino](https://github.com/facebookresearch/dino), [vicreg](https://github.com/facebookresearch/vicreg).
 
 ## Citations
 If you are using 3D Speaker dataset in your research, please cite:
