@@ -52,13 +52,12 @@ All pretrained models are released on [Modelscope](https://www.modelscope.cn/mod
 pip install modelscope
 # CAM++ trained on 200k labeled speakers
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
-# ERes2Net trained on 3D-Speaker
-model_id=damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k
 # ERes2Net trained on 200k labeled speakers
 mode_id=damo/speech_eres2net_sv_zh-cn_16k-common
+
 # Run CAM++ or ERes2Net inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
-
+```
 ## News
 - [2023.7] Releasing [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
