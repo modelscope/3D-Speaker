@@ -26,7 +26,26 @@ bash run.sh
 
 ### Inference using pretrained models from Modelscope
 All pretrained models will be released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). <br>
-Please look forward to it.
+
+``` sh
+# Install modelscope
+pip install modelscope
+# CAM++ trained on 3D-Speaker
+TO DO
+# CAM++ trained on 200k labeled speakers
+model_id=damo/speech_campplus_sv_zh-cn_16k-common
+# ERes2Net trained on 3D-Speaker
+model_id=damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k
+# ERes2Net trained on 200k labeled speakers
+mode_id=damo/speech_eres2net_sv_zh-cn_16k-common
+# Run CAM++ or ERes2Net inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+
+# RDINO trained on 3D-Speaker
+model_id=damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k
+# Run RDINO inference
+python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
+```
 
 ## Citations
 If you are using 3D Speaker dataset in your research, please cite: 

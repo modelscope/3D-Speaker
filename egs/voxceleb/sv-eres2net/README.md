@@ -23,8 +23,10 @@ Here is a simple example for directly extracting embeddings. It downloads the pr
 ``` sh
 # Install modelscope
 pip install modelscope
-# CAM++ trained on VoxCeleb
+# ERes2Net trained on VoxCeleb
 model_id=damo/speech_eres2net_sv_en_voxceleb_16k
+# ERes2Net trained on 200k labeled speakers
+model_id=damo/speech_eres2net_sv_zh-cn_16k-common
 # Run inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```

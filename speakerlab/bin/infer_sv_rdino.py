@@ -49,6 +49,10 @@ supports = {
         'revision': 'v1.0.2', 
         'model_pt': 'pretrained_rdino.pth', 
     },
+    'damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k': {
+        'revision': 'v1.0.1', 
+        'model_pt': 'rdino.pth', 
+    },
 }
 
 feature_extractor = transforms.MelSpectrogram(

@@ -14,11 +14,6 @@
 |:-----:|:------:| :------:|:------:|:------:|
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
-
-## pretrained model
-Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>
-Please look forward it.
-
 ## Citations
 If you are using RDINO model in your research, please cite: 
 ```BibTeX

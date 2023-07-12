@@ -14,10 +14,6 @@
 | ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
 | CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
 
-## pretrained model
-Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).<br>
-Please look forward it.
-
 ## Citations
 If you are using CAM++ model in your research, please cite: 
 ```BibTeX
