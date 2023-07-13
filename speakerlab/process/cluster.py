@@ -86,7 +86,7 @@ class SpectralCluster:
             num_of_spk = k_oracle
         else:
             lambda_gap_list = self.getEigenGaps(
-                lambdas[self.min_num_spks - 1:self.max_num_spks - 1])
+                lambdas[self.min_num_spks - 1:self.max_num_spks + 1])
             num_of_spk = np.argmax(lambda_gap_list) + self.min_num_spks
 
         emb = eig_vecs[:, :num_of_spk]
