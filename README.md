@@ -79,14 +79,14 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
   - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
 - **Language Identification**
-  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/lid) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
 - **3D-Speaker Dataset**
   - Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
   - Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
 
 
-## News :fire:
+## What‘s new :fire:
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language recognition for Mandarin and English.
@@ -94,7 +94,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
-## To be expected
+## To be expected :fire:
 - [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in CN-Celeb.
 - [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
 - [2023.8] Releasing CAM++ and ERes2Net in language recognition for five languages.
