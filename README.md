@@ -76,7 +76,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
 - **Speaker Diarization**
-  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
+  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprise multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
 - **Language Identification**
   - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
@@ -95,7 +95,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in CN-Celeb.
+- [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
 - [2023.8] Releasing CAM++ and ERes2Net in language identification for five languages.
 
