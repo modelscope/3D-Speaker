@@ -76,7 +76,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
 - **Speaker Diarization**
-  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
+  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
 - **Language Identification**
   - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
@@ -114,7 +114,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Citations
 If you are using 3D Speaker dataset in your research, please cite:
 ```BibTeX
-@inproceedings{chen2023pushing,
+@inproceedings{zheng20233d,
   title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
   author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
   url={https://arxiv.org/pdf/2306.15354.pdf},
@@ -133,22 +133,22 @@ If you are using RDINO model in your research, please cite:
 }
 ```
 
-If you are using CAM++ model in your research, please cite: 
+If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
-@article{cam++,
-  title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
-  author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
+@article{eres2net,
+  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
+  author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
   booktitle={Interspeech 2023},
   year={2023},
   organization={IEEE}
 }
 ```
 
-If you are using ERes2Net model in your research, please cite: 
+If you are using CAM++ model in your research, please cite: 
 ```BibTeX
-@article{eres2net,
-  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
-  author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
+@article{cam++,
+  title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
+  author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
   booktitle={Interspeech 2023},
   year={2023},
   organization={IEEE}
