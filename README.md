@@ -89,7 +89,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ## What‘s new :fire:
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
-- [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language recognition for Mandarin and English.
+- [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English.
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
 - [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
@@ -107,13 +107,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
 ## Acknowledge
-3D-Speaker contains third-party components and code modified from some open-source repos, including:
-
-- [speechbrain](https://github.com/speechbrain/speechbrain)
-- [wespeaker](https://github.com/wenet-e2e/wespeaker)
-- [D-TDNN](https://github.com/yuyq96/D-TDNN)
-- [dino](https://github.com/facebookresearch/dino)
-- [vicreg](https://github.com/facebookresearch/vicreg)
+3D-Speaker contains third-party components and code modified from some open-source repos, including: [speechbrain](https://github.com/speechbrain/speechbrain), [wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [dino](https://github.com/facebookresearch/dino), [vicreg](https://github.com/facebookresearch/vicreg)
 
 
 ## Citations
