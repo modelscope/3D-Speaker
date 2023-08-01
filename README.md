@@ -107,7 +107,8 @@ If you have any comment or question about 3D-Speaker, please contact us by
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
 ## Acknowledge
-3D-Speaker contains third-party components and code modified from some open-source repos, including: [speechbrain](https://github.com/speechbrain/speechbrain), [wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [dino](https://github.com/facebookresearch/dino), [vicreg](https://github.com/facebookresearch/vicreg)
+3D-Speaker contains third-party components and code modified from some open-source repos, including: 
+[speechbrain](https://github.com/speechbrain/speechbrain), [wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [dino](https://github.com/facebookresearch/dino), [vicreg](https://github.com/facebookresearch/vicreg)
 
 
 ## Citations
