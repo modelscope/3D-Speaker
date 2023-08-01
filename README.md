@@ -39,6 +39,9 @@ bash run.sh
 # Speaker diarization:
 cd egs/3dspeaker/speaker-diarization/
 bash run.sh
+# Language identification
+cd egs/3dspeaker/language-idenitfication
+bash run.sh
 ```
 ### Inference using pretrained models from Modelscope
 All pretrained models are released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
@@ -52,6 +55,8 @@ model_id=damo/speech_campplus_sv_en_voxceleb_16k
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
 # ERes2Net trained on VoxCeleb
 model_id=damo/speech_eres2net_sv_en_voxceleb_16k
+# ERes2Net trained on 200k labeled speakers
+model_id=damo/speech_eres2net_sv_zh-cn_16k-common
 # Run CAM++ or ERes2Net inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 
@@ -62,23 +67,23 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
 ## Overview of Content
-- Supervised Speaker Verification
+- **Supervised Speaker Verification**
   - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B) and [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B) and [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B) and [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-- Self-supervised Speaker Verification
+- **Self-supervised Speaker Verification**
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) 
-  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-- Speaker Diarization
+- **Speaker Diarization**
   - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
-- Language Identification
-  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/lid) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+- **Language Identification**
+  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/lid) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-- 3D-Speaker Dataset
-Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
-Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
+- **3D-Speaker Dataset**
+  - Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
+  - Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
 
 
 ## News :fire:
