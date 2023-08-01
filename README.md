@@ -97,7 +97,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ## To be expected :fire:
 - [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in CN-Celeb.
 - [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
-- [2023.8] Releasing CAM++ and ERes2Net in language recognition for five languages.
+- [2023.8] Releasing CAM++ and ERes2Net in language identification for five languages.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
@@ -132,8 +132,7 @@ If you are using RDINO model in your research, please cite:
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
-  booktitle={ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  pages={1--5},
+  booktitle={ICASSP 2023},
   year={2023},
   organization={IEEE}
 }

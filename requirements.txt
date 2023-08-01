@@ -9,3 +9,4 @@ kaldiio
 pyyaml
 matplotlib
 pandas
+openpyxl
