@@ -17,10 +17,6 @@
     
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). Furthermore, we present a large-scale speech corpus also called [3D-Speaker](https://3dspeaker.github.io/) to facilitate the research of speech representation disentanglement.
 
-## 3D-Speaker Dataset
-Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
-Paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
-
 ## Quickstart
 ### Install 3D-Speaker
 ``` sh
@@ -50,28 +46,53 @@ All pretrained models are released on [Modelscope](https://www.modelscope.cn/mod
 ``` sh
 # Install modelscope
 pip install modelscope
+# CAM++ trained on VoxCeleb
+model_id=damo/speech_campplus_sv_en_voxceleb_16k
 # CAM++ trained on 200k labeled speakers
 model_id=damo/speech_campplus_sv_zh-cn_16k-common
-# ERes2Net trained on 200k labeled speakers
-mode_id=damo/speech_eres2net_sv_zh-cn_16k-common
-
+# ERes2Net trained on VoxCeleb
+model_id=damo/speech_eres2net_sv_en_voxceleb_16k
 # Run CAM++ or ERes2Net inference
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+
+# RDINO trained on VoxCeleb
+model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
+# Run rdino inference
+python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
-## News
-- [2023.7] Releasing [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary), [RDINO](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
+
+## Overview of Content
+- Supervised Speaker Verification
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B) and [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B) and [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+
+- Self-supervised Speaker Verification
+  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) 
+  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+
+- Speaker Diarization
+  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
+
+- Language Identification
+  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/lid) training recipes on [3D-Speaker](https://3dspeaker.github.io/) dataset.
+
+- 3D-Speaker Dataset
+Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
+Related paper address: [3D-Speaker](https://arxiv.org/pdf/2306.15354.pdf)
+
+
+## News :fire:
+- [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
+- [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
+- [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language recognition for Mandarin and English.
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
-- [2023.6] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
-- [2023.6] [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipe released, which comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
-- [2023.5] [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
-- [2023.5] [ERes2Net](https://www.modelscope.cn/models/damo/speech_eres2net_sv_en_voxceleb_16k/summary) pretrained model released, trained on VoxCeleb.
-- [2023.4] [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
+- [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
-- [2023.4] [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B) training recipe on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) released.
 
 ## To be expected
-- [2023.7] Releasing Dialogue Detection model and Semantic Speaker Change Detection model in speaker diarization.
-- [2023.7] Releasing CAM++ model and ERes2Net model in language recognition.
+- [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in CN-Celeb.
+- [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
+- [2023.8] Releasing CAM++ and ERes2Net in language recognition for five languages.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
@@ -81,7 +102,14 @@ If you have any comment or question about 3D-Speaker, please contact us by
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
 
 ## Acknowledge
-3D-Speaker contains third-party components and code modified from some open-source repos, including: [speechbrain](https://github.com/speechbrain/speechbrain), [wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [dino](https://github.com/facebookresearch/dino), [vicreg](https://github.com/facebookresearch/vicreg).
+3D-Speaker contains third-party components and code modified from some open-source repos, including:
+
+- [speechbrain](https://github.com/speechbrain/speechbrain)
+- [wespeaker](https://github.com/wenet-e2e/wespeaker)
+- [D-TDNN](https://github.com/yuyq96/D-TDNN)
+- [dino](https://github.com/facebookresearch/dino)
+- [vicreg](https://github.com/facebookresearch/vicreg)
+
 
 ## Citations
 If you are using 3D Speaker dataset in your research, please cite:
