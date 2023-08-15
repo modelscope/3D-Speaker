@@ -112,6 +112,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
+If you find this repository useful, please consider giving a star :star:
 If you are using 3D Speaker dataset in your research, please cite:
 ```BibTeX
 @inproceedings{zheng20233d,
