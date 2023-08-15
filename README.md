@@ -95,9 +95,9 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
+- [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
 - [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
-- [2023.8] Releasing CAM++ and ERes2Net in language identification for five languages.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
@@ -112,7 +112,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
-If you find this repository useful, please consider giving a star :star:
+If you find this repository useful, please consider giving a star :star: <br>
 If you are using 3D Speaker dataset in your research, please cite:
 ```BibTeX
 @inproceedings{zheng20233d,
