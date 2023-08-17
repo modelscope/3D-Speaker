@@ -87,6 +87,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English.
@@ -95,7 +96,6 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
 - [2023.8] Releasing CAM++, ERes2Net and RDINO benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing score normalization and large-margin finetune recipes in speaker verification.
 
@@ -112,8 +112,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 
 ## Citations
-If you find this repository useful, please consider giving a star :star: <br>
-If you are using 3D Speaker dataset in your research, please cite:
+If you find this repository useful, please consider giving a star :star: and citation :t-rex::
 ```BibTeX
 @inproceedings{zheng20233d,
   title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
@@ -121,37 +120,22 @@ If you are using 3D Speaker dataset in your research, please cite:
   url={https://arxiv.org/pdf/2306.15354.pdf},
   year={2023}
 }
-```
-
-If you are using RDINO model in your research, please cite: 
-```BibTeX
+@inproceedings{wang2023cam++,
+  title={CAM++: A Fast and Efficient Network For Speaker Verification Using Context-Aware Masking},
+  author={Wang, Hui and Zheng, Siqi and Chen, Yafeng and Cheng, Luyao and Chen, Qian},
+  year={2023},
+  booktitle={INTERSPEECH}
+}
+@inproceedings{chen2023enhanced,
+  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Qi, Jiajun},
+  year={2023},
+  booktitle={INTERSPEECH}
+}
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
   booktitle={ICASSP 2023},
-  year={2023},
-  organization={IEEE}
-}
-```
-
-If you are using ERes2Net model in your research, please cite: 
-```BibTeX
-@article{eres2net,
-  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
-  author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen, Jiajun Qi},
-  booktitle={Interspeech 2023},
-  year={2023},
-  organization={IEEE}
-}
-```
-
-If you are using CAM++ model in your research, please cite: 
-```BibTeX
-@article{cam++,
-  title={CAM++: A Fast and Efficient Network for Speaker Verification Using Context-Aware Masking},
-  author={Hui Wang and Siqi Zheng and Yafeng Chen and Luyao Cheng and Qian Chen},
-  booktitle={Interspeech 2023},
-  year={2023},
-  organization={IEEE}
+  year={2023}
 }
 ```
