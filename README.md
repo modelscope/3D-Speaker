@@ -87,6 +87,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2023.8] Releasing CAM++, ERes2Net-Base, ERes2Net-Large and RDINO benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) annd [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
@@ -96,7 +97,6 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2023.8] Releasing CAM++, ERes2Net-Base, ERes2Net-Large and RDINO benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.9] Releasing score normalization and large-margin finetune recipes in speaker verification.
 
 ## Contact
