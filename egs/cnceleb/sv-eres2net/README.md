@@ -11,7 +11,8 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| ERes2net-base | 4.6M  | 7.05 | 0.398 |
+| CAM++ | 7.18M  | 6.80 | 0.405 |
+| ERes2net-base | 4.6M  | 6.69 | 0.388 |
 | ERes2net-large | 18.3M  | 6.17 | 0.372 |
 
 ## pretrained model
@@ -34,7 +35,7 @@ python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
 ## Citations
-If you are using CAM++ model in your research, please cite: 
+If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
 @article{eres2net,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
