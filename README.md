@@ -120,12 +120,6 @@ If you find this repository useful, please consider giving a star :star: and cit
   url={https://arxiv.org/pdf/2306.15354.pdf},
   year={2023}
 }
-@inproceedings{chen2023ensemble,
-  title={SELF-DISTILLATION NETWORK WITH ENSEMBLE PROTOTYPES: LEARNING ROBUST SPEAKER REPRESENTATIONS WITHOUT SUPERVISION},
-  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang, Qian Chen and Shiliang Zhang},
-  journal={arXiv preprint arXiv:2308.02774},
-  year={2023}
-}
 @inproceedings{wang2023cam++,
   title={CAM++: A Fast and Efficient Network For Speaker Verification Using Context-Aware Masking},
   author={Wang, Hui and Zheng, Siqi and Chen, Yafeng and Cheng, Luyao and Chen, Qian},
