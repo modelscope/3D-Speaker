@@ -17,7 +17,7 @@
 
 download_dir=data/download_data
 
-. tools/parse_options.sh || exit 1
+. utils/parse_options.sh || exit 1
 
 [ ! -d ${download_dir} ] && mkdir -p ${download_dir}
 
