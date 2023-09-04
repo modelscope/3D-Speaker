@@ -109,7 +109,7 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
 
   echo "Prepare evalution trials ..."
   mkdir -p ${data}/cnceleb_test
-  awk '{if($3==0)label="nontarget";else{label="target"}; print $1,$2,label}' ${rawdata_dir}/CN-Celeb_flac/eval/lists/trials.lst > ${data}/cnceleb_test/trials
+  awk '{if($3==0)label="nontarget";else{label="target"}; print "enroll/" $1 ".wav", $2, label}' ${rawdata_dir}/CN-Celeb_flac/eval/lists/trials.lst > ${data}/cnceleb_test/trials
   cp ${data}/eval/wav.scp ${data}/cnceleb_test/
 
   echo "Success !!! Now data preparation is done !!!"
