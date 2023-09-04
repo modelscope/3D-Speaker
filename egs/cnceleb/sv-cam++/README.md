@@ -11,7 +11,7 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| CAM++ | 7.18M  | 6.80 | 0.405 |
+| CAM++ | 7.18M  | 6.78 | 0.393 |
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
