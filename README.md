@@ -123,7 +123,7 @@ If you find this repository useful, please consider giving a star :star: and cit
 }
 @inproceedings{chen2023ensemble,
   title={SELF-DISTILLATION NETWORK WITH ENSEMBLE PROTOTYPES: LEARNING ROBUST SPEAKER REPRESENTATIONS WITHOUT SUPERVISION},
-  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang, Qian Chen and Shiliang Zhang},
+  author={Yafeng Chen, Siqi Zheng, Hui Wang, Luyao Cheng, Qian Chen and Shiliang Zhang},
   journal={arXiv preprint arXiv:2308.02774},
   year={2023}
 }
