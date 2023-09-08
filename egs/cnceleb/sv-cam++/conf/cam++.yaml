@@ -27,7 +27,7 @@ num_workers: 16
 # model
 fbank_dim: 80
 embedding_size: 512
-num_classes: 5994
+num_classes: 2793
 
 
 wav_reader:
