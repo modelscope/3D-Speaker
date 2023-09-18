@@ -16,7 +16,8 @@ stop_stage=5
 data=data
 exp=exp
 # cam++ or eres2net
-exp_name=eres2net
+exp_name=campplus
+# exp_name=eres2net
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
