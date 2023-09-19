@@ -1,0 +1,44 @@
+#!/bin/bash
+
+
+set -e
+. ./path.sh || exit 1
+
+stage=1
+stop_stage=4
+
+data=data
+exp=exp
+exp_name=rdino
+gpus="0 1 2 3"
+
+. utils/parse_options.sh || exit 1
+
+exp_dir=$exp/$exp_name
+
+if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
+  echo "Stage1: Preparing CNCeleb dataset ..."
+  ./local/prepare_data_rdino.sh --stage 1 --stop_stage 4 --data ${data}
+fi
+
+if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
+  echo "Stage2: Training the rdino model ..."
+  num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train_rdino.py --config conf/rdino.yaml --gpu $gpus \
+           --data $data/cnceleb_train/wav.scp --noise $data/musan/wav.scp --exp_dir $exp_dir
+fi
+
+if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
+  echo "Stage4: Extracting speaker embeddings ..."
+  nj=12
+  torchrun --nproc_per_node=$nj speakerlab/bin/extract_rdino.py --exp_dir $exp_dir \
+           --data $data/cnceleb_test/wav.scp --use_gpu --gpu $gpus
+fi
+
+if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
+  # Output score metrics.
+  echo "Stage5: Computing score metrics..."
+  trials="$data/cnceleb_test/trials"
+  python speakerlab/bin/compute_score_metrics.py --enrol_data $exp_dir/embeddings --test_data $exp_dir/embeddings \
+                                                 --scores_dir $exp_dir/scores --trials $trials --p_target 0.05
+fi
