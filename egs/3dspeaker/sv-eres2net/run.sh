@@ -18,7 +18,7 @@ gpus="0 1 2 3"
 exp_dir=$exp/$exp_name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
-  # In this stage we prepare the raw datasets, including Voxceleb1 and Voxceleb2.
+  # In this stage we prepare the raw datasets.
   echo "Stage1: Preparing 3D Speaker dataset..."
   ./local/prepare_data.sh --stage 1 --stop_stage 3 --data ${data}
 fi

@@ -2,7 +2,7 @@
 
 ## Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
-- Training: lr [0.00005, 0.2], batch_size 512, 8 gpu(Tesla V100), additive angular margin
+- Training: lr [0.00005, 0.2], batch_size 512, 8 gpus(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF(p-target=0.01)
 
 ## Voxceleb Results

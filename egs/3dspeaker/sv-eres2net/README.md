@@ -15,6 +15,25 @@
 | ERes2Net Base | 4.6M | 7.06% | 9.95% | 12.76% |
 | ERes2Net Large | 18.3M | 6.55% | 9.45% | 11.01% |
 
+## pretrained model
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
+
+- ERes2net-base: [speech_eres2net_base_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary)
+- ERes2Net-large: [damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary)
+- 200k labeled speakers: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
+
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio) and extracts embeddings.
+``` sh
+# Install modelscope
+pip install modelscope
+# ERes2Net trained on 3D-Speaker
+model_id=damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k
+# ERes2Net trained on 200k labeled speakers
+model_id=damo/speech_eres2net_sv_zh-cn_16k-common
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+```
+
 ## Citations
 If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
