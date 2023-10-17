@@ -14,6 +14,21 @@
 |:-----:|:------:| :------:|:------:|:------:|
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
+## Pretrained model
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
+
+- RDINO: [speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary)
+
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and generates embeddings.
+``` sh
+# Install modelscope
+pip install modelscope
+# RDINO trained on 3D-Speaker
+model_id=damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k
+# Run inference
+python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
+```
+
 ## Citations
 If you are using RDINO model in your research, please cite: 
 ```BibTeX

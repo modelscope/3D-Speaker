@@ -87,6 +87,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2023.10] Releasing ECAPA model training and inference recipes for three datasets.
 - [2023.9] Releasing RDINO model training and inference recipes for [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_cn_cnceleb_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_cnceleb_16k/summary) and [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_cnceleb_16k/summary) benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) annd [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
@@ -99,7 +100,6 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 ## To be expected :fire:
 - [2023.10] Releasing score normalization and large-margin finetune recipes in speaker verification.
-- [2023.10] Releasing ECAPA model training and inference recipes for three datasets.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by

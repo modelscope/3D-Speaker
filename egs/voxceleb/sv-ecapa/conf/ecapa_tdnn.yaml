@@ -82,10 +82,11 @@ dataloader:
     drop_last: True
 
 embedding_model:
-  obj: speakerlab.models.eres2net.ResNet.ERes2Net
+  obj: speakerlab.models.ecapa_tdnn.ECAPA_TDNN.ECAPA_TDNN
   args:
-    feat_dim: <fbank_dim>
-    embedding_size: <embedding_size>
+    input_size: <fbank_dim>
+    lin_neurons: <embedding_size>
+    channels: [1024, 1024, 1024, 1024, 3072]
 
 classifier:
   obj: speakerlab.models.campplus.classifier.CosineClassifier
