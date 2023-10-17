@@ -2,7 +2,7 @@
 # Copyright 3D-Speaker (https://github.com/alibaba-damo-academy/3D-Speaker). All Rights Reserved.
 # Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
-# The scripts in the sv-cam++ recipe are re-used for language identification after slightly modified.
+# The scripts in the sv-cam++ and sv-eres2net recipe are re-used for language identification after slightly modified.
 # The utt2spk in this recipe is equivalent to utt2lang
 
 
@@ -16,8 +16,8 @@ stop_stage=5
 data=data
 exp=exp
 # cam++ or eres2net
-exp_name=campplus
-# exp_name=eres2net
+exp_name=eres2net
+# exp_name=cam++
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
@@ -41,11 +41,11 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "Stage3: Training the model..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
   # Using CAM++ model for language identification
-  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/cam++.yaml --gpu $gpus \
-           --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
-  # Using ERes2Net model for language identification
-  # torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2net.yaml --gpu $gpus \
+  # torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/cam++.yaml --gpu $gpus \
   #          --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
+  # Using ERes2Net model for language identification
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2net.yaml --gpu $gpus \
+           --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
 fi
 
 

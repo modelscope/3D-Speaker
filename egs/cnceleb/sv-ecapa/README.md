@@ -2,7 +2,7 @@
 
 ## Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
-- Training: lr [0.0001, 0.2], batch_size 256, 4 gpu(Tesla V100), additive angular margin
+- Training: lr [0.0001, 0.2], batch_size 256, 4 gpus(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF
 
 ## CNCeleb Results
