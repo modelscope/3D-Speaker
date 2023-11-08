@@ -106,7 +106,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2023.10] Releasing score normalization and large-margin finetune recipes in speaker verification.
+- [2023.11] Releasing score normalization and large-margin finetune recipes in speaker verification.
+- [2023.11] Releasing Conformer model training and inference recipes for three datasets.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
