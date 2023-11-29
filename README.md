@@ -94,6 +94,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2023.11] [ERes2Net-base](https://modelscope.cn/models/damo/speech_eres2net_base_250k_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 250k labeled speakers.
 - [2023.10] Releasing [ECAPA model](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) training and inference recipes for three datasets.
 - [2023.9] Releasing [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) model training and inference recipes for [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_cn_cnceleb_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_cnceleb_16k/summary) and [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_cnceleb_16k/summary) benchmarks in [CN-Celeb](http://cnceleb.org/).
@@ -106,8 +107,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2023.11] Releasing score normalization and large-margin finetune recipes in speaker verification.
-- [2023.11] Releasing Conformer model training and inference recipes for three datasets.
+- [2023.12] Releasing score normalization and large-margin finetune recipes in speaker verification.
+- [2023.12] Releasing Conformer model training and inference recipes for three datasets.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
