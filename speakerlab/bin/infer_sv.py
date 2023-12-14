@@ -71,6 +71,15 @@ ERes2Net_COMMON = {
     },
 }
 
+ERes2Net_base_COMMON = {
+    'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
+    'args': {
+        'feat_dim': 80,
+        'embedding_size': 512,
+        'm_channels': 32,
+    },
+}
+
 ERes2Net_Base_3D_Speaker = {
     'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
     'args': {
@@ -109,6 +118,11 @@ supports = {
         'revision': 'v1.0.4', 
         'model': ERes2Net_COMMON,
         'model_pt': 'pretrained_eres2net_aug.ckpt',
+    },
+    'damo/speech_eres2net_base_200k_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.0', 
+        'model': ERes2Net_base_COMMON,
+        'model_pt': 'pretrained_eres2net.pt',
     },
     'damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k': {
         'revision': 'v1.0.1', 
