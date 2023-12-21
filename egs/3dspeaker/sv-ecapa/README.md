@@ -1,4 +1,4 @@
-# CAM++
+# ECAPA-TDNN
 
 ## Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
