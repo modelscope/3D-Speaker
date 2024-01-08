@@ -58,6 +58,14 @@ CAMPPLUS_COMMON = {
     },
 }
 
+ERes2Net_COMMON = {
+    'obj': 'speakerlab.models.eres2net.ResNet_aug.ERes2Net',
+    'args': {
+        'feat_dim': 80,
+        'embedding_size': 192,
+    },
+}
+
 supports = {
     'damo/speech_campplus_sv_en_voxceleb_16k': {
         'revision': 'v1.0.2', 
@@ -68,6 +76,11 @@ supports = {
         'revision': 'v1.0.0', 
         'model': CAMPPLUS_COMMON,
         'model_pt': 'campplus_cn_common.bin',
+    },
+    'damo/speech_eres2net_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.5', 
+        'model': ERes2Net_COMMON,
+        'model_pt': 'pretrained_eres2net_aug.ckpt',
     },
 }    
 

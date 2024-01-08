@@ -17,7 +17,7 @@ wav_len: 6.0 # duration(s) for each training sample.
 sample_rate: 16000
 aug_prob: 0.8
 speed_pertub: True
-lmr: False
+lm: False
 lr: 0.0001
 min_lr: !!float 2e-5
 
@@ -36,7 +36,7 @@ wav_reader:
     duration: <wav_len>
     sample_rate: <sample_rate>
     speed_pertub: <speed_pertub>
-    lmr: <lmr>
+    lm: <lm>
 
 label_encoder:
   obj: speakerlab.process.processor.SpkLabelEncoder
