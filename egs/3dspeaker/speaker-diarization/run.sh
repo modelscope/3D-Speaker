@@ -6,7 +6,7 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=4
+stop_stage=5
 
 wav_list=examples/wav.list
 exp=exp
@@ -34,7 +34,8 @@ fi
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "Stage3: Extract speaker embeddings..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
-  speaker_model_id=damo/speech_campplus_sv_zh-cn_16k-common
+  # set speaker_model_id to damo/speech_eres2net_sv_zh-cn_16k-common using campplus
+  speaker_model_id=damo/speech_eres2net_sv_zh-cn_16k-common
   torchrun --nproc_per_node=$nj local/extract_diar_embeddings.py --model_id $speaker_model_id --conf $conf_file \
           --subseg_json $json_dir/subseg.json --embs_out $embs_dir --gpu $gpus --use_gpu
 fi
@@ -42,4 +43,19 @@ fi
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   echo "Stage4: Perform clustering and output sys rttms..."
   torchrun --nproc_per_node=$nj local/cluster_and_postprocess.py --conf $conf_file --embs_dir $embs_dir --rttm_dir $rttm_dir
+fi
+
+if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
+  echo "Stage5: Get the final metrics..."
+  ref_rttm_list=examples/refrttm.list
+  if [ -f $ref_rttm_list ]; then
+    cat $ref_rttm_list | while read line;do cat $line;done > $exp/concat_ref_rttm
+    echo "Computing DER..."
+    python local/compute_der.py --config conf/diar.yaml --exp_dir $exp --ref_rttm $exp/concat_ref_rttm
+    echo "Computing ACC..."
+    python local/unsupervise_eval_tool_final.py $ref_rttm_list $exp/rttm/sys_output.rttm $exp/result/${test_name}.res 0.25
+    echo "All metrics have been done."
+  else
+    echo "Refrttm.list is not detected. Can't calculate the result"
+  fi
 fi

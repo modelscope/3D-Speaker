@@ -44,6 +44,13 @@ fi
 
 if [ ! -f ${download_dir}/train.tar.gz ]; then
     echo "Downloading 3dspeaker train.tar.gz"
+    # md5 value of part files:
+    # train.tar.gz-part-a 4109addde41d88760947263f18117ac3 
+    # train.tar.gz-part-b 5a17ef2fa28b1b9e340277edffb8b51c 
+    # train.tar.gz-part-c bd2ce08f5b51005b66afe484b01a4a59 
+    # train.tar.gz-part-d 5cd31d961d2d5211aea38b8b95f7239a 
+    # train.tar.gz-part-e 58f3fb7d28ae7f4b65ee35a1ed7ab106 
+    # train.tar.gz-part-f be64551c030e8087562a10df2c74ccb1 
     for part in a b c d e f; do
         wget --no-check-certificate https://speech-lab-share-data.oss-cn-shanghai.aliyuncs.com/3D-Speaker/train.tar.gz-part-${part} -P ${download_dir}
     done

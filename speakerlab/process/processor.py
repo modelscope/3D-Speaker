@@ -17,19 +17,19 @@ class WavReader(object):
         sample_rate = 16000,
         duration: float = 3.0,
         speed_pertub: bool = False,
-        lmr: bool = True,
+        lm: bool = True,
     ):
         self.duration = duration
         self.sample_rate = sample_rate
         self.speed_pertub = speed_pertub
-        self.lmr = lmr
+        self.lm = lm
 
     def __call__(self, wav_path):
         wav, sr = torchaudio.load(wav_path)
         assert sr == self.sample_rate
         wav = wav[0]
 
-        if self.speed_pertub and self.lmr:
+        if self.speed_pertub and self.lm:
             speeds = [1.0, 0.9, 1.1]
             speed_idx = random.randint(0, 2)
             if speed_idx > 0:
