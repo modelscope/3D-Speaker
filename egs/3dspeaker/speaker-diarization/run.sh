@@ -34,8 +34,8 @@ fi
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "Stage3: Extract speaker embeddings..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
-  # set speaker_model_id to damo/speech_campplus_sv_zh-cn_16k-common using campplus
-  speaker_model_id=damo/speech_eres2net_sv_zh-cn_16k-common
+  # Set speaker_model_id to damo/speech_eres2net_sv_zh-cn_16k-common when using eres2net 
+  speaker_model_id=damo/speech_campplus_sv_zh-cn_16k-common
   torchrun --nproc_per_node=$nj local/extract_diar_embeddings.py --model_id $speaker_model_id --conf $conf_file \
           --subseg_json $json_dir/subseg.json --embs_out $embs_dir --gpu $gpus --use_gpu
 fi
