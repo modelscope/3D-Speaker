@@ -5,7 +5,7 @@
     ERes2Net incorporates both local and global feature fusion techniques to improve the performance. 
     The local feature fusion (LFF) fuses the features within one single residual block to extract the local signal.
     The global feature fusion (GFF) takes acoustic features of different scales as input to aggregate global signal.
-    ERes2Net-Large is an upgraded version of ERes2Net that uses a larger number of parameters to achieve better 
+    ERes2Net-huge is an upgraded version of ERes2Net that uses a larger number of parameters to achieve better 
     recognition performance. Parameters expansion, baseWidth, and scale can be modified to obtain optimal performance.
 """
 
@@ -27,16 +27,6 @@ class ReLU(nn.Hardtanh):
         return self.__class__.__name__ + ' (' \
             + inplace_str + ')'
 
-def conv1x1(in_planes, out_planes, stride=1):
-    "1x1 convolution without padding"
-    return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride,
-                     padding=0, bias=False)
-
-def conv3x3(in_planes, out_planes, stride=1):
-    "3x3 convolution with padding"
-    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
-                     padding=1, bias=False)
-
 
 class BasicBlockERes2Net(nn.Module):
     expansion = 4
@@ -44,29 +34,25 @@ class BasicBlockERes2Net(nn.Module):
     def __init__(self, in_planes, planes, stride=1, baseWidth=24, scale=3):
         super(BasicBlockERes2Net, self).__init__()
         width = int(math.floor(planes*(baseWidth/64.0)))
-        self.conv1 = conv1x1(in_planes, width*scale, stride)
+        self.conv1 = nn.Conv2d(in_planes, width*scale, kernel_size=1, stride=stride, bias=False)
         self.bn1 = nn.BatchNorm2d(width*scale)
         self.nums = scale
 
         convs=[]
         bns=[]
         for i in range(self.nums):
-        	convs.append(conv3x3(width,width))
+        	convs.append(nn.Conv2d(width, width, kernel_size=3, padding=1, bias=False))
         	bns.append(nn.BatchNorm2d(width))
         self.convs = nn.ModuleList(convs)
         self.bns = nn.ModuleList(bns)
         self.relu = ReLU(inplace=True)
         
-        self.conv3 = conv1x1(width*scale,planes*self.expansion)
+        self.conv3 = nn.Conv2d(width*scale, planes*self.expansion, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(planes*self.expansion)
         self.shortcut = nn.Sequential()
         if stride != 1 or in_planes != self.expansion * planes:
             self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes,
-                          self.expansion * planes,
-                          kernel_size=1,
-                          stride=stride,
-                          bias=False),
+                nn.Conv2d(in_planes, self.expansion * planes, kernel_size=1, stride=stride, bias=False),
                 nn.BatchNorm2d(self.expansion * planes))
         self.stride = stride
         self.width = width
@@ -90,7 +76,6 @@ class BasicBlockERes2Net(nn.Module):
         		out = sp
         	else:
         		out = torch.cat((out,sp),1)
-        
 
         out = self.conv3(out)
         out = self.bn3(out)
@@ -107,16 +92,15 @@ class BasicBlockERes2Net_diff_AFF(nn.Module):
     def __init__(self, in_planes, planes, stride=1, baseWidth=24, scale=3):
         super(BasicBlockERes2Net_diff_AFF, self).__init__()
         width = int(math.floor(planes*(baseWidth/64.0)))
-        self.conv1 = conv1x1(in_planes, width*scale, stride)
+        self.conv1 = nn.Conv2d(in_planes, width*scale, kernel_size=1, stride=stride, bias=False)
         self.bn1 = nn.BatchNorm2d(width*scale)
-        
         self.nums = scale
 
         convs=[]
         fuse_models=[]
         bns=[]
         for i in range(self.nums):
-        	convs.append(conv3x3(width,width))
+        	convs.append(nn.Conv2d(width, width, kernel_size=3, padding=1, bias=False))
         	bns.append(nn.BatchNorm2d(width))
         for j in range(self.nums - 1):
             fuse_models.append(AFF(channels=width))
@@ -126,16 +110,12 @@ class BasicBlockERes2Net_diff_AFF(nn.Module):
         self.fuse_models = nn.ModuleList(fuse_models)
         self.relu = ReLU(inplace=True)
         
-        self.conv3 = conv1x1(width*scale,planes*self.expansion)
+        self.conv3 = nn.Conv2d(width*scale, planes*self.expansion, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(planes*self.expansion)
         self.shortcut = nn.Sequential()
         if stride != 1 or in_planes != self.expansion * planes:
             self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes,
-                          self.expansion * planes,
-                          kernel_size=1,
-                          stride=stride,
-                          bias=False),
+                nn.Conv2d(in_planes, self.expansion * planes, kernel_size=1, stride=stride, bias=False),
                 nn.BatchNorm2d(self.expansion * planes))
         self.stride = stride
         self.width = width
@@ -188,33 +168,18 @@ class ERes2Net(nn.Module):
         self.stats_dim = int(feat_dim / 8) * m_channels * 8
         self.two_emb_layer = two_emb_layer
 
-        self.conv1 = nn.Conv2d(1,
-                               m_channels,
-                               kernel_size=3,
-                               stride=1,
-                               padding=1,
-                               bias=False)
+        self.conv1 = nn.Conv2d(1, m_channels, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(m_channels)
-        self.layer1 = self._make_layer(block,
-                                       m_channels,
-                                       num_blocks[0],
-                                       stride=1)
-        self.layer2 = self._make_layer(block,
-                                       m_channels * 2,
-                                       num_blocks[1],
-                                       stride=2)
-        self.layer3 = self._make_layer(block_fuse,
-                                       m_channels * 4,
-                                       num_blocks[2],
-                                       stride=2)
-        self.layer4 = self._make_layer(block_fuse,
-                                       m_channels * 8,
-                                       num_blocks[3],
-                                       stride=2)
+
+        self.layer1 = self._make_layer(block, m_channels, num_blocks[0], stride=1)
+        self.layer2 = self._make_layer(block, m_channels * 2, num_blocks[1], stride=2)
+        self.layer3 = self._make_layer(block_fuse, m_channels * 4, num_blocks[2], stride=2)
+        self.layer4 = self._make_layer(block_fuse, m_channels * 8, num_blocks[3], stride=2)
 
         self.layer1_downsample = nn.Conv2d(m_channels * 4, m_channels * 8, kernel_size=3, padding=1, stride=2, bias=False)
         self.layer2_downsample = nn.Conv2d(m_channels * 8, m_channels * 16, kernel_size=3, padding=1, stride=2, bias=False)
         self.layer3_downsample = nn.Conv2d(m_channels * 16, m_channels * 32, kernel_size=3, padding=1, stride=2, bias=False)
+
         self.fuse_mode12 = AFF(channels=m_channels * 8)
         self.fuse_mode123 = AFF(channels=m_channels * 16)
         self.fuse_mode1234 = AFF(channels=m_channels * 32)
@@ -222,8 +187,7 @@ class ERes2Net(nn.Module):
         self.n_stats = 1 if pooling_func == 'TAP' or pooling_func == "TSDP" else 2
         self.pool = getattr(pooling_layers, pooling_func)(
             in_dim=self.stats_dim * block.expansion)
-        self.seg_1 = nn.Linear(self.stats_dim * block.expansion * self.n_stats,
-                               embedding_size)
+        self.seg_1 = nn.Linear(self.stats_dim * block.expansion * self.n_stats, embedding_size)
         if self.two_emb_layer:
             self.seg_bn_1 = nn.BatchNorm1d(embedding_size, affine=False)
             self.seg_2 = nn.Linear(embedding_size, embedding_size)

@@ -6,7 +6,7 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=5
+stop_stage=6
 
 wav_list=examples/wav.list
 exp=exp
@@ -20,19 +20,29 @@ json_dir=$exp/json
 embs_dir=$exp/embs
 rttm_dir=$exp/rttm
 
-
-if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
-  echo "Stage1: Do vad for input wavs..."
-  python local/voice_activity_detection.py --wavs $wav_list --out_file $json_dir/vad.json
+if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
+  echo "Stage 1: Prepare input wavs..."
+  mkdir -p examples
+  wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
+?Revision=master&FilePath=examples/example.wav" -O examples/example.wav
+  wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
+?Revision=master&FilePath=examples/example.rttm" -O examples/example.rttm
+  find examples -name "*.wav" > examples/wav.list
+  find examples -name "*.rttm" > examples/refrttm.list
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
-  echo "Stage2: Prepare subsegments info..."
-  python local/prepare_subseg_json.py --vad $json_dir/vad.json --out_file $json_dir/subseg.json
+  echo "Stage2: Do vad for input wavs..."
+  python local/voice_activity_detection.py --wavs $wav_list --out_file $json_dir/vad.json
 fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
-  echo "Stage3: Extract speaker embeddings..."
+  echo "Stage3: Prepare subsegments info..."
+  python local/prepare_subseg_json.py --vad $json_dir/vad.json --out_file $json_dir/subseg.json
+fi
+
+if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
+  echo "Stage4: Extract speaker embeddings..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
   # Set speaker_model_id to damo/speech_eres2net_sv_zh-cn_16k-common when using eres2net 
   speaker_model_id=damo/speech_campplus_sv_zh-cn_16k-common
@@ -40,13 +50,13 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
           --subseg_json $json_dir/subseg.json --embs_out $embs_dir --gpu $gpus --use_gpu
 fi
 
-if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
-  echo "Stage4: Perform clustering and output sys rttms..."
+if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
+  echo "Stage5: Perform clustering and output sys rttms..."
   torchrun --nproc_per_node=$nj local/cluster_and_postprocess.py --conf $conf_file --embs_dir $embs_dir --rttm_dir $rttm_dir
 fi
 
-if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
-  echo "Stage5: Get the final metrics..."
+if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
+  echo "Stage6: Get the final metrics..."
   ref_rttm_list=examples/refrttm.list
   if [ -f $ref_rttm_list ]; then
     cat $ref_rttm_list | while read line;do cat $line;done > $exp/concat_ref_rttm

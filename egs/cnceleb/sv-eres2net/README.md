@@ -2,7 +2,7 @@
 
 ## Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
-- Training: lr [0.0001, 0.2], batch_size 256, 4 gpu(Tesla V100), additive angular margin
+- Training: lr [0.0001, 0.2], batch_size 256, 4 gpu(Tesla V100), additive angular margin, speaker embeddding=192
 - Metrics: EER(%), MinDCF
 
 ## CNCeleb Results
@@ -12,8 +12,8 @@
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
 | CAM++ | 7.18M  | 6.78 | 0.393 |
-| ERes2net-base | 4.6M  | 6.69 | 0.388 |
-| ERes2net-large | 18.3M  | 6.17 | 0.372 |
+| ERes2net-base | 6.61M  | 6.69 | 0.388 |
+| ERes2net-large | 22.46M  | 6.17 | 0.372 |
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
