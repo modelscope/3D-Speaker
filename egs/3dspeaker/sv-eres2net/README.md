@@ -2,7 +2,7 @@
 
 ## Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
-- Training: lr [0.00005, 0.2], batch_size 512, 8 gpu(Tesla V100), additive angular margin
+- Training: lr [0.00005, 0.2], batch_size 512, 8 gpu(Tesla V100), additive angular margin, speaker embeddding=192
 - Metrics: EER(%), MinDCF(p-target=0.01)
 
 ## 3D-Speaker Results
@@ -12,8 +12,8 @@
 | Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
 |:-----:|:------:| :------:|:------:|:------:|
 | ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
-| ERes2Net Base | 4.6M | 7.06% | 9.95% | 12.76% |
-| ERes2Net Large | 18.3M | 6.55% | 9.45% | 11.01% |
+| ERes2Net Base | 6.61M | 7.06% | 9.95% | 12.76% |
+| ERes2Net Large | 22.46M | 6.55% | 9.45% | 11.01% |
 
 ## pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).

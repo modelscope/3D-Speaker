@@ -56,7 +56,7 @@ CAMPPLUS_COMMON = {
 }
 
 ERes2Net_VOX = {
-    'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 192,
@@ -64,7 +64,7 @@ ERes2Net_VOX = {
 }
 
 ERes2Net_COMMON = {
-    'obj': 'speakerlab.models.eres2net.ResNet_aug.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net_huge.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 192,
@@ -72,7 +72,7 @@ ERes2Net_COMMON = {
 }
 
 ERes2Net_base_COMMON = {
-    'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 512,
@@ -81,7 +81,7 @@ ERes2Net_base_COMMON = {
 }
 
 ERes2Net_Base_3D_Speaker = {
-    'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 512,
@@ -90,7 +90,7 @@ ERes2Net_Base_3D_Speaker = {
 }
 
 ERes2Net_Large_3D_Speaker = {
-    'obj': 'speakerlab.models.eres2net.ResNet.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 512,

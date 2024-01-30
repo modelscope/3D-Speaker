@@ -5,21 +5,13 @@ This recipe offers a speaker diarization pipeline that addresses the problem of 
 
 ## Modules
 - Voice activity detection model: [speech_fsmn_vad_zh-cn-16k-common-pytorch](https://modelscope.cn/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/summary)
-- Speaker embedding model: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
+- Speaker embedding model CAM++: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
+- Speaker embedding model ERes2Net: [speech_eres2net_sv_zh-cn_16k-common](https://modelscope.cn/models/iic/speech_eres2net_sv_zh-cn_16k-common/summary)
 - Speaker clustering. 
   - Spectral Clustering: Suitable for medium-length audio (<30min) with relatively few speakers (<6).
   - UMAP-HDBSCAN: Suitable for long-length audio (>30min) with a relatively large number of speakers (>5).
 
 ## Usage
-First prepare a example wav list:
-``` sh
-mkdir examples
-wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo?Revision=master&FilePath=examples/example.wav" -O examples/example.wav
-wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo?Revision=master&FilePath=examples/example.rttm" -O examples/example.rttm
-find examples -name "*.wav" > examples/wav.list
-find examples -name "*.rttm" > examples/refrttm.list
-```
-Then run:
 ``` sh
 pip install -r requirements.txt
 bash run.sh

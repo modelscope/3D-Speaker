@@ -82,7 +82,7 @@ dataloader:
     drop_last: True
 
 embedding_model:
-  obj: speakerlab.models.eres2net.ResNet.ERes2Net
+  obj: speakerlab.models.eres2net.ERes2Net.ERes2Net
   args:
     feat_dim: <fbank_dim>
     embedding_size: <embedding_size>

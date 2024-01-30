@@ -10,7 +10,7 @@ exp_dir:
 
 # basic
 num_epoch: 70
-save_epoch_freq: 5
+save_epoch_freq: 10
 log_batch_freq: 100
 
 wav_len: 3.0 # duration(s) for each training sample.
@@ -26,9 +26,9 @@ num_workers: 16
 
 # model
 fbank_dim: 80
-embedding_size: 512
-m_channels: 32 # if you use eres2net-large, you can change m_channels from 32 to 64 
-num_classes: 2793
+embedding_size: 192
+channels: 32
+num_classes: 5994
 
 wav_reader:
   obj: speakerlab.process.processor.WavReader
@@ -83,11 +83,11 @@ dataloader:
     drop_last: True
 
 embedding_model:
-  obj: speakerlab.models.eres2net.ERes2Net.ERes2Net
+  obj: speakerlab.models.resnet.ResNet.ResNet
   args:
     feat_dim: <fbank_dim>
     embedding_size: <embedding_size>
-    m_channels: <m_channels>
+    m_channels: <channels>
 
 classifier:
   obj: speakerlab.models.campplus.classifier.CosineClassifier
