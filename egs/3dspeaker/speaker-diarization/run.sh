@@ -24,9 +24,9 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
   echo "Stage 1: Prepare input wavs..."
   mkdir -p examples
   wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
-?Revision=master&FilePath=examples/example.wav" -O examples/example.wav
+?Revision=master&FilePath=examples/2speakers_example.wav" -O examples/2speakers_example.wav
   wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
-?Revision=master&FilePath=examples/example.rttm" -O examples/example.rttm
+?Revision=master&FilePath=examples/2speakers_example.rttm" -O examples/2speakers_example.rttm
   find examples -name "*.wav" > examples/wav.list
   find examples -name "*.rttm" > examples/refrttm.list
 fi
