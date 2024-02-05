@@ -1,5 +1,5 @@
 numba==0.56.2
 umap-learn
-funasr
+funasr==0.8.4
 modelscope
 hdbscan
