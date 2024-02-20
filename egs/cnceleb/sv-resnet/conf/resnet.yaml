@@ -1,0 +1,142 @@
+# Training config
+
+# inputs
+data:
+noise:
+reverb:
+
+# outputs
+exp_dir:
+
+# basic
+num_epoch: 70
+save_epoch_freq: 10
+log_batch_freq: 100
+
+wav_len: 3.0 # duration(s) for each training sample.
+sample_rate: 16000
+aug_prob: 0.8
+speed_pertub: True
+lr: 0.2
+min_lr: !!float 5e-5
+
+# dataloader
+batch_size: 256
+num_workers: 16
+
+# model
+fbank_dim: 80
+embedding_size: 192
+channels: 32
+num_classes: 5994
+
+wav_reader:
+  obj: speakerlab.process.processor.WavReader
+  args:
+    duration: <wav_len>
+    sample_rate: <sample_rate>
+    speed_pertub: <speed_pertub>
+
+label_encoder:
+  obj: speakerlab.process.processor.SpkLabelEncoder
+  args:
+    data_file: <data>
+
+feature_extractor:
+  obj: speakerlab.process.processor.FBank
+  args:
+    n_mels: <fbank_dim>
+    sample_rate: <sample_rate>
+    mean_nor: True
+
+augmentations:
+  obj: speakerlab.process.processor.SpkVeriAug
+  args:
+    aug_prob: <aug_prob>
+    noise_file: <noise>
+    reverb_file: <reverb>
+
+preprocessor:
+  wav_reader: <wav_reader>
+  label_encoder: <label_encoder>
+  augmentations: <augmentations>
+  feature_extractor: <feature_extractor>
+
+epoch_counter:
+  obj: speakerlab.utils.epoch.EpochCounter
+  args:
+    limit: <num_epoch>
+
+dataset:
+  obj: speakerlab.dataset.dataset.WavSVDataset
+  args:
+    data_file: <data>
+    preprocessor: <preprocessor>
+
+dataloader:
+  obj: torch.utils.data.DataLoader
+  args:
+    dataset: <dataset>
+    batch_size: <batch_size>
+    num_workers: <num_workers>
+    pin_memory: True
+    drop_last: True
+
+embedding_model:
+  obj: speakerlab.models.resnet.ResNet.ResNet
+  args:
+    feat_dim: <fbank_dim>
+    embedding_size: <embedding_size>
+    m_channels: <channels>
+
+classifier:
+  obj: speakerlab.models.campplus.classifier.CosineClassifier
+  args:
+    input_dim: <embedding_size>
+    out_neurons: <num_classes>
+
+optimizer:
+  obj: torch.optim.SGD
+  args:
+    params:
+    lr: <lr>
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0001
+
+lr_scheduler:
+  obj: speakerlab.process.scheduler.WarmupCosineScheduler
+  args:
+    optimizer: <optimizer>
+    min_lr: <min_lr>
+    max_lr: <lr>
+    warmup_epoch: 5
+    fix_epoch: <num_epoch>
+    step_per_epoch:
+
+loss:
+  obj: speakerlab.loss.margin_loss.ArcMarginLoss
+  args:
+    scale: 32.0
+    margin: 0.3
+    easy_margin: False
+
+margin_scheduler:
+  obj: speakerlab.process.scheduler.MarginScheduler
+  args:
+    criterion: <loss>
+    initial_margin: 0.0
+    final_margin: 0.3
+    increase_start_epoch: 20
+    fix_epoch: 50
+    step_per_epoch:
+
+checkpointer:
+  obj: speakerlab.utils.checkpoint.Checkpointer
+  args:
+    checkpoints_dir: <exp_dir>/models
+    recoverables:
+      embedding_model: <embedding_model>
+      classifier: <classifier>
+      epoch_counter: <epoch_counter>
+
