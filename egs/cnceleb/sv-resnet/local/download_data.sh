@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Copyright (c) 2022 Hongji Wang (jijijiang77@gmail.com)
+#               2022 Chengdong Liang (liangchengdong@mail.nwpu.edu.cn)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,33 +35,22 @@ if [ ! -f ${download_dir}/rirs_noises.zip ]; then
   [ $md5 != "e6f48e257286e05de56413b4779d8ffb" ] && echo "Wrong md5sum of rirs_noises.zip" && exit 1
 fi
 
-if [ ! -f ${download_dir}/vox1_test_wav.zip ]; then
-  echo "Downloading vox1_test_wav.zip ..."
-  wget --no-check-certificate https://thor.robots.ox.ac.uk/~vgg/data/voxceleb/vox1a/vox1_test_wav.zip -P ${download_dir}
-  md5=$(md5sum ${download_dir}/vox1_test_wav.zip | awk '{print $1}')
-  [ $md5 != "185fdc63c3c739954633d50379a3d102" ] && echo "Wrong md5sum of vox1_test_wav.zip" && exit 1
+if [ ! -f ${download_dir}/cn-celeb_v2.tar.gz ]; then
+  echo "Downloading cn-celeb_v2.tar.gz ..."
+  wget --no-check-certificate https://www.openslr.org/resources/82/cn-celeb_v2.tar.gz -P ${download_dir}
+  md5=$(md5sum ${download_dir}/cn-celeb_v2.tar.gz | awk '{print $1}')
+  [ $md5 != "7ab1b214028a7439e26608b2d5a0336c" ] && echo "Wrong md5sum of cn-celeb_v2.tar.gz" && exit 1
 fi
 
-if [ ! -f ${download_dir}/vox1_dev_wav.zip ]; then
-  echo "Downloading vox1_dev_wav.zip ..."
-  for part in a b c d; do
-    wget --no-check-certificate https://thor.robots.ox.ac.uk/~vgg/data/voxceleb/vox1a/vox1_dev_wav_parta${part} -P ${download_dir} &
+if [ ! -f ${download_dir}/cn-celeb2_v2.tar.gz ]; then
+  echo "Downloading cn-celeb2_v2.tar.gz ..."
+  for part in a b c; do
+    wget --no-check-certificate https://www.openslr.org/resources/82/cn-celeb2_v2.tar.gza${part} -P ${download_dir} &
   done
   wait
-  cat ${download_dir}/vox1_dev* >${download_dir}/vox1_dev_wav.zip
-  md5=$(md5sum ${download_dir}/vox1_dev_wav.zip | awk '{print $1}')
-  [ $md5 != "ae63e55b951748cc486645f532ba230b" ] && echo "Wrong md5sum of vox1_dev_wav.zip" && exit 1
-fi
-
-if [ ! -f ${download_dir}/vox2_aac.zip ]; then
-  echo "Downloading vox2_aac.zip ..."
-  for part in a b c d e f g h; do
-    wget --no-check-certificate https://thor.robots.ox.ac.uk/~vgg/data/voxceleb/vox1a/vox2_dev_aac_parta${part} -P ${download_dir} &
-  done
-  wait
-  cat ${download_dir}/vox2_dev_aac* >${download_dir}/vox2_aac.zip
-  md5=$(md5sum ${download_dir}/vox2_aac.zip | awk '{print $1}')
-  [ $md5 != "bbc063c46078a602ca71605645c2a402" ] && echo "Wrong md5sum of vox2_aac.zip" && exit 1
+  cat ${download_dir}/cn-celeb2_v2.tar.gza* >${download_dir}/cn-celeb2_v2.tar.gz
+  md5=$(md5sum ${download_dir}/cn-celeb2_v2.tar.gz | awk '{print $1}')
+  [ $md5 != "55c47cf0b6d0bf793e88bf79d5dfc660" ] && echo "Wrong md5sum of cn-celeb2_v2.tar.gz" && exit 1
 fi
 
 echo "Download success !!!"

@@ -185,7 +185,6 @@ def main(args):
     csv_output = [["ID", "dur", "path", "start", "stop", "spk"]]
     for n in range(args.nj):
         wav_keys = list(wavscp_dict.keys())[n::args.nj]
-        # prepare_csv(wav_keys, args.seg_dur, wavscp_dict, utt2spk_dict, args.sample_rate, args.random_seg, storage)
         pool.apply_async(
             prepare_csv,
             args=(wav_keys, args.seg_dur, wavscp_dict, utt2spk_dict, args.sample_rate, args.random_seg, storage),
