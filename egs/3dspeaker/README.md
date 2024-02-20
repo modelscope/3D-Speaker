@@ -19,9 +19,11 @@ bash run.sh
 | Model | Params | Cross-Device | Cross-Distance | Cross-Dialect |
 |:-----:|:------:| :------:|:------:|:------:|
 | ECAPA-TDNN | 20.8M | 8.87% | 12.26% | 14.53% |
-| CAM++ Base | 7.2M | 7.75% | 11.29% | 13.44% |
-| ERes2Net Base | 4.6M | 7.06% | 9.95% | 12.76% |
-| ERes2Net Large | 18.3M | 6.55% | 9.45% | 11.01% |
+| Res2Net | 4.03 M | 8.03% | 9.67% | 14.11% |
+| CAM++ | 7.2M | 7.75% | 11.29% | 13.44% |
+| ResNet34 | 6.34 M | 7.29% | 8.98% | 12.81% |
+| ERes2Net-base | 6.61M | 7.21% | 9.87% | 12.3% |
+| ERes2Net-large | 22.46M | 6.34% | 9.54% | 11.4% |
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
 ### Inference using pretrained models from Modelscope
