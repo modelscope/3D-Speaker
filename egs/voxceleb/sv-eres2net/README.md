@@ -15,7 +15,7 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| ERes2Net-base | 6.61M | 0.97  |  0.090 |
+| ERes2Net-base | 6.61M | 0.97 |  0.090 |
 | ERes2Net-base-lm | 6.61M | 0.84  |  0.086 |
 
 ## pretrained model
