@@ -1,11 +1,11 @@
-# ECAPA-TDNN
+## ECAPA-TDNN
 
-## Training config
+### Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
 - Training: lr [0.00005, 0.2], batch_size 256, 4 gpus(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF(p-target=0.01)
 
-## Voxceleb Results
+### Voxceleb results
 - Train set: Voxceleb2-dev, 5994 speakers
 - Test set: Voxceleb-O
 
@@ -13,7 +13,7 @@
 |:-----:|:------:|:------:|:------:|
 | ECAPA-TDNN | 20.8M | 0.845  |  0.090 |
 
-## pretrained model
+### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - Voxceleb: [speech_ecapa-tdnn_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_ecapa-tdnn_sv_en_voxceleb_16k/summary)
@@ -28,7 +28,7 @@ model_id=damo/speech_ecapa-tdnn_sv_en_voxceleb_16k
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using ECAPA-TDNN model in your research, please cite: 
 ```BibTeX
 @article{desplanques2020ecapa,

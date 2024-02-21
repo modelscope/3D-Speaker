@@ -1,11 +1,11 @@
-# RDINO
+## RDINO
 
-## Training config
+### Training config
 - Feature: 80-dim fbank
 - Training: batch_size 52 * 4, 4 gpu(Tesla V100)
 - Metrics: EER(%), MinDCF(p-target=0.05)
 
-## 3D-Speaker Results
+### 3D-Speaker results
 - Train set: 3D-Speaker-train
 - Test set: Cross-Device, Cross-Distance, Cross-Dialect
 
@@ -14,7 +14,7 @@
 |:-----:|:------:| :------:|:------:|:------:|
 | RDINO | 45.44M | 20.41% | 21.92% | 25.53% |
 
-## Pretrained model
+### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - RDINO: [speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k/summary)
@@ -29,7 +29,7 @@ model_id=damo/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,

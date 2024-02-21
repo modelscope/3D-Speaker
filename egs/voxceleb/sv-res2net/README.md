@@ -5,7 +5,7 @@
 - Training: lr [0.00005, 0.2], batch_size 512, 8 gpus(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF(p-target=0.01)
 
-### Voxceleb Results
+### Voxceleb results
 - Train set: Voxceleb2-dev, 5994 speakers
 - Test set: Voxceleb-O
 
@@ -13,5 +13,5 @@
 |:-----:|:------:|:------:|:------:|
 | Res2Net | 4.03M | 1.50  |  0.138 |
 
-## pretrained model
+### Pretrained model
 waiting...

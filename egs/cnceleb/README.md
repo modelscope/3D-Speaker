@@ -60,14 +60,4 @@ model_id=iic/speech_rdino_ecapa_tdnn_sv_zh-cn_cnceleb_16k
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
-If you are using 3D Speaker dataset in your research, please cite: 
-```BibTeX
-@inproceedings{chen2023pushing,
-  title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
-  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
-  url={https://arxiv.org/pdf/2306.15354.pdf},
-  year={2023}
-}
-```
 
