@@ -33,6 +33,15 @@ bash run.sh
 # Speaker verification: CAM++ on 3D-Speaker dataset
 cd egs/3dspeaker/sv-cam++/
 bash run.sh
+# Speaker verification: ECAPA-TDNN on 3D-Speaker dataset
+cd egs/3dspeaker/sv-ecapa/
+bash run.sh
+# Speaker verification: ResNet on 3D-Speaker dataset
+cd egs/3dspeaker/sv-resnet/
+bash run.sh
+# Speaker verification: Res2Net on 3D-Speaker dataset
+cd egs/3dspeaker/sv-res2net/
+bash run.sh
 # Self-supervised speaker verification: RDINO on 3D-Speaker dataset
 cd egs/3dspeaker/sv-rdino/
 bash run.sh
@@ -69,16 +78,16 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ## Overview of Content
 
 - **Supervised Speaker Verification**
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net) and [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-res2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net) and [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-ecapa) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
 
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-eres2net) and [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-ecapa) training recipes on [CN-Celeb](http://cnceleb.org/).
+  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-eres2net), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-res2net) training recipes on [CN-Celeb](http://cnceleb.org/).
 
 - **Self-supervised Speaker Verification**
-  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) 
-
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+
+  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/) 
 
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) training recipes on [CN-Celeb](http://cnceleb.org/).
 
@@ -94,7 +103,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
-- [2024.1] Releasing [ResNet34](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) model training and inference recipes for VoxCeleb.
+- [2024.1] Releasing [ResNet34](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) model training and inference recipes for 3D-Speaker, VoxCeleb and CN-Celeb datasets.
 - [2024.1] Releasing [large-margin finetune recipes](https://github.com/alibaba-damo-academy/3D-Speaker/blob/main/egs/voxceleb/sv-eres2net/run.sh) in speaker verification and adding [diarization recipes](https://github.com/alibaba-damo-academy/3D-Speaker/blob/main/egs/3dspeaker/speaker-diarization/run.sh). 
 - [2023.11] [ERes2Net-base](https://modelscope.cn/models/damo/speech_eres2net_base_200k_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.10] Releasing [ECAPA model](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) training and inference recipes for three datasets.
@@ -109,7 +118,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2024.2] Releasing comformer model training and inference recipes for VoxCeleb.
+- [2024.2] Releasing multi-modal speaker diarization inference recipes.
 - [2024.2] Releasing asnormalization in speaker verification.
 
 ## Contact
