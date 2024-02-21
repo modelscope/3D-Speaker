@@ -1,11 +1,11 @@
-# ERes2Net
+## ERes2Net
 
-## Training config
+### Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
 - Training: lr [0.00005, 0.2], batch_size 512, 8 gpu(Tesla V100), additive angular margin, speaker embeddding=192
 - Metrics: EER(%), MinDCF(p-target=0.01)
 
-## 3D-Speaker Results
+### 3D-Speaker results
 - Train set: 3D-Speaker-train
 - Test set: 3D-Speaker-test
 
@@ -15,7 +15,7 @@
 | ERes2Net Base | 6.61M | 7.06% | 9.95% | 12.76% |
 | ERes2Net Large | 22.46M | 6.55% | 9.45% | 11.01% |
 
-## pretrained model
+### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - ERes2net-base: [speech_eres2net_base_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary)
@@ -34,7 +34,7 @@ model_id=damo/speech_eres2net_sv_zh-cn_16k-common
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using ERes2Net model in your research, please cite: 
 ```BibTeX
 @article{eres2net,

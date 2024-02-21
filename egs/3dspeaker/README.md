@@ -58,7 +58,7 @@ model_id=iic/speech_rdino_ecapa_tdnn_sv_zh-cn_3dspeaker_16k
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using 3D-Speaker dataset in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,

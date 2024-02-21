@@ -1,11 +1,11 @@
-# CAM++
+## CAM++
 
-## Training config
+### Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
 - Training: lr [0.0001, 0.1], batch_size 256, 4 gpu(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF
 
-## Voxceleb Results
+### Voxceleb results
 - Train set: Voxceleb2-dev, 5994 speakers
 - Test set: Voxceleb-O
 
@@ -13,7 +13,7 @@
 |:-----:|:------:|:------:|:------:|
 | CAM++ | 7.18M  | 0.73 | 0.0911 |
 
-## pretrained model
+### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - Voxceleb: [speech_campplus_sv_en_voxceleb_16k](https://modelscope.cn/models/damo/speech_campplus_sv_en_voxceleb_16k/summary)
@@ -31,7 +31,7 @@ model_id=damo/speech_campplus_sv_zh-cn_16k-common
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using CAM++ model in your research, please cite: 
 ```BibTeX
 @article{cam++,

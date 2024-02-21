@@ -5,7 +5,7 @@
 - Training: lr [0.00005, 0.2], batch_size 256, 4 gpu(Tesla V100), additive angular margin, speaker embeddding=192
 - Metrics: EER(%), MinDCF
 
-### CNCeleb Results
+### CNCeleb results
 - Train set: CNCeleb-dev + CNCeleb2, 2973 speakers
 - Test set: CNCeleb-eval
 
@@ -14,5 +14,5 @@
 | ECAPA-TDNN | 20.8 M  | 8.01 | 0.445 |
 | Res2Net | 4.03 M  | 7.96 | 0.452 |
 
-## pretrained model
+### Pretrained model
 waiting...

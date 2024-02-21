@@ -1,11 +1,11 @@
-# ECAPA-TDNN
+## ECAPA-TDNN
 
-## Training config
+### Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
 - Training: lr [0.0001, 0.1], batch_size 256, 4 gpu(Tesla V100), additive angular margin
 - Metrics: EER(%), MinDCF
 
-## 3D-Speaker Results
+### 3D-Speaker results
 - Train set: 3D-Speaker-train
 - Test set: 3D-Speaker-test
 
@@ -28,7 +28,7 @@ model_id=damo/speech_ecapa-tdnn_sv_zh-cn_3dspeaker_16k
 python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using ECAPA-TDNN model in your research, please cite: 
 ```BibTeX
 @article{desplanques2020ecapa,

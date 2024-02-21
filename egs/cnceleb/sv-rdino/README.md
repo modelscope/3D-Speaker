@@ -1,11 +1,11 @@
-# RDINO
+## RDINO
 
-## Training config
+### Training config
 - Feature: 80-dim fbank
 - Training: batch_size 52 * 4, 4 gpu(Tesla V100)
 - Metrics: EER(%), MinDCF(p-target=0.05)
 
-## CNCeleb Results
+### CNCeleb results
 - Train set: CNCeleb-dev + CNCeleb2, 2973 speakers
 - Test set: CNCeleb-eval
 
@@ -13,7 +13,7 @@
 |:-----:|:------:|:------:|:------:|
 | RDINO perforance | 45.4M | 17.07  |  0.602 |
 
-## Pretrained model in Voxceleb
+### Pretrained model in Voxceleb
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - CN-Celeb: [damo/speech_rdino_ecapa_tdnn_sv_zh-cn_cnceleb_16k](https://modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_zh-cn_cnceleb_16k/summary)
@@ -28,7 +28,7 @@ model_id=damo/speech_rdino_ecapa_tdnn_sv_zh-cn_cnceleb_16k
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,
