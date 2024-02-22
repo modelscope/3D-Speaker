@@ -134,6 +134,11 @@ supports = {
         'model': ERes2Net_Large_3D_Speaker,
         'model_pt': 'eres2net_large_model.ckpt',
     },
+    'iic/speech_campplus_sv_zh_en_16k-common_advanced': {
+        'revision': 'v1.0.0', 
+        'model': CAMPPLUS_COMMON,
+        'model_pt': 'campplus_cn_en_common.pt',
+    }
 }
 
 def main():

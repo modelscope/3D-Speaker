@@ -26,6 +26,7 @@ from modelscope.pipelines.util import is_official_hub_path
 
 parser = argparse.ArgumentParser(description='Extract speaker embeddings for diarization.')
 parser.add_argument('--model_id', default=None, help='Model id in modelscope')
+parser.add_argument('--pretrained_model', default=None, type=str, help='Path of local pretrained model')
 parser.add_argument('--conf', default=None, help='Config file')
 parser.add_argument('--subseg_json', default='', type=str, help='Sub-segments info')
 parser.add_argument('--embs_out', default='', type=str, help='Out embedding dir')
@@ -82,6 +83,11 @@ supports = {
         'model': ERes2Net_COMMON,
         'model_pt': 'pretrained_eres2net_aug.ckpt',
     },
+    'iic/speech_campplus_sv_zh_en_16k-common_advanced': {
+        'revision': 'v1.0.0', 
+        'model': CAMPPLUS_COMMON,
+        'model_pt': 'campplus_cn_en_common.pt',
+    },
 }    
 
 def main():
@@ -112,10 +118,14 @@ def main():
         conf['pretrained_model'] = pretrained_model
         conf['feature_extractor'] = FEATURE_COMMON
     else:
-        assert pretrained_model is not None, \
+        assert args.pretrained_model is not None, \
             "[ERROR] One of the params `model_id` and `pretrained_model` must be set."
         # use the local pretrained model
-        conf['pretrained_model'] = pretrained_model
+        print("[INFO]: Use the local pretrained model %s" % args.pretrained_model)
+        conf['pretrained_model'] = args.pretrained_model
+        # !!! please set the correct feature extractor and model architecture !!! 
+        conf['feature_extractor'] = FEATURE_COMMON
+        conf['embedding_model'] = CAMPPLUS_COMMON
     
     os.makedirs(args.embs_out, exist_ok=True)
     with open(args.subseg_json, "r") as f:
@@ -130,7 +140,7 @@ def main():
             "No recording IDs found! Please check if json file is accuratly generated."
             )
     if len(all_rec_ids) <= rank:
-        print("WARNING: The number of threads exceeds the number of files")
+        print("[WARNING]: The number of threads exceeds the number of files.")
         sys.exit()
 
     metadata={}
@@ -142,7 +152,7 @@ def main():
                 subset[key] = subseg_json[key]
         metadata[rec_id]=subset
 
-    print("[INFO] Start computing embeddings...")
+    print("[INFO]: Start computing embeddings...")
     local_rec_ids = all_rec_ids[rank::threads_num]
 
     if args.use_gpu:
@@ -150,7 +160,7 @@ def main():
         if gpu_id < torch.cuda.device_count():
             device = torch.device('cuda:%d'%gpu_id)
         else:
-            print("[WARNING]: Gpu %s is not available. Use cpu instead.")
+            print("[WARNING]: Gpu %s is not available. Use cpu instead." % gpu_id)
             device = torch.device('cpu')
     else:
         device = torch.device('cpu')
@@ -184,10 +194,13 @@ def main():
                 embeddings.append(emb)
                 
             embeddings = np.concatenate(embeddings, axis=0)
-            stat_obj = {'embeddings': embeddings, 'segids': list(meta.keys())}
+            stat_obj = {
+                'embeddings': embeddings, 
+                'times': [[meta[i]['start'], meta[i]['stop']] for i in meta]
+                }
             pickle.dump(stat_obj, open(stat_emb_file,'wb'))
         else:
-            print("[WARNING] Embeddings has been saved previously. Skip it.")
+            print("[WARNING]: Embeddings has been saved previously. Skip it.")
 
 if __name__ == "__main__":
     main()

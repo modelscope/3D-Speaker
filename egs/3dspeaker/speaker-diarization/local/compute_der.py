@@ -60,10 +60,6 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config',
-                        type=str,
-                        default="",
-                        help="config file")
     parser.add_argument('--exp_dir',
                         type=str,
                         default="",

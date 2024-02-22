@@ -1,5 +1,7 @@
 numba==0.56.2
 umap-learn
-funasr
-modelscope
+funasr==1.0.4
+modelscope==1.12.0
 hdbscan
+fastcluster
+python_speech_features
