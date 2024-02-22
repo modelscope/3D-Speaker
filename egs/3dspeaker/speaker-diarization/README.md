@@ -10,6 +10,10 @@ pip install -r requirements.txt
 bash run_audio.sh
 # multimodal diarization
 bash run_video.sh
+# If you use multimodal diarization, make sure that ffmpeg is available in your environment. 
+# It can be installed using:
+sudo apt-get update
+sudo apt-get install ffmpeg
 ```
 
 ## Evaluation

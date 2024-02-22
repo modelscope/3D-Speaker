@@ -105,7 +105,7 @@ def main():
         wav_list = [i.strip() for i in f.readlines()]
     wav_list.sort()
     if len(wav_list) <= rank:
-        print("WARNING: The number of threads exceeds the number of files")
+        print("[WARNING]: The number of threads exceeds the number of files")
         sys.exit()
 
     os.makedirs(args.rttm_dir, exist_ok=True)

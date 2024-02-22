@@ -3,7 +3,7 @@
 # Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
 # This script performs speaker diarization task based on audio-only input, 
-# in contrast to "run_video.sh" which is based on visual and audio input.
+# in contrast to "run_video.sh" which is based on video and audio input.
 
 set -e
 . ./path.sh || exit 1
@@ -30,8 +30,8 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
 ?Revision=master&FilePath=examples/2speakers_example.wav" -O examples/2speakers_example.wav
   wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
 ?Revision=master&FilePath=examples/2speakers_example.rttm" -O examples/2speakers_example.rttm
-  find examples -name "*.wav" > examples/wav.list
-  find examples -name "*.rttm" > examples/refrttm.list
+  echo "examples/2speakers_example.wav" > examples/wav.list
+  echo "examples/2speakers_example.rttm" > examples/refrttm.list
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
@@ -47,8 +47,7 @@ fi
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   echo "$(basename $0) Stage4: Extract speaker embeddings..."
   # Set speaker_model_id to damo/speech_eres2net_sv_zh-cn_16k-common when using eres2net 
-  # speaker_model_id=damo/speech_campplus_sv_zh-cn_16k-common
-  speaker_model_id=iic/speech_campplus_sv_zh_en_16k-common_advanced
+  speaker_model_id=damo/speech_campplus_sv_zh-cn_16k-common
   torchrun --nproc_per_node=$nj local/extract_diar_embeddings.py --model_id $speaker_model_id --conf $conf_file \
           --subseg_json $json_dir/subseg.json --embs_out $embs_dir --gpu $gpus --use_gpu
 fi
@@ -66,9 +65,6 @@ if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
     cat $ref_rttm_list | while read line;do cat $line;done > $exp/concat_ref_rttm
     echo "Computing DER..."
     python local/compute_der.py --exp_dir $exp --ref_rttm $exp/concat_ref_rttm
-    echo "Computing ACC..."
-    python local/unsupervise_eval_tool_final.py $ref_rttm_list $exp/rttm/sys_output.rttm $exp/result/result.res 0.25
-    echo "All metrics have been done."
   else
     echo "Refrttm.list is not detected. Can't calculate the result"
   fi
