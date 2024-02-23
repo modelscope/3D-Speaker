@@ -185,10 +185,20 @@ def main():
     pretrained_model = save_dir / conf['model_pt']
     pretrained_state = torch.load(pretrained_model, map_location='cpu')
 
+    if torch.cuda.is_available():
+        msg = 'Using gpu for inference.'
+        print(f'[INFO]: {msg}')
+        device = torch.device('cuda')
+    else:
+        msg = 'No cuda device is detected. Using cpu.'
+        print(f'[INFO]: {msg}')
+        device = torch.device('cpu')
+
     # load model
     model = conf['model']
     embedding_model = dynamic_import(model['obj'])(**model['args'])
     embedding_model.load_state_dict(pretrained_state)
+    embedding_model.to(device)
     embedding_model.eval()
 
     def load_wav(wav_file, obj_fs=16000):
@@ -207,7 +217,7 @@ def main():
         # load wav
         wav = load_wav(wav_file)
         # compute feat
-        feat = feature_extractor(wav).unsqueeze(0)
+        feat = feature_extractor(wav).unsqueeze(0).to(device)
         # compute embedding
         with torch.no_grad():
             embedding = embedding_model(feat).detach().cpu().numpy()
