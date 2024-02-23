@@ -1,31 +1,36 @@
 # Speaker diarization
 
 ## Introduction
-This recipe offers a speaker diarization pipeline that addresses the problem of "who spoke when". It comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering.
-
-## Modules
-- Voice activity detection model: [speech_fsmn_vad_zh-cn-16k-common-pytorch](https://modelscope.cn/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/summary)
-- Speaker embedding model CAM++: [speech_campplus_sv_zh-cn_16k-common](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary)
-- Speaker embedding model ERes2Net: [speech_eres2net_sv_zh-cn_16k-common](https://modelscope.cn/models/iic/speech_eres2net_sv_zh-cn_16k-common/summary)
-- Speaker clustering. 
-  - Spectral Clustering: Suitable for medium-length audio (<30min) with relatively few speakers (<6).
-  - UMAP-HDBSCAN: Suitable for long-length audio (>30min) with a relatively large number of speakers (>5).
+This recipe offers speaker diarization methods that address the problem of "who spoke when". It provides two pipelines: audio-only and multimodal diarization. The audio-only diarization comprises multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. The multimodal approach fuses audio and video image input to produce more accurate results.
 
 ## Usage
 ``` sh
 pip install -r requirements.txt
-bash run.sh
+# audio-only diarization
+bash run_audio.sh
+# multimodal diarization
+bash run_video.sh
+# If you use multimodal diarization, make sure that ffmpeg is available in your environment. 
+# It can be installed using:
+sudo apt-get update
+sudo apt-get install ffmpeg
 ```
 
 ## Evaluation
-The results are evaluated on two-speaker and multi-speaker Mandarin datasets using the DER metric.
+The results of audio-only diarization pipeline on two-speaker and multi-speaker datasets using the DER metric.
 | Test | DER |
 |:-----:|:------:|
 |Two-speaker|4.7%|
 |Muti-speaker(2-10)|8.0%|
 
+The comparison results of two diarization pipelines on a multi-person conversation video dataset using the DER metric.
+| Pipeline | DER |
+|:-----:|:------:|
+|Audio-only diarization|5.0%|
+|Multimodal diarization|3.7%|
+
 
 ## Limitations
 - It cannot address the issue of overlapped speech, where multiple speakers speak at the same time. 
-- It may not perform well when the audio duration is too short (less than 30 seconds) and when the number of speakers is too large (more than 10). 
+- It may not perform well when the audio duration is too short (less than 30 seconds) and when the number of speakers is too large.
 - The final accuracy is highly dependent on the performance of each modules. Therefore, using pretrained models that are more aligned with the test scenario may result in higher accuracy.

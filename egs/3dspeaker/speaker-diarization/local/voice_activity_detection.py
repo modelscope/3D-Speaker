@@ -28,19 +28,18 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
 parser = argparse.ArgumentParser(description='Voice activity detection')
-parser.add_argument('--model_id', default=None, help='VAD Model id in modelscope')
 parser.add_argument('--wavs', default='', type=str, help='Wavs')
 parser.add_argument('--out_file', default='', type=str, help='output file')
 
+# Use pretrained model from modelscope. So "model_id", "model_revision" and "sample_rate" are necessary.
 VAD_PRETRAINED = {
-    'model_id': 'damo/speech_fsmn_vad_zh-cn-16k-common-pytorch',
+    'model_id': 'iic/speech_fsmn_vad_zh-cn-16k-common-pytorch',
+    'model_revision': 'v2.0.4',
     'sample_rate': 16000,
 }
 
 def main():
     args = parser.parse_args()
-    if args.model_id is not None:
-        VAD_PRETRAINED['model_id'] = args.model_id
 
     wavs = []
     if args.wavs.endswith('.wav'):
@@ -57,7 +56,12 @@ def main():
             wav_path = wav_path.strip()
             wavs.append(wav_path)
 
-    vad_pipeline = pipeline(Tasks.voice_activity_detection, VAD_PRETRAINED['model_id'])
+    vad_pipeline = pipeline(
+        task=Tasks.voice_activity_detection, 
+        model=VAD_PRETRAINED['model_id'], 
+        model_revision=VAD_PRETRAINED['model_revision']
+        )
+    
     json_dict = {}
     print(f'[INFO]: Start computing VAD...')
     for wpath in wavs:
@@ -65,9 +69,9 @@ def main():
         assert fs == VAD_PRETRAINED['sample_rate'], \
             "The sample rate of %s is not %d, please resample it first." % (
                 wpath, VAD_PRETRAINED['sample_rate'])
-        vad_time = vad_pipeline(wpath)
+        vad_time = vad_pipeline(wpath)[0]
         wid = os.path.basename(wpath).rsplit('.', 1)[0]
-        for vad_t in vad_time['text']:
+        for vad_t in vad_time['value']:
             strt = round(vad_t[0]/1000, 2)
             end = round(vad_t[1]/1000, 2)
             subsegmentid = wid + '_' + str(strt) + '_' + str(end)
