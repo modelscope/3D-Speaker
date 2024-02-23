@@ -95,9 +95,13 @@ def main():
         rec_vad_time_list = merge_overlap_region(rec_vad_time_list)
         audio_path = os.path.join(os.path.dirname(vpath), '%s.wav'%rec_id)
         embs_out_path = os.path.join(args.embs_out, '%s.pkl'%rec_id)
-        vprocesser = VisionProcesser(vpath, audio_path, rec_vad_time_list, embs_out_path, 
-                                    args.onnx_dir, conf, device, gpu_id)
-        vprocesser.run()
+        if not os.path.isfile(embs_out_path):
+            vprocesser = VisionProcesser(vpath, audio_path, rec_vad_time_list, embs_out_path, 
+                                        args.onnx_dir, conf, device, gpu_id)
+            vprocesser.run()
+        else:
+            print("[WARNING]: Embeddings has been saved previously. Skip it.")
+        
 
 if __name__ == '__main__':
     main()

@@ -277,7 +277,7 @@ class JointClustering:
         vspk_list = []
         for v_id, dur in overlap_dur.items():
             # set the criteria for confirming overlap.
-            if (vspk_dur is None and dur > 1) or (vspk_dur is not None and dur > min(vspk_dur[v_id]*0.5, 1)):
+            if (vspk_dur is None and dur > 0.5) or (vspk_dur is not None and dur > min(vspk_dur[v_id]*0.5, 0.5)):
                 vspk_list.append(v_id)
         return vspk_list
 

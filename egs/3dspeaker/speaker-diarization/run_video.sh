@@ -25,7 +25,7 @@ visual_embs_dir=$exp/embs_video
 rttm_dir=$exp/rttm
 
 if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
-  echo "$(basename $0) Stage 1: Prepare input videos..."
+  echo "$(basename $0) Stage1: Prepare input videos..."
   mkdir -p examples
   wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/repo\
 ?Revision=master&FilePath=examples/7speakers_example.mp4" -O examples/7speakers_example.mp4
@@ -36,12 +36,12 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
 fi
 
 if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
-  echo "$(basename $0) Stage 2: Prepare onnx files and extrack raw videos and audios..."
+  echo "$(basename $0) Stage2: Prepare onnx files and extrack raw videos and audios..."
   mkdir -p $onnx_dir
   mkdir -p $raw_data_dir
   for m in version-RFB-320.onnx asd.onnx fqa.onnx face_recog_ir101.onnx; do
     if [ ! -e $onnx_dir/$m ]; then
-      echo "$(basename $0) Stage 2: Download pretrained models $m"
+      echo "$(basename $0) Stage2: Download pretrained models $m"
       wget -O $onnx_dir/$m "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/repo?Revision=master&FilePath=onnx/$m"
     fi
   done
@@ -50,11 +50,11 @@ if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
     out_video_file=$raw_data_dir/${filename%.*}.mp4
     out_wav_file=$raw_data_dir/${filename%.*}.wav
     if [ ! -e $out_video_file ]; then
-      echo "$(basename $0) Stage 2: Extract video from $filename"
+      echo "$(basename $0) Stage2: Extract video from $filename"
       ffmpeg -y -i $video_file -qscale:v 2 -threads 16 -async 1 -r 25 $out_video_file -loglevel panic
     fi
     if [ ! -e $out_wav_file ]; then
-      echo "$(basename $0) Stage 2: Extract audio from $filename"
+      echo "$(basename $0) Stage2: Extract audio from $filename"
       ffmpeg -y -i $out_video_file -qscale:a 0 -ac 1 -vn -threads 16 -ar 16000 $out_wav_file -loglevel panic
     fi
   done

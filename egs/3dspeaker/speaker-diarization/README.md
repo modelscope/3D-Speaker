@@ -32,5 +32,5 @@ The comparison results of two diarization pipelines on a multi-person conversati
 
 ## Limitations
 - It cannot address the issue of overlapped speech, where multiple speakers speak at the same time. 
-- It may not perform well when the audio duration is too short (less than 30 seconds) and when the number of speakers is too large
+- It may not perform well when the audio duration is too short (less than 30 seconds) and when the number of speakers is too large.
 - The final accuracy is highly dependent on the performance of each modules. Therefore, using pretrained models that are more aligned with the test scenario may result in higher accuracy.
