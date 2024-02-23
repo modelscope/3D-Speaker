@@ -130,7 +130,8 @@ If you have any comment or question about 3D-Speaker, please contact us by
 
 ## Acknowledge
 3D-Speaker contains third-party components and code modified from some open-source repos, including: <br>
-[Speechbrain](https://github.com/speechbrain/speechbrain), [Wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [DINO](https://github.com/facebookresearch/dino), [Vicreg](https://github.com/facebookresearch/vicreg)
+[Speechbrain](https://github.com/speechbrain/speechbrain), [Wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [DINO](https://github.com/facebookresearch/dino), [Vicreg](https://github.com/facebookresearch/vicreg), [TalkNet-ASD
+](https://github.com/TaoRuijie/TalkNet-ASD), [Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
 
 
 ## Citations
