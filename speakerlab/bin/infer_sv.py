@@ -99,52 +99,62 @@ ERes2Net_Large_3D_Speaker = {
 }
 
 supports = {
-    'damo/speech_campplus_sv_en_voxceleb_16k': {
-        'revision': 'v1.0.2', 
-        'model': CAMPPLUS_VOX, 
-        'model_pt': 'campplus_voxceleb.bin', 
-    },
-    'damo/speech_campplus_sv_zh-cn_16k-common': {
+    # CAM++ trained on 200k labeled speakers
+    'iic/speech_campplus_sv_zh-cn_16k-common': {
         'revision': 'v1.0.0', 
         'model': CAMPPLUS_COMMON,
         'model_pt': 'campplus_cn_common.bin',
     },
-    'damo/speech_eres2net_sv_en_voxceleb_16k': {
-        'revision': 'v1.0.2', 
-        'model': ERes2Net_VOX,
-        'model_pt': 'pretrained_eres2net.ckpt',
-    },
-    'damo/speech_eres2net_sv_zh-cn_16k-common': {
+    # ERes2Net trained on 200k labeled speakers
+    'iic/speech_eres2net_sv_zh-cn_16k-common': {
         'revision': 'v1.0.5', 
         'model': ERes2Net_COMMON,
         'model_pt': 'pretrained_eres2net_aug.ckpt',
     },
-    'damo/speech_eres2net_base_200k_sv_zh-cn_16k-common': {
+    # ERes2Net_Base trained on 200k labeled speakers
+    'iic/speech_eres2net_base_200k_sv_zh-cn_16k-common': {
         'revision': 'v1.0.0', 
         'model': ERes2Net_base_COMMON,
         'model_pt': 'pretrained_eres2net.pt',
     },
-    'damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k': {
-        'revision': 'v1.0.1', 
-        'model': ERes2Net_Base_3D_Speaker,
-        'model_pt': 'eres2net_base_model.ckpt',
-    },
-    'damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k': {
-        'revision': 'v1.0.0', 
-        'model': ERes2Net_Large_3D_Speaker,
-        'model_pt': 'eres2net_large_model.ckpt',
-    },
+    # CAM++ trained on a large-scale Chinese-English corpus
     'iic/speech_campplus_sv_zh_en_16k-common_advanced': {
         'revision': 'v1.0.0', 
         'model': CAMPPLUS_COMMON,
         'model_pt': 'campplus_cn_en_common.pt',
-    }
+    },
+    # CAM++ trained on VoxCeleb
+    'iic/speech_campplus_sv_en_voxceleb_16k': {
+        'revision': 'v1.0.2', 
+        'model': CAMPPLUS_VOX, 
+        'model_pt': 'campplus_voxceleb.bin', 
+    },
+    # ERes2Net trained on VoxCeleb
+    'iic/speech_eres2net_sv_en_voxceleb_16k': {
+        'revision': 'v1.0.2', 
+        'model': ERes2Net_VOX,
+        'model_pt': 'pretrained_eres2net.ckpt',
+    },
+    # ERes2Net_Base trained on 3dspeaker
+    'iic/speech_eres2net_base_sv_zh-cn_3dspeaker_16k': {
+        'revision': 'v1.0.1', 
+        'model': ERes2Net_Base_3D_Speaker,
+        'model_pt': 'eres2net_base_model.ckpt',
+    },
+    # ERes2Net_large trained on 3dspeaker
+    'iic/speech_eres2net_large_sv_zh-cn_3dspeaker_16k': {
+        'revision': 'v1.0.0', 
+        'model': ERes2Net_Large_3D_Speaker,
+        'model_pt': 'eres2net_large_model.ckpt',
+    },
 }
 
 def main():
     args = parser.parse_args()
     assert isinstance(args.model_id, str) and \
         is_official_hub_path(args.model_id), "Invalid modelscope model id."
+    if args.model_id.startswith('damo/'):
+        args.model_id = args.model_id.replace('damo/','iic/', 1)
     assert args.model_id in supports, "Model id not currently supported."
     save_dir = os.path.join(args.local_model_dir, args.model_id.split('/')[1])
     save_dir =  pathlib.Path(save_dir)
