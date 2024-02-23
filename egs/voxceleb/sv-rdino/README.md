@@ -1,11 +1,11 @@
-# RDINO
+## RDINO
 
-## Training config
+### Training config
 - Feature: 80-dim fbank
 - Training: batch_size 52 * 4, 4 gpu(Tesla V100)
 - Metrics: EER(%), MinDCF(p-target=0.05)
 
-## Voxceleb Results
+### Voxceleb results
 - Train set: Voxceleb2-dev, 5994 speakers
 - Test set: Voxceleb1-O
 
@@ -15,7 +15,7 @@
 
 Note: The original checkpoint is uploaded to ModelScope. The batchsize would affect the learning rate and the number of iterations. It could get the same or similar results if the parameters are unchanged.
 
-## Pretrained model in Voxceleb
+### Pretrained model in Voxceleb
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
 
 - Voxceleb: [damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k](https://www.modelscope.cn/models/damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k/summary)
@@ -30,7 +30,7 @@ model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
 python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 ```
 
-## Citations
+### Citations
 If you are using RDINO model in your research, please cite: 
 ```BibTeX
 @inproceedings{chen2023pushing,
