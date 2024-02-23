@@ -45,9 +45,10 @@ bash run.sh
 # Self-supervised speaker verification: RDINO on 3D-Speaker dataset
 cd egs/3dspeaker/sv-rdino/
 bash run.sh
-# Speaker diarization:
+# Audio and multimodal Speaker diarization:
 cd egs/3dspeaker/speaker-diarization/
-bash run.sh
+bash run_audio.sh
+bash run_video.sh
 # Language identification
 cd egs/3dspeaker/language-idenitfication
 bash run.sh
