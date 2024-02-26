@@ -26,7 +26,7 @@ The results of audio-only diarization pipeline on two-speaker and multi-speaker 
 The comparison results of two diarization pipelines on a multi-person conversation video dataset using the DER metric.
 | Pipeline | DER |
 |:-----:|:------:|
-|Audio-only diarization|5.0%|
+|Audio-only diarization|5.3%|
 |Multimodal diarization|3.7%|
 
 
