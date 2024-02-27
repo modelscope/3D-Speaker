@@ -98,6 +98,15 @@ ERes2Net_Large_3D_Speaker = {
     },
 }
 
+EPACA_CNCeleb = {
+    'obj': 'speakerlab.models.ecapa_tdnn.ECAPA_TDNN.ECAPA_TDNN',
+    'args': {
+        'input_size': 80,
+        'lin_neurons': 192,
+        'channels': [1024, 1024, 1024, 1024, 3072],
+    },
+}
+
 supports = {
     # CAM++ trained on 200k labeled speakers
     'iic/speech_campplus_sv_zh-cn_16k-common': {
@@ -146,6 +155,24 @@ supports = {
         'revision': 'v1.0.0', 
         'model': ERes2Net_Large_3D_Speaker,
         'model_pt': 'eres2net_large_model.ckpt',
+    },
+    # ECAPA-TDNN trained on CNCeleb
+    'iic/speech_ecapa-tdnn_sv_zh-cn_cnceleb_16k': {
+        'revision': 'v1.0.0', 
+        'model': EPACA_CNCeleb,
+        'model_pt': 'ecapa-tdnn.ckpt',
+    },
+    # ECAPA-TDNN trained on 3dspeaker
+    'iic/speech_ecapa-tdnn_sv_zh-cn_3dspeaker_16k': {
+        'revision': 'v1.0.0', 
+        'model': EPACA_CNCeleb,
+        'model_pt': 'ecapa-tdnn.ckpt',
+    },
+    # ECAPA-TDNN trained on VoxCeleb
+    'iic/speech_ecapa-tdnn_sv_en_voxceleb_16k': {
+        'revision': 'v1.0.1', 
+        'model': EPACA_CNCeleb,
+        'model_pt': 'ecapa_tdnn.bin',
     },
 }
 
