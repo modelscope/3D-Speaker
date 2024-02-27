@@ -7,11 +7,11 @@
 
 ### Voxceleb results
 - Train set: Voxceleb2-dev, 5994 speakers
-- Test set: Voxceleb-O
+- Test set: Voxceleb1-O
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| ECAPA-TDNN | 20.8M | 0.845  |  0.090 |
+| ECAPA-TDNN | 20.8M | 0.866  |  0.116 |
 
 ### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
