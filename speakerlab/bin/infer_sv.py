@@ -162,6 +162,18 @@ supports = {
         'model': EPACA_CNCeleb,
         'model_pt': 'ecapa-tdnn.ckpt',
     },
+    # ECAPA-TDNN trained on 3dspeaker
+    'iic/speech_ecapa-tdnn_sv_zh-cn_3dspeaker_16k': {
+        'revision': 'v1.0.0', 
+        'model': EPACA_CNCeleb,
+        'model_pt': 'ecapa-tdnn.ckpt',
+    },
+    # ECAPA-TDNN trained on VoxCeleb
+    'iic/speech_ecapa-tdnn_sv_en_voxceleb_16k': {
+        'revision': 'v1.0.1', 
+        'model': EPACA_CNCeleb,
+        'model_pt': 'ecapa_tdnn.bin',
+    },
 }
 
 def main():
