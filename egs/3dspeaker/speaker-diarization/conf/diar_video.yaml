@@ -41,7 +41,7 @@ vision_cluster:
   obj: speakerlab.process.cluster.CommonClustering
   args:
     cluster_type: AHC
-    cluster_line: 1
+    cluster_line: 2
     min_cluster_size: 1
     fix_cos_thr: 0.25
 
