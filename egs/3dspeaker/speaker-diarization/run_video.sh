@@ -51,11 +51,11 @@ if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
     out_wav_file=$raw_data_dir/${filename%.*}.wav
     if [ ! -e $out_video_file ]; then
       echo "$(basename $0) Stage2: Extract video from $filename"
-      ffmpeg -y -i $video_file -qscale:v 2 -threads 16 -async 1 -r 25 $out_video_file -loglevel panic
+      ffmpeg -nostdin -y -i $video_file -qscale:v 2 -threads 16 -async 1 -r 25 $out_video_file -loglevel panic
     fi
     if [ ! -e $out_wav_file ]; then
       echo "$(basename $0) Stage2: Extract audio from $filename"
-      ffmpeg -y -i $out_video_file -qscale:a 0 -ac 1 -vn -threads 16 -ar 16000 $out_wav_file -loglevel panic
+      ffmpeg -nostdin -y -i $out_video_file -qscale:a 0 -ac 1 -vn -threads 16 -ar 16000 $out_wav_file -loglevel panic
     fi
   done
 fi
