@@ -184,7 +184,7 @@ def main():
         args.model_id = args.model_id.replace('damo/','iic/', 1)
     assert args.model_id in supports, "Model id not currently supported."
     save_dir = os.path.join(args.local_model_dir, args.model_id.split('/')[1])
-    save_dir =  pathlib.Path(save_dir)
+    save_dir = pathlib.Path(save_dir)
     save_dir.mkdir(exist_ok=True, parents=True)
 
     conf = supports[args.model_id]
