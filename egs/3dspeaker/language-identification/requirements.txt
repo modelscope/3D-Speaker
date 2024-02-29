@@ -1,0 +1,4 @@
+wget
+funasr
+random
+pickle
