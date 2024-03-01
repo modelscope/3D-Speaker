@@ -199,6 +199,8 @@ class CommonClustering:
         
         minor_cset = cset[minor_idx]
         major_idx = np.where(csize >= self.min_cluster_size)[0]
+        if len(major_idx) == 0:
+            return np.zeros_like(labels)
         major_cset = cset[major_idx]
         major_center = np.stack([x[labels == i].mean(0) \
             for i in major_cset])
