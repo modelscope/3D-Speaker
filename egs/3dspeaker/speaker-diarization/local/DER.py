@@ -87,6 +87,7 @@ def DER(
     mdEval = os.path.join(curr, "md-eval.pl")
 
     cmd = [
+        'perl',
         mdEval,
         "-af",
         "-r",
