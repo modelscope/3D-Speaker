@@ -60,7 +60,7 @@ CAMPPLUS_COMMON = {
 }
 
 ERes2Net_COMMON = {
-    'obj': 'speakerlab.models.eres2net.ResNet_aug.ERes2Net',
+    'obj': 'speakerlab.models.eres2net.ERes2Net_huge.ERes2Net',
     'args': {
         'feat_dim': 80,
         'embedding_size': 192,
