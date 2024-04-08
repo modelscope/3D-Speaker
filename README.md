@@ -104,6 +104,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2024.4] Releasing [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
 - [2024.2] Releasing [language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) integrating phonetic information recipes for more higher recognition accuracy.
 - [2024.2] Releasing [multimodal diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes which fuses audio and video image input to produce more accurate results.
 - [2024.1] Releasing [ResNet34](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) model training and inference recipes for 3D-Speaker, VoxCeleb and CN-Celeb datasets.
@@ -121,8 +122,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2024.4] Releasing ERes2NetV2 with lower parameters and faster inference speed.
 - [2024.4] Releasing asnormalization in speaker verification.
+- [2024.4] Releasing multi-modal (semantic and visual module) training recipes.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
@@ -140,6 +141,12 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Citations
 If you find this repository useful, please consider giving a star :star: and citation :t-rex::
 ```BibTeX
+@article{chen20243d,
+  title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
+  journal={arXiv preprint arXiv:2403.19971},
+  year={2024}
+}
 @inproceedings{zheng20233d,
   title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
   author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
