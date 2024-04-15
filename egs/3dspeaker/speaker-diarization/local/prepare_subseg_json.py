@@ -44,7 +44,8 @@ def main():
             subseg_json[subsegid] = item
             subseg_st += args.shift
         if subseg_st < ed:
-            subseg_st = max(ed-subseg_dur, subseg_st)
+            subseg_st = min(ed-subseg_dur, subseg_st)
+            subseg_st = max(subseg_st, st)
             item = deepcopy(vad_json[segid])
             item.update({
                 'start': round(subseg_st, 2),
