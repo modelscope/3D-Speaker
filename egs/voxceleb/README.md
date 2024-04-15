@@ -30,8 +30,8 @@ bash run.sh
 | ERes2Net-base | 6.61 M | 0.96 | 1.06 | 1.96 |
 | ECAPA-TDNN | 20.8 M | 0.86 | 0.97 | 1.90 |
 | CAM++ | 7.2 M | 0.73 | 0.89 | 1.76 |
-| ERes2Net-large | 22.46 M | 0.57 | 0.79 | 1.50 |
-| ERes2NetV2 | 17.8M | 0.61  |  0.76 | 1.45 |
+| ERes2Net-large-lm | 22.46 M | 0.52 | 0.75 | 1.44 |
+| ERes2NetV2-lm | 17.8M | 0.61  |  0.76 | 1.45 |
 
 ### Inference using pretrained models from Modelscope
 All pretrained models are released on [Modelscope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).

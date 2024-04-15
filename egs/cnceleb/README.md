@@ -33,6 +33,7 @@ Performance of systems on CN-Celeb-test.
 | CAM++ | 7.18 M | 6.78 | 0.393 |
 | ERes2Net-base | 6.61 M | 6.69 | 0.388 |
 | ERes2Net-large | 22.46 M | 6.17 | 0.372 |
+| ERes2NetV2 | 17.85 M | 6.14 | 0.370 |
 | RDINO | 45.44 M | 17.07 | 0.602 |
 
 ### Inference using pretrained models from Modelscope
