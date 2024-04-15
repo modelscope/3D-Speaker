@@ -10,8 +10,8 @@ stop_stage=6
 
 data=data
 exp=exp
-exp_dir=$exp/eres2net
-exp_lm_dir=$exp/eres2net_lm
+exp_dir=$exp/eres2netv2
+exp_lm_dir=$exp/eres2netv2_lm
 
 gpus="0 1 2 3"
 
@@ -33,7 +33,7 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   # Train the speaker embedding model.
   echo "Stage3: Training the speaker model..."
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
-  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2net.yaml --gpu $gpus \
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2netv2.yaml --gpu $gpus \
            --data $data/cnceleb_train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
 fi
 
@@ -41,11 +41,11 @@ if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
   # Using large-margin-finetune strategy.
   echo "Stage4: finetune the model using large-margin"
   num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
-  # Change parameters in eres2net_lm.yaml.
+  # Change parameters in eres2netv2_lm.yaml.
   mkdir -p $exp_lm_dir/models/CKPT-EPOCH-0-00
   cp -r $exp_dir/models/CKPT-EPOCH-70-00/* $exp_lm_dir/models/CKPT-EPOCH-0-00/
   sed -i 's/70/0/g' $exp_lm_dir/models/CKPT-EPOCH-0-00/CKPT.yaml $exp_lm_dir/models/CKPT-EPOCH-0-00/epoch_counter.ckpt
-  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2net_lm.yaml --gpu $gpus \
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2netv2_lm.yaml --gpu $gpus \
            --data $data/cnceleb_train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_lm_dir
 fi
 

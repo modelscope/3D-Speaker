@@ -9,26 +9,27 @@ reverb:
 exp_dir:
 
 # basic
-num_epoch: 70
-save_epoch_freq: 5
+num_epoch: 7
+save_epoch_freq: 1
 log_batch_freq: 100
 
-wav_len: 3.0 # duration(s) for each training sample.
+wav_len: 6.0 # duration(s) for each training sample.
 sample_rate: 16000
 aug_prob: 0.8
 speed_pertub: True
-lr: 0.2
-min_lr: !!float 5e-5
+lm: False
+lr: 0.0001
+min_lr: !!float 2e-5
 
 # dataloader
-batch_size: 256
+batch_size: 128
 num_workers: 16
 
 # model
 fbank_dim: 80
+m_channels: 32 # if you use eres2net-large, you can change m_channels from 32 to 64 
 embedding_size: 192
-channels: 32
-num_classes: 2793
+num_classes: 10000
 
 wav_reader:
   obj: speakerlab.process.processor.WavReader
@@ -36,6 +37,7 @@ wav_reader:
     duration: <wav_len>
     sample_rate: <sample_rate>
     speed_pertub: <speed_pertub>
+    lm: <lm>
 
 label_encoder:
   obj: speakerlab.process.processor.SpkLabelEncoder
@@ -83,11 +85,11 @@ dataloader:
     drop_last: True
 
 embedding_model:
-  obj: speakerlab.models.res2net.Res2Net.Res2Net
+  obj: speakerlab.models.eres2net.ERes2Net.ERes2Net
   args:
     feat_dim: <fbank_dim>
     embedding_size: <embedding_size>
-    m_channels: <channels>
+    m_channels: <m_channels>
 
 classifier:
   obj: speakerlab.models.campplus.classifier.CosineClassifier
@@ -110,7 +112,7 @@ lr_scheduler:
     optimizer: <optimizer>
     min_lr: <min_lr>
     max_lr: <lr>
-    warmup_epoch: 5
+    warmup_epoch: 1
     fix_epoch: <num_epoch>
     step_per_epoch:
 
@@ -118,17 +120,17 @@ loss:
   obj: speakerlab.loss.margin_loss.ArcMarginLoss
   args:
     scale: 32.0
-    margin: 0.3
+    margin: 0.5
     easy_margin: False
 
 margin_scheduler:
   obj: speakerlab.process.scheduler.MarginScheduler
   args:
     criterion: <loss>
-    initial_margin: 0.0
-    final_margin: 0.3
-    increase_start_epoch: 20
-    fix_epoch: 50
+    initial_margin: 0.5
+    final_margin: 0.5
+    increase_start_epoch: 0
+    fix_epoch: 0
     step_per_epoch:
 
 checkpointer:

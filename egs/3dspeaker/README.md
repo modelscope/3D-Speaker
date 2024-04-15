@@ -33,6 +33,7 @@ bash run.sh
 | ResNet34 | 6.34 M | 7.29% | 8.98% | 12.81% |
 | ERes2Net-base | 6.61 M | 7.21% | 9.87% | 12.3% |
 | ERes2Net-large | 22.46 M | 6.34% | 9.54% | 11.4% |
+| ERes2NetV2-lm | 17.85 M | 6.52% | 8.88% | 11.3% |
 | RDINO | 45.44 M | 20.41% | 21.92% | 25.53% |
 
 ### Inference using pretrained models from Modelscope

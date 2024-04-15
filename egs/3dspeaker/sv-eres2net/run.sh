@@ -6,16 +6,16 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=5
+stop_stage=6
 
 data=data
 exp=exp
-exp_name=eres2net
+exp_dir=$exp/eres2net
+exp_lm_dir=$exp/eres2net_lm
+
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
-
-exp_dir=$exp/$exp_name
 
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we prepare the raw datasets.
@@ -37,18 +37,29 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
            --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_dir
 fi
 
-
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
-  # Extract embeddings of test datasets.
-  echo "Stage4: Extracting speaker embeddings..."
-  torchrun --nproc_per_node=8 speakerlab/bin/extract.py --exp_dir $exp_dir \
-           --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
+  # Using large-margin-finetune strategy.
+  echo "Stage4: finetune the model using large-margin"
+  num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
+  # Change parameters in eres2net_lm.yaml.
+  mkdir -p $exp_lm_dir/models/CKPT-EPOCH-0-00
+  cp -r $exp_dir/models/CKPT-EPOCH-70-00/* $exp_lm_dir/models/CKPT-EPOCH-0-00/
+  sed -i 's/70/0/g' $exp_lm_dir/models/CKPT-EPOCH-0-00/CKPT.yaml $exp_lm_dir/models/CKPT-EPOCH-0-00/epoch_counter.ckpt
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/train.py --config conf/eres2net_lm.yaml --gpu $gpus \
+           --data $data/3dspeaker/train/train.csv --noise $data/musan/wav.scp --reverb $data/rirs/wav.scp --exp_dir $exp_lm_dir
 fi
 
 if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
+  # Extract embeddings of test datasets.
+  echo "Stage5: Extracting speaker embeddings..."
+  torchrun --nproc_per_node=8 speakerlab/bin/extract.py --exp_dir $exp_lm_dir \
+           --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
+fi
+
+if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
   # Output score metrics.
-  echo "Stage5: Computing score metrics..."
+  echo "Stage6: Computing score metrics..."
   trials="$data/3dspeaker/trials/trials_cross_device $data/3dspeaker/trials/trials_cross_distance $data/3dspeaker/trials/trials_cross_dialect"
-  python speakerlab/bin/compute_score_metrics.py --enrol_data $exp_dir/embeddings --test_data $exp_dir/embeddings \
-                                                 --scores_dir $exp_dir/scores --trials $trials
+  python speakerlab/bin/compute_score_metrics.py --enrol_data $exp_lm_dir/embeddings --test_data $exp_lm_dir/embeddings \
+                                                 --scores_dir $exp_lm_dir/scores --trials $trials
 fi
