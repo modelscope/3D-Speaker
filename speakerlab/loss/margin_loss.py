@@ -49,6 +49,37 @@ class ArcMarginLoss(nn.Module):
         self.mmm = 1.0 + math.cos(math.pi - margin)
 
 
+class AddMarginLoss(nn.Module):
+    """
+    Implement of additional  margin loss.
+    """
+    def __init__(self, 
+                 scale=32.0,
+                 margin=0.2,
+                 easy_margin=False):
+        super(AddMarginLoss, self).__init__()
+        self.scale = scale
+        self.margin = margin
+        self.criterion = nn.CrossEntropyLoss()
+
+        self.update(margin)
+
+    def forward(self, cosine, label):
+        # cosine : [batch, numclasses].
+        # label : [batch, ].
+        phi = cosine - self.margin
+        one_hot = torch.zeros(cosine.size()).type_as(cosine)
+        one_hot.scatter_(1, label.unsqueeze(1).long(), 1)
+        output = (one_hot * phi) + ((1.0 - one_hot) * cosine)
+        output *= self.scale
+
+        loss = self.criterion(output, label)
+        return loss
+
+    def update(self, margin=0.2):
+        self.margin = margin
+
+
 class EntropyLoss(nn.Module):
     def __init__(self,**kwargs):
         super(EntropyLoss, self).__init__()
