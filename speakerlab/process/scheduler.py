@@ -12,7 +12,8 @@ class WarmupCosineScheduler:
         max_lr,
         warmup_epoch,
         fix_epoch,
-        step_per_epoch
+        step_per_epoch,
+        decay_rate=0.999
     ):
         self.optimizer = optimizer
         assert min_lr <= max_lr
@@ -21,6 +22,7 @@ class WarmupCosineScheduler:
         self.warmup_step = warmup_epoch * step_per_epoch
         self.fix_step = fix_epoch * step_per_epoch
         self.current_step = 0.0
+        self.decay_rate = decay_rate
 
     def set_lr(self,):
         new_lr = self.clr(self.current_step)
@@ -40,9 +42,13 @@ class WarmupCosineScheduler:
             return self.min_lr + (self.max_lr - self.min_lr) * \
                 (step / self.warmup_step)
         elif step >= self.warmup_step and step < self.fix_step:
+            # warmup and cosine decrease
             return self.min_lr + 0.5 * (self.max_lr - self.min_lr) * \
                 (1 + math.cos(math.pi * (step - self.warmup_step) /
                 (self.fix_step - self.warmup_step)))
+            # warmup and exponential decrease
+            # decay_steps = step - self.warmup_step
+            # return self.min_lr + (self.max_lr - self.min_lr) * (self.decay_rate ** decay_steps) 
         else:
             return self.min_lr
 
