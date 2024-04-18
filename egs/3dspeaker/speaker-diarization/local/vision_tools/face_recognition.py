@@ -16,9 +16,8 @@ class FaceRecIR101:
         self.ort_net = self.create_net(onnx_file_name, device, device_id)
 
     def __call__(self, img):
-        img = img[:, :, ::-1]
+        img = img[:, :, ::-1] # bgr to rgb
         img = cv2.resize(img, (112, 112))
-        img = img[:, :, ::-1]
         img = np.transpose(img, axes=(2, 0, 1))
         img = (img / 255. - 0.5) / 0.5
         img = np.expand_dims(img.astype(np.float32), 0)
@@ -42,7 +41,7 @@ class FaceRecIR101:
 
 
 if __name__ == '__main__':
-    predictor = FaceRecIR101('/mnt/workspace/download/3D-Speaker/egs/3dspeaker/speaker-diarization/pretrained_models', 'cuda', 0)
+    predictor = FaceRecIR101('pretrained_models', 'cuda', 0)
     input = np.random.randn(315, 244, 3).astype('float32')
     output = predictor(input)
     print(output.shape)
