@@ -22,7 +22,7 @@ class FCM(nn.Module):
         self.bn1 = nn.BatchNorm2d(m_channels)
 
         self.layer1 = self._make_layer(block, m_channels, num_blocks[0], stride=2)
-        self.layer2 = self._make_layer(block, m_channels, num_blocks[0], stride=2)
+        self.layer2 = self._make_layer(block, m_channels, num_blocks[1], stride=2)
 
         self.conv2 = nn.Conv2d(m_channels, m_channels, kernel_size=3, stride=(2, 1), padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(m_channels)
