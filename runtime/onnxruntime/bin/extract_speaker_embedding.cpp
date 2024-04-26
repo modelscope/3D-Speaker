@@ -50,8 +50,12 @@ int write_wav_scp(const std::string &wav_scp_file, std::map<std::string, std::st
 }
 
 
-void write_embedding(const std::string &embedding_file, speakerlab::Embedding &embedding) {
+int write_embedding(const std::string &embedding_file, speakerlab::Embedding &embedding) {
     std::ofstream fw(embedding_file);
+    if (!fw.is_open()) {
+        std::cerr << "Error: Could not open embedding file " << embedding_file << std::endl;
+        return 1;
+    }
     for (size_t i = 0; i < embedding.size(); ++i) {
         fw << embedding[i];
         if (i != embedding.size() - 1) {
@@ -60,6 +64,14 @@ void write_embedding(const std::string &embedding_file, speakerlab::Embedding &e
     }
     fw << std::endl;
     fw.close();
+    return 0;
+}
+
+
+std::string normalize_for_path(const std::string utt_id) {
+    std::string result = utt_id;
+    std::replace(result.begin(), result.end(), '/', '-');
+    return result;
 }
 
 
@@ -99,7 +111,7 @@ int main(int argc, char *argv[]) {
 
         speakerlab::Embedding embedding;
         speaker_embedding_extractor.extract_embedding(feature, embedding);
-        std::string cur_embedding_file = embedding_save_path + "/" + utt_id + ".embedding";
+        std::string cur_embedding_file = embedding_save_path + "/" + normalize_for_path(utt_id) + ".embedding";
         write_embedding(cur_embedding_file, embedding);
         embedding_scp[utt_id] = cur_embedding_file;
     }

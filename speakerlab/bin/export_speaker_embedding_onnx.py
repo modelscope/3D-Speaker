@@ -39,7 +39,9 @@ def get_args():
     return parser.parse_args()
 
 
-# TODO: load file to get these informations
+# TODO: Load file to get these informations
+# TODO: Support more models
+# Please note you can export your own model which could not in this dict.
 onnx_supports_dict = {
     'iic/speech_campplus_sv_zh-cn_16k-common': {
         'revision': 'v1.0.0',
