@@ -82,12 +82,13 @@ The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embe
 
 
 ## Expriments
-|Model|Params|FLOPs|RTF|
-|:-:|:-:|:-:|:-:|
-|CAM++|7.18M|||
-|ERes2Net-Base|4.6M|||
-|ERes2Net-Large|22.6M|||
-|ERes2NetV2|17.8M|||
+|Model|Params|RTF|
+|:-:|:-:|:-:|
+|CAM++|7.18M|0.06|
+|ERes2Net-Base|4.6M|0.14|
+|ERes2Net-Large|22.6M|0.31|
+|ERes2Net-Huge|-|0.63|
+|ERes2NetV2|17.8M|0.27|
 
 
 ## Structure
