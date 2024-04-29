@@ -82,13 +82,18 @@ The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embe
 
 
 ## Expriments
+> Including both Fbank computing and speaker embedding extraction cost time.
+> 
+> Running On CPU: Intel(R) Xeon(R) Platinum 8163 CPU
+> Test audio length is 3000ms.
+
 |Model|Params|RTF|
 |:-:|:-:|:-:|
-|CAM++|7.18M|0.06|
-|ERes2Net-Base|4.6M|0.14|
-|ERes2Net-Large|22.6M|0.31|
-|ERes2Net-Huge|-|0.63|
-|ERes2NetV2|17.8M|0.27|
+|CAM++|7.18M|0.049|
+|ERes2Net-Base|4.6M|0.076|
+|ERes2Net-Large|22.6M|0.191|
+|ERes2Net-Huge|-|0.420|
+|ERes2NetV2|17.8M|0.142|
 
 
 ## Structure
