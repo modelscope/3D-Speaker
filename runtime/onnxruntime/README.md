@@ -81,6 +81,15 @@ The `fbank_config.json` is the config file for extracting FBank features and we 
 The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embedding index file and the path to save embeddings. Please make sure that the `/path/to/save/embeddings/` you have already created.
 
 
+## Expriments
+|Model|Params|FLOPs|RTF|
+|:-:|:-:|:-:|:-:|
+|CAM++|7.18M|||
+|ERes2Net-Base|4.6M|||
+|ERes2Net-Large|22.6M|||
+|ERes2NetV2|17.8M|||
+
+
 ## Structure
 1. `asserts`: The sample resource, which will not be released to 3D-Speaker.
 2. `bin`: The final target binary file.

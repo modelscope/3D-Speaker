@@ -4,6 +4,7 @@ import pathlib
 import re
 
 import torch
+from ptflops import get_model_complexity_info
 
 from speakerlab.utils.builder import build
 from speakerlab.utils.utils import get_logger
@@ -141,6 +142,18 @@ onnx_supports_dict = {
         },
         'model_pt': 'eres2net_large_model.ckpt',
     },
+    # ERes2NetV2 trained on 200k labeled speakers
+    'iic/speech_eres2netv2_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.1', 
+        'model': {
+            'obj': 'speakerlab.models.eres2net.ERes2NetV2.ERes2NetV2',
+            'args': {
+                'feat_dim': 80,
+                'embedding_size': 192,
+            },
+        },
+        'model_pt': 'pretrained_eres2netv2.ckpt',
+    },
 }
 
 
@@ -224,6 +237,14 @@ def build_model_from_custom_work_path(local_model_path):
     return embedding_model
 
 
+def describe_speaker_model(model, shape=(1, 498, 80)):
+    logger.info(f"Describe speaker model...")
+    macs, params = get_model_complexity_info(
+        model, shape, as_strings=True, print_per_layer_stat=True, verbose=True
+    )
+    logger.info(f"Computational complexity: {macs}, Number of parameters: {params}")
+
+
 def main():
     args = get_args()
     logger.info(f"{args}")
@@ -239,6 +260,8 @@ def main():
         speaker_embedding_model = build_model_from_custom_work_path(
             experiment_path
         )
+    
+    describe_speaker_model(speaker_embedding_model)
 
     logger.info(f"Load speaker embedding finished, export to onnx")
     export_onnx_file(speaker_embedding_model, target_onnx_file)
