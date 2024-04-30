@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <ctime>
 
 #include "utils/wav_reader.h"
 #include "feature/feature_fbank.h"
@@ -50,8 +51,12 @@ int write_wav_scp(const std::string &wav_scp_file, std::map<std::string, std::st
 }
 
 
-void write_embedding(const std::string &embedding_file, speakerlab::Embedding &embedding) {
+int write_embedding(const std::string &embedding_file, speakerlab::Embedding &embedding) {
     std::ofstream fw(embedding_file);
+    if (!fw.is_open()) {
+        std::cerr << "Error: Could not open embedding file " << embedding_file << std::endl;
+        return 1;
+    }
     for (size_t i = 0; i < embedding.size(); ++i) {
         fw << embedding[i];
         if (i != embedding.size() - 1) {
@@ -60,6 +65,14 @@ void write_embedding(const std::string &embedding_file, speakerlab::Embedding &e
     }
     fw << std::endl;
     fw.close();
+    return 0;
+}
+
+
+std::string normalize_for_path(const std::string utt_id) {
+    std::string result = utt_id;
+    std::replace(result.begin(), result.end(), '/', '-');
+    return result;
 }
 
 
@@ -90,19 +103,26 @@ int main(int argc, char *argv[]) {
     speakerlab::OnnxSpeakerEmbeddingModel speaker_embedding_extractor(onnx_file);
 
     std::map<std::string, std::string> embedding_scp;
+    std::clock_t start = std::clock();
+    double total_wav_duration = 0.0;
     for (auto &it: wav_scp) {
         std::string utt_id = it.first;
         std::string wav_file = it.second;
         speakerlab::WavReader wav_reader(wav_file);
+        total_wav_duration += static_cast<double>(wav_reader.num_sample()) / wav_reader.sample_rate();
         speakerlab::Feature feature = fbank_computer.compute_feature(wav_reader);
         speakerlab::subtract_feature_mean(feature);
 
         speakerlab::Embedding embedding;
         speaker_embedding_extractor.extract_embedding(feature, embedding);
-        std::string cur_embedding_file = embedding_save_path + "/" + utt_id + ".embedding";
+        std::string cur_embedding_file = embedding_save_path + "/" + normalize_for_path(utt_id) + ".embedding";
         write_embedding(cur_embedding_file, embedding);
         embedding_scp[utt_id] = cur_embedding_file;
     }
+    std::clock_t finish = std::clock();
+    double elapsed = static_cast<double>(finish - start) / CLOCKS_PER_SEC;
+
+    std::cout << "Elapsed time: " << elapsed << "s for wav duration " << total_wav_duration << std::endl;
 
     // write wav.scp file
     write_wav_scp(embedding_scp_file, embedding_scp);

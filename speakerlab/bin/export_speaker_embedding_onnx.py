@@ -2,8 +2,11 @@ import os
 import argparse
 import pathlib
 import re
+import sys
 
 import torch
+
+sys.path.append('%s/../..'%os.path.dirname(__file__))
 
 from speakerlab.utils.builder import build
 from speakerlab.utils.utils import get_logger
@@ -39,7 +42,9 @@ def get_args():
     return parser.parse_args()
 
 
-# TODO: load file to get these informations
+# TODO: Load file to get these informations
+# TODO: Support more models
+# Please note you can export your own model which could not in this dict.
 onnx_supports_dict = {
     'iic/speech_campplus_sv_zh-cn_16k-common': {
         'revision': 'v1.0.0',
@@ -139,6 +144,18 @@ onnx_supports_dict = {
         },
         'model_pt': 'eres2net_large_model.ckpt',
     },
+    # ERes2NetV2 trained on 200k labeled speakers
+    'iic/speech_eres2netv2_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.1', 
+        'model': {
+            'obj': 'speakerlab.models.eres2net.ERes2NetV2.ERes2NetV2',
+            'args': {
+                'feat_dim': 80,
+                'embedding_size': 192,
+            },
+        },
+        'model_pt': 'pretrained_eres2netv2.ckpt',
+    },
 }
 
 
@@ -237,7 +254,7 @@ def main():
         speaker_embedding_model = build_model_from_custom_work_path(
             experiment_path
         )
-
+    
     logger.info(f"Load speaker embedding finished, export to onnx")
     export_onnx_file(speaker_embedding_model, target_onnx_file)
 

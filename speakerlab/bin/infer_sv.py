@@ -63,6 +63,14 @@ ERes2Net_VOX = {
     },
 }
 
+ERes2NetV2_COMMON = {
+    'obj': 'speakerlab.models.eres2net.ERes2NetV2.ERes2NetV2',
+    'args': {
+        'feat_dim': 80,
+        'embedding_size': 192,
+    },
+}
+
 ERes2Net_COMMON = {
     'obj': 'speakerlab.models.eres2net.ERes2Net_huge.ERes2Net',
     'args': {
@@ -119,6 +127,12 @@ supports = {
         'revision': 'v1.0.5', 
         'model': ERes2Net_COMMON,
         'model_pt': 'pretrained_eres2net_aug.ckpt',
+    },
+    # ERes2NetV2 trained on 200k labeled speakers
+    'iic/speech_eres2netv2_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.1', 
+        'model': ERes2NetV2_COMMON,
+        'model_pt': 'pretrained_eres2netv2.ckpt',
     },
     # ERes2Net_Base trained on 200k labeled speakers
     'iic/speech_eres2net_base_200k_sv_zh-cn_16k-common': {
