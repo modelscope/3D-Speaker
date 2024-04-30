@@ -11,12 +11,12 @@ Please see the scripts `speakerlab/bin/export_speaker_embedding_onnx.py`. Here i
 # Please install onnx in your python environment before
 python speakerlab/bin/export_speaker_embedding_onnx.py \
     --experiment_path your/experiment_path/ \
-    --model_id iic/speech_eres2net_sv_en_voxceleb_16k \
-    --target_onnx_file path/to/save/eres2net.onnx
+    --model_id iic/speech_eres2net_sv_en_voxceleb_16k \ # you can use other model_id
+    --target_onnx_file path/to/save/onnx_model
 ```
 Now you have exported the speaker embedding model to the onnx file.
 
-The core part is the export functions:
+The core part is the following export functions:
 ```python
 def export_onnx_file(model, target_onnx_file):
     dummy_input = torch.randn(1, 345, 80) # You can change the shape
@@ -97,10 +97,10 @@ The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embe
 
 
 ## Structure
-1. `asserts`: The sample resource, which will not be released to 3D-Speaker.
+1. `asserts`: The sample resource including config files.
 2. `bin`: The final target binary file.
 3. `cmake`: The cmake folder for building third-party libraries.
-4. `feature`: The feature-related process (support FBank so far).
+4. `feature`: The feature-related process.
 5. `model`: The speaker model folder.
 6. `utils`: Some useful tools, like wav-reader.
 
@@ -109,10 +109,11 @@ The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embe
 Please see `cmake/` folder for more details. We use `FetchContent` for downloading these third-party libs which requires 
 'cmake' > 3.14.
 1. [nlohmann/json](https://json.nlohmann.me/) for loading json files.
-2. [jbeder/yaml-cpp](https://github.com/jbeder/yaml-cpp) for loading yaml files.
+2. [onnxruntime](https://github.com/microsoft/onnxruntime) for uploading model and inference.
 
 ## TODO
 1. [ ] Add better logging system.
 2. [ ] Add data format for embedding and feature loading and saving.
 3. [ ] Support and check more feature extraction and speaker embedding models.
 4. [ ] Test in various envrionments.
+
