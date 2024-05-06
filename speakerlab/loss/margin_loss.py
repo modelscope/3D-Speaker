@@ -53,7 +53,7 @@ class AddMarginLoss(nn.Module):
     """
     Implement of additional  margin loss.
     """
-    def __init__(self, 
+    def __init__(self,
                  scale=32.0,
                  margin=0.2,
                  easy_margin=False):
@@ -86,8 +86,11 @@ class EntropyLoss(nn.Module):
         self.criterion = nn.CrossEntropyLoss()
 
     def forward(self, x, label):
-        # x : [batch, numclasses].
-        # label : [batch, ].
+        # x : [*, numclasses].
+        # label : [*, ].
+        assert x.dim() == label.dim()+1
+        x = x.flatten(start_dim=0, end_dim=x.dim()-2)
+        label = label.flatten(start_dim=0, end_dim=label.dim()-1)
         loss = self.criterion(x, label)
         return loss
 

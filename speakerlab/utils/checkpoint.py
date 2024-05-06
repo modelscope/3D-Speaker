@@ -103,6 +103,9 @@ class Checkpointer:
             elif isinstance(obj, torch.nn.Module):
                 state = torch.load(loadpath, map_location=device)
                 obj.load_state_dict(state)
+            elif hasattr(obj,'load_state_dict'):
+                state = torch.load(loadpath)
+                obj.load_state_dict(state)
             else:
                 MSG = f"Don't know how to load {type(obj)}."
                 raise RuntimeError(MSG)
@@ -130,6 +133,9 @@ class Checkpointer:
             if hasattr(obj, 'save'):
                 obj.save(savepath)
             elif isinstance(obj, torch.nn.Module):
+                state_dict = obj.state_dict()
+                torch.save(state_dict, savepath)
+            elif hasattr(obj, 'state_dict'):
                 state_dict = obj.state_dict()
                 torch.save(state_dict, savepath)
             else:

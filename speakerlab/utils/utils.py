@@ -24,7 +24,7 @@ def set_seed(seed=0):
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     # torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = True
+    # torch.backends.cudnn.benchmark = True
 
 def get_logger(fpath=None, fmt=None):
     if fmt is None:
@@ -71,11 +71,46 @@ def get_wavscp_dict(wavscp, suffix=''):
     return temp_dict
 
 def accuracy(x, target):
-    # x: [B, C], target: [B,]
+    # x: [*, C], target: [*,]
     _, pred = x.topk(1)
-    pred = pred.squeeze(1)
+    pred = pred.squeeze(-1)
     acc = pred.eq(target).float().mean()
     return acc*100
+
+def average_precision(scores, labels):
+    # scores: [N, ], labels: [N, ]
+    if torch.is_tensor(scores):
+        scores = scores.cpu().numpy()
+    if torch.is_tensor(labels):
+        labels = labels.cpu().numpy()
+    if isinstance(scores, list):
+        scores = np.array(scores)
+    if isinstance(labels, list):
+        labels = np.array(labels)
+    assert isinstance(scores, np.ndarray) and isinstance(
+        labels, np.ndarray), 'Input should be numpy.array.'
+    assert len(scores.shape)==1 and len(labels.shape)==1 and \
+        scores.shape[0]==labels.shape[0]
+
+    sort_idx = np.argsort(scores)[::-1]
+    scores = scores[sort_idx]
+    labels = labels[sort_idx]
+    tp_count = (labels==1).sum()
+    tp = labels.cumsum()
+    recall = tp / tp_count
+    precision = tp / (np.arange(len(labels)) + 1)
+
+    recall = np.concatenate([[0], recall, [1]])
+    precision = np.concatenate([[0], precision, [0]])
+
+    # Smooth precision to be monotonically decreasing.
+    for i in range(len(precision) - 2, -1, -1):
+        precision[i] = np.maximum(precision[i], precision[i + 1])
+
+    indices = np.where(recall[1:] != recall[:-1])[0] + 1
+    average_precision = np.sum(
+        (recall[indices] - recall[indices - 1]) * precision[indices])
+    return average_precision
 
 def load_params(dst_model, src_state, strict=True):
     dst_state = {}
