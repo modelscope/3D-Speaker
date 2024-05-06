@@ -104,6 +104,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2024.4] Releasing [ONNX Runtime](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
 - [2024.4] Releasing [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
 - [2024.2] Releasing [language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) integrating phonetic information recipes for more higher recognition accuracy.
 - [2024.2] Releasing [multimodal diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes which fuses audio and video image input to produce more accurate results.

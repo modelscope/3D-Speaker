@@ -7,3 +7,41 @@
 */*/*/data
 */*/*/exp
 ./pretrained
+
+*.o
+*.obj
+
+*.a
+
+*.so
+
+*.dll
+
+*.exe
+*.out
+*.bin
+
+**/build/
+**/third_party/
+**/cmake-build-debug/
+**/out/
+
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Visual Studio Code
+.vscode/
+# CLion
+.idea/
+# Xcode
+*.xcodeproj
+*.xcworkspace
+
+*.swp
+*~
+.DS_Store
+**/onnx_runtime/
+**/exp/
+

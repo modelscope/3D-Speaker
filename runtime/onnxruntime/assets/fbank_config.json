@@ -1,0 +1,12 @@
+{
+    "FrameExtractionOptions": {
+        "sample_freq": 16000,
+        "frame_shift_ms": 10.0,
+        "frame_length_ms": 25.0,
+        "dither": 0.0
+    },
+    "MelBanksOptions": {
+        "num_bins": 80
+    },
+    "use_power": true
+}
