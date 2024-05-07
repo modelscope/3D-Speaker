@@ -1,0 +1,99 @@
+# Training config
+
+# train data
+train_csv:
+train_audio_dir:
+train_video_dir:
+
+# val data
+val_csv:
+val_audio_dir:
+val_video_dir:
+
+# outputs
+exp_dir:
+
+# basic
+num_epoch: 25
+save_epoch_freq: 1
+evaluate_epoch_freq: 5
+log_batch_freq: 10
+
+lr: 0.0001
+lr_step_size: 1
+lr_decay: 0.95
+
+# dataloader
+batch_size: 600  #frames
+num_workers: 16
+
+
+train_dataset:
+  obj: speakerlab.dataset.dataset_asd.TrainData
+  args:
+    train_csv: <train_csv>
+    audio_dir: <train_audio_dir>
+    video_dir: <train_video_dir>
+    batch_size: <batch_size>
+
+train_dataloader:
+  obj: torch.utils.data.DataLoader
+  args:
+    dataset: <train_dataset>
+    batch_size: 1
+    num_workers: <num_workers>
+    persistent_workers: True
+    pin_memory: True
+    drop_last: True
+
+val_dataset:
+  obj: speakerlab.dataset.dataset_asd.ValData
+  args:
+    val_csv: <val_csv>
+    audio_dir: <val_audio_dir>
+    video_dir: <val_video_dir>
+
+val_dataloader:
+  obj: torch.utils.data.DataLoader
+  args:
+    dataset: <val_dataset>
+    batch_size: 1
+    num_workers: <num_workers>
+    persistent_workers: True
+    pin_memory: True
+
+epoch_counter:
+  obj: speakerlab.utils.epoch.EpochCounter
+  args:
+    limit: <num_epoch>
+
+model:
+  obj: speakerlab.models.talknet.talknet.talkNetModel
+  args: {}
+
+optimizer:
+  obj: torch.optim.Adam
+  args:
+    params:
+    lr: <lr>
+
+lr_scheduler:
+  obj: torch.optim.lr_scheduler.StepLR
+  args:
+    optimizer: <optimizer>
+    step_size: <lr_step_size>
+    gamma: <lr_decay>
+
+loss:
+  obj: speakerlab.loss.margin_loss.EntropyLoss
+  args: {}
+
+checkpointer:
+  obj: speakerlab.utils.checkpoint.Checkpointer
+  args:
+    checkpoints_dir: <exp_dir>/models
+    recoverables:
+      model: <model>
+      epoch_counter: <epoch_counter>
+      lr_scheduler: <lr_scheduler>
+      optimizer: <optimizer>
