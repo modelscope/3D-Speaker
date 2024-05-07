@@ -6,11 +6,11 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=1
+stop_stage=3
 
 data=data
 exp=exp
-exp_name=talknet2
+exp_name=talknet
 gpus="0 1 2 3"
 
 . utils/parse_options.sh || exit 1
@@ -20,7 +20,7 @@ exp_dir=$exp/$exp_name
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we prepare the raw datasets.
   echo "Stage1: Preparing AVA-ActiveSpeaker dataset..."
-  ./local/download_data.sh  --stage 3 --stop_stage 3 --download_dir $data
+  ./local/download_data.sh  --stage 1 --stop_stage 5 --download_dir $data
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
