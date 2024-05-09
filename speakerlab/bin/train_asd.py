@@ -90,6 +90,7 @@ def train_process(config):
             logger,
             config,
         )
+        lr_scheduler.step()
 
         if config.rank == 0:
             # log
@@ -118,7 +119,6 @@ def train_process(config):
                     stage='val',
                 )
 
-        lr_scheduler.step()
         dist.barrier()
 
 def train(train_loader, model, criterion, optimizer, epoch, logger, config):
