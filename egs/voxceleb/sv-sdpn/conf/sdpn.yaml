@@ -1,0 +1,118 @@
+# Training config
+
+# inputs
+data:
+noise:
+reverb:
+
+# outputs
+exp_dir:
+
+# Data loader
+max_frames: 400
+eval_frames: 300
+batch_size_per_gpu: 96
+nDataLoaderThread: 10
+
+# Optimizer
+optimizer: "sgd"
+lr: 0.4
+min_lr: !!float 1e-5
+weight_decay: !!float 5e-5
+weight_decay_end: !!float 5e-5
+epochs: 150
+saveckp_freq: 10
+
+# Parameters for sdpn
+glb_num: 1
+local_num: 4
+tau: 0.1
+memax_weight: 1
+koleo_loss_weight: 0.1
+freeze_last_layer: 1
+clip_grad: 3.0
+use_bn_in_head: True
+momentum_teacher: 0.996
+
+# Warming up
+warmup_epochs: 10
+
+# Model definition and saving
+n_mels: 80
+embed_dim: 512
+num_proto: 1024
+output_dim: 256
+
+# Evaluation metrics
+dcf_p_target: 0.05
+dcf_c_miss: 1
+dcf_c_fa: 1
+
+dataset:
+  obj: speakerlab.dataset.dataset_sdpn.SDPNDataset
+  args:
+    data: <data>
+    noise: <noise>
+    reverb: <reverb>
+    max_frames: <max_frames>
+    n_mels: <n_mels>
+    glb_num: <glb_num>
+    local_num: <local_num>
+
+dataloader:
+  obj: torch.utils.data.DataLoader
+  args:
+    dataset: <dataset>
+    batch_size: <batch_size_per_gpu>
+    num_workers: <nDataLoaderThread>
+    pin_memory: True
+    drop_last: True
+
+
+student_ecapa:
+  obj: speakerlab.models.rdino.ECAPA_TDNN.ECAPA_TDNN
+  args:
+    input_size: <n_mels>
+    channels: [1024, 1024, 1024, 1024, 3072]
+    lin_neurons: <embed_dim>
+
+teacher_ecapa:
+  obj: speakerlab.models.rdino.ECAPA_TDNN.ECAPA_TDNN
+  args:
+    input_size: <n_mels>
+    channels: [1024, 1024, 1024, 1024, 3072]
+    lin_neurons: <embed_dim>
+
+student_head:
+  obj: speakerlab.models.sdpn.SDPN_Head.SDPNHead
+  args:
+    in_dim: <embed_dim>
+    use_bn: <use_bn_in_head>
+
+teacher_head:
+  obj: speakerlab.models.sdpn.SDPN_Head.SDPNHead
+  args:
+    in_dim: <embed_dim>
+    use_bn: <use_bn_in_head>
+
+student_model:
+  obj: speakerlab.models.sdpn.combiner.Combiner
+  args:
+    backbone: <student_ecapa>
+    head: <student_head>
+
+teacher_model:
+  obj: speakerlab.models.sdpn.combiner.Combiner
+  args:
+    backbone: <teacher_ecapa>
+    head: <teacher_head>
+
+sdpn_loss:
+  obj: speakerlab.loss.sdpn_loss.SDPNLoss
+  args: {}
+
+keleo_loss:
+  obj: speakerlab.loss.keleo_loss.KoLeoLoss
+  args: {}
+
+
