@@ -23,8 +23,11 @@ work=$1
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   # In this stage we download the raw datasets
   echo "Stage 1: download aishell-4 and alimeeting datasets..."
-  ./local/download_aishell_4_data.sh $work/corpus/
-  ./local/download_alimeeting_data.sh $work/corpus/
+  mkdir -p $work/corpus/
+  mkdir -p $work/corpus/aishell_4/
+  ./local/download_aishell_4_data.sh $work/corpus/aishell_4/
+  mkdir -p $work/corpus/alimeeting/
+  ./local/download_alimeeting_data.sh $work/corpus/alimeeting/
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
