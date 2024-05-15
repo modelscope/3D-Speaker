@@ -11,19 +11,19 @@ logger = logging.getLogger(__name__)
 
 def get_args():
     parser = argparse.ArgumentParser(
-        description=f"Prepare files for aishell-4:\n"
-                    f"1. TextGrid.scp: utt-id -> textgrid\n"
-                    f"2. flac.scp: utt_id -> flac_path\n"
-                    f"3. wav.scp: utt_id -> wav_path[not real but prediction]\n"
-                    f"4. flac2wav.sh: scripts for flac2wav\n"
-                    f"5. trans7time.scp: utt_id -> trans7time_path"
+        description=f"Prepare files for aishell-4"
     )
-    parser.add_argument("--home_path", required=True, help="The home path")
-    parser.add_argument("--save_path", required=True, help="The save path")
+    parser.add_argument(
+        "--home_path", required=True,
+        help="The home path which including ['train_L', 'train_M', 'train_S', 'test']"
+    )
+    parser.add_argument(
+        "--save_path", required=True, help="The path to save files"
+    )
     return parser.parse_args()
 
 
-# Some Aishell-4 data have some prefix, which is not suitable.
+# Some Aishell-4 data have some meaningless sentence, which is not suitable.
 train_offset_dict = {
     "20200616_M_R001S01C01": 5,
     "20200616_M_R001S02C01": 9.5,
@@ -242,10 +242,6 @@ test_offset_dict = {
 }
 
 
-def build_command(src_flac_file, tgt_wav_file):
-    return f"ffmpeg -i {src_flac_file} -acodec pcm_s16le -ac 1 -ar 16000 {tgt_wav_file}"
-
-
 def filter_sentence(sentence: str) -> str:
     bad_list = ["<sil>", "<$>", "<>", "<%>", "<#>", "&", "<->", "<_>"]
     for bad_str in bad_list:
@@ -254,9 +250,15 @@ def filter_sentence(sentence: str) -> str:
     return sentence
 
 
-def filter_trans7time_list(trans7time_list):
+def filter_trans7time_list(utt_id, trans7time_list):
     result = list()
+    if utt_id in train_offset_dict:
+        offset = train_offset_dict[utt_id]
+    else:
+        offset = test_offset_dict[utt_id]
     for (spk_id, st, ed, content) in trans7time_list:
+        if ed < offset:
+            continue
         content = filter_sentence(content)
         if len(content) <= 0:
             continue
@@ -296,91 +298,35 @@ def main():
 
     base_folders = ['train_L', 'train_M', 'train_S', 'test']
 
-    ffmpeg_shell_list = []
-    wav_scp = dict()
-    flac_scp = dict()
     textgrid_scp = dict()
-    rttm_scp = dict()
     for base_folder in tqdm.tqdm(base_folders):
-        cur_flac_scp = dict()
-        cur_wav_scp = dict()
         cur_textgrid_scp = dict()
-        cur_rttm_scp = dict()
 
         cur_folder = os.path.join(home_path, base_folder)
         if not os.path.exists(cur_folder):
             logger.warning(f"{cur_folder} do not exist")
             continue
 
-        # collect flac folder
-        flac_folder = os.path.join(cur_folder, "flac")
-        flac_items = os.listdir(flac_folder)
-        flac_scp_file = os.path.join(save_path, f"{base_folder}_flac.scp")
-        for flac_item in flac_items:
-            utt_id = flac_item.split(".")[0]
-            flac_file_path = os.path.join(flac_folder, flac_item)
-            cur_flac_scp[utt_id] = flac_file_path
-            flac_scp[utt_id] = flac_file_path
-        logger.info("Build flac.scp finished")
-
         # collect textgrid folder
         textgrid_folder = os.path.join(cur_folder, "TextGrid")
         textgrid_items = os.listdir(textgrid_folder)
         textgrid_scp_file = os.path.join(save_path, f"{base_folder}_textgrid.scp")
-        rttm_scp_file = os.path.join(save_path, f"{base_folder}_rttm.scp")
         trans7time_scp_file = os.path.join(save_path, f"{base_folder}_trans7time.scp")
         trans7time_save_path = os.path.join(save_path, f"{base_folder}_trans7time")
         os.makedirs(trans7time_save_path, exist_ok=True)
         for textgrid_item in textgrid_items:
             utt_id = textgrid_item.split(".")[0]
             extension = textgrid_item.split(".")[1]
-            rttm_textgrid_file_path = os.path.join(textgrid_folder, textgrid_item)
-            if extension == "rttm":
-                cur_rttm_scp[utt_id] = rttm_textgrid_file_path
-                rttm_scp[utt_id] = rttm_textgrid_file_path
-            elif extension == "TextGrid":
-                cur_textgrid_scp[utt_id] = rttm_textgrid_file_path
-                textgrid_scp[utt_id] = rttm_textgrid_file_path
-        logger.info("Build TextGrid.scp finished")
+            textgrid_file_path = os.path.join(textgrid_folder, textgrid_item)
+            if extension == "TextGrid":
+                cur_textgrid_scp[utt_id] = textgrid_file_path
+                textgrid_scp[utt_id] = textgrid_file_path
+        logger.info(f"Build {base_folder} TextGrid.scp finished")
 
         trans7time_scp = convert_textgrid_to_trans7time(cur_textgrid_scp, trans7time_save_path)
 
-        write_wav_scp(flac_scp_file, cur_flac_scp)
         write_wav_scp(textgrid_scp_file, cur_textgrid_scp)
-        write_wav_scp(rttm_scp_file, cur_rttm_scp)
         write_wav_scp(trans7time_scp_file, trans7time_scp)
-
-        wav_folder = os.path.join(cur_folder, "wav")
-        os.makedirs(wav_folder, exist_ok=True)
-        wav_scp_file = os.path.join(save_path, f"{base_folder}_wav.scp")
-        for utt_id in cur_flac_scp:
-            wav_file_path = os.path.join(wav_folder, f"{utt_id}.wav")
-            ffmpeg_shell_list.append(
-                build_command(src_flac_file=cur_flac_scp[utt_id], tgt_wav_file=wav_file_path)
-            )
-            cur_wav_scp[utt_id] = wav_file_path
-            wav_scp[utt_id] = wav_file_path
-        write_wav_scp(wav_scp_file, cur_wav_scp)
-
-    result_wav_scp_file = os.path.join(save_path, f"wav.scp")
-    result_flac_scp_file = os.path.join(save_path, "flac.scp")
-    result_textgrid_scp_file = os.path.join(save_path, "textgrid.scp")
-    result_rttm_scp_file = os.path.join(save_path, "rttm.scp")
-
-    write_wav_scp(result_wav_scp_file, wav_scp)
-    write_wav_scp(result_flac_scp_file, flac_scp)
-    write_wav_scp(result_textgrid_scp_file, textgrid_scp)
-    write_wav_scp(result_rttm_scp_file, rttm_scp)
-
-    logger.info(f"Collect {len(wav_scp)} items")
-
-    result_flac2wav_file = os.path.join(save_path, "flac2wav.sh")
-    with open(result_flac2wav_file, "w") as fw:
-        for shell in ffmpeg_shell_list:
-            fw.write(f"{shell}\n")
-        fw.flush()
-
-    logger.info(f"Collect {len(ffmpeg_shell_list)} shell scripts")
 
 
 if __name__ == '__main__':

@@ -76,17 +76,6 @@ def write_wav_scp(fpath, wav_scp):
             f.write(f"{key} {value}\n")
 
 
-def write_rttm_file(fpath, rttm):
-    """
-        rttm: utt_id, spk_id, start, end
-    """
-    rttm = sorted(rttm, key=lambda x: x[2])
-    with open(fpath, "w") as fw:
-        for (utt_id, spk_id, start, end) in rttm:
-            fmt = "SPEAKER {:s} 1 {:7.2f} {:7.2f} <NA> <NA> {:s} <NA> <NA>"
-            fw.write(f"{fmt.format(utt_id, start, end - start, spk_id)}\n")
-
-
 def write_trans7time_list(fpath, trans7time_list):
     """
         trans7time_list: [(spk_id, start_time, end_time, text)]
