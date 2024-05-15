@@ -54,8 +54,21 @@ You can find more details from `egs/semantic_speaker/bert/local/prepare_json_fil
 ## Citation
 We have published the following paper combining the semantic speaker-related information extraction task with speaker diarization tasks:
 ```latex
-
-
+@inproceedings{Luyao2023ACL,
+	author       = {Luyao Cheng and Siqi Zheng and Qinglin Zhang and Hui Wang and Yafeng Chen and Qian Chen},
+	title        = {Exploring Speaker-Related Information in Spoken Language Understanding for Better Speaker Diarization},
+	booktitle    = {Findings of the {ACL} 2023, Toronto, Canada, July 9-14, 2023},
+	pages        = {14068--14077},
+	year         = {2023},
+}
+@article{Cheng2023ImprovingSD,
+  title={Improving Speaker Diarization using Semantic Information: Joint Pairwise Constraints Propagation},
+  author={Luyao Cheng and Siqi Zheng and Qinglin Zhang and Haibo Wang and Yafeng Chen and Qian Chen and Shiliang Zhang},
+  journal={ArXiv},
+  year={2023},
+  volume={abs/2309.10456},
+  url={https://api.semanticscholar.org/CorpusID:262054443}
+}
 ```
 
 The Alimeeting and Aishell-4 dataset we used are from the following papers:

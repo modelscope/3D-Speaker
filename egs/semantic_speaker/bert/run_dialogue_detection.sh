@@ -47,19 +47,29 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
 
   # Prepare files in json format for model input
   json_path=$work/corpus/json_files/
-  python local/prepare_json_files_for_semantic_speaker.py --flag train --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path --sentence_length 96 --sentence_shift 32
-  python local/prepare_json_files_for_semantic_speaker.py --flag valid --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path --sentence_length 96 --sentence_shift 32
-  python local/prepare_json_files_for_semantic_speaker.py --flag test --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path --sentence_length 96 --sentence_shift 32
+  python local/prepare_json_files_for_semantic_speaker.py \
+    --flag train --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --sentence_length 96 --sentence_shift 32
+  python local/prepare_json_files_for_semantic_speaker.py \
+    --flag valid --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --sentence_length 96 --sentence_shift 32
+  python local/prepare_json_files_for_semantic_speaker.py \
+    --flag test --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --sentence_length 96 --sentence_shift 32
 fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3]; then
   # Run dialogue detection
-  echo "Stage 3: train dialogue detection model"
-  python bin/run_dialogue_detection.py
-fi
-
-if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
-  # Run dialogue detection
-  echo "Stage 3: test dialogue detection model"
-  python bin/run_dialogue_detection.py
+  echo "Stage 3: train and test dialogue detection model"
+  json_path=$work/corpus/json_files/
+  output_path=$work/dialogue_detection_experiments/
+  CUDA_VISIBLE_DEVICES=0,1,2,3 python bin/run_dialogue_detection.py \
+    --model_name_or_path bert-base-chinese \
+    --max_seq_length 128 --pad_to_max_length \
+    --train_file $json_path/train.dialogue_detection.json \
+    --validation_file $json_path/valid.dialogue_detection.json \
+    --test_file $json_path/test.dialogue_detection.json \
+    --do_train --do_eval --do_predict \
+    --per_device_train_batch_size 128 --per_device_eval_batch_size 128 --num_train_epochs 5 \
+    --output_dir $output_path --overwrite_output_dir
 fi
