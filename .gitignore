@@ -41,7 +41,6 @@ Makefile
 
 *.swp
 *~
-.DS_Store
 **/onnx_runtime/
 **/exp/
-
+**/__pycache__/
