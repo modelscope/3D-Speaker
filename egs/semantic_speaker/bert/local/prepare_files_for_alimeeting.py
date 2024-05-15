@@ -75,6 +75,8 @@ def main():
 
     home_path = args.home_path
     save_path = args.save_path
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
     train_home_path = os.path.join(home_path, "Train_Ali")
     train_near_path = os.path.join(train_home_path, "Train_Ali_near")

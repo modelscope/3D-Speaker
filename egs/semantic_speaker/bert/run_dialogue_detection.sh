@@ -25,16 +25,16 @@ if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
   echo "Stage 1: download aishell-4 and alimeeting datasets..."
   mkdir -p $work/corpus/
   mkdir -p $work/corpus/aishell_4/
-  ./local/download_aishell_4_data.sh $work/corpus/aishell_4/
+  bash local/download_aishell_4_data.sh $work/corpus/aishell_4/
   mkdir -p $work/corpus/alimeeting/
-  ./local/download_alimeeting_data.sh $work/corpus/alimeeting/
+  bash local/download_alimeeting_data.sh $work/corpus/alimeeting/
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   # Prepare
   echo "Stage 2: prepare aishell-4 and alimeeting train and test files"
-  python local/prepare_files_for_aishell_4.py
-  python local/prepare_files_for_alimeeting.py
+  python local/prepare_files_for_aishell_4.py --home_path $work/corpus/aishell_4/ --save_path
+  python local/prepare_files_for_alimeeting.py --home_path $work/corpus/alimeeting/
 
   # Merge files
   python local/merge_json_files_for_semantic_speaker.py

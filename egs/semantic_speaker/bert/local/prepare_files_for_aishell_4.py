@@ -268,12 +268,48 @@ def filter_trans7time_list(utt_id, trans7time_list):
     return result
 
 
+def solve_trans7time_list_punctuation(trans7time_list):
+    punc_list = ['，', '。', '？', '、', '！']
+
+    trans7time_list = sorted(trans7time_list, key=lambda x: x[1])
+    result_trans7time_list = []
+    pre_spk_id = None
+    pre_content = ""
+    pre_st, pre_ed = 0.0, 0.0
+    for idx, (spk_id, st, ed, content) in enumerate(trans7time_list):
+        if pre_spk_id is None:
+            pass
+        elif pre_spk_id != spk_id:
+            pre_final_ch = pre_content[-1]
+            pre_final_punc = "" if pre_final_ch in punc_list else "。"
+            result_trans7time_list.append((
+                pre_spk_id, pre_st, pre_ed, pre_content + pre_final_punc
+            ))
+        else:
+            pre_final_ch = pre_content[-1]
+            pre_final_punc = "" if pre_final_ch in punc_list else "，"
+            result_trans7time_list.append((
+                pre_spk_id, pre_st, pre_ed, pre_content + pre_final_punc
+            ))
+
+        pre_spk_id = spk_id
+        pre_content = content
+        pre_st, pre_ed = st, ed
+
+    pre_final_ch = pre_content[-1]
+    pre_final_punc = "" if pre_final_ch in punc_list else "。"
+    result_trans7time_list.append((
+        pre_spk_id, pre_st, pre_ed, pre_content + pre_final_punc
+    ))
+
+    return result_trans7time_list
+
+
 def convert_textgrid_to_trans7time(textgrid_scp, save_path):
     trans7time_scp = dict()
     for utt_id in tqdm.tqdm(textgrid_scp):
         textgrid_file = textgrid_scp[utt_id]
         tg = textgrid.TextGrid.fromFile(textgrid_file)
-
         trans7time_list = []
         for i in range((len(tg))):
             for j in range(len(tg[i])):
@@ -283,7 +319,8 @@ def convert_textgrid_to_trans7time(textgrid_scp, save_path):
                         tg[i].name, cur_seg.minTime, cur_seg.maxTime, cur_seg.mark.strip()
                     ))
         trans7time_list = sorted(trans7time_list, key=lambda x: x[1])
-        trans7time_list = filter_trans7time_list(trans7time_list)
+        trans7time_list = filter_trans7time_list(utt_id, trans7time_list)
+        trans7time_list = solve_trans7time_list_punctuation(trans7time_list)
         trans7time_file = os.path.join(save_path, f"{utt_id}.trans7time")
         write_trans7time_list(trans7time_file, trans7time_list)
         trans7time_scp[utt_id] = trans7time_file
@@ -292,9 +329,12 @@ def convert_textgrid_to_trans7time(textgrid_scp, save_path):
 
 def main():
     args = get_args()
-
+    logger.info(f"{args}")
     home_path = args.home_path
     save_path = args.save_path
+
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
     base_folders = ['train_L', 'train_M', 'train_S', 'test']
 
