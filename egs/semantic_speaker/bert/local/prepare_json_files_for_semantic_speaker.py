@@ -12,6 +12,9 @@ logger = logging.getLogger(__name__)
 def get_args():
     parser = argparse.ArgumentParser(description="Prepare files for semantic speaker tasks")
     parser.add_argument(
+        "--flag", default=None, help="The flag to diff"
+    )
+    parser.add_argument(
         "--trans7time_scp_file", required=True, help="The input trans7time scp file"
     )
     parser.add_argument(
@@ -240,6 +243,7 @@ def main():
     args = get_args()
     logger.info(f"{args}")
 
+    flag = args.flag
     trans7time_scp_file = args.trans7time_scp_file
     save_path = args.save_path
     sentence_length = args.sentence_length
@@ -261,8 +265,8 @@ def main():
         total_dialogue_detection_results.extend(dialogue_detection_results)
         total_speaker_turn_detection_results.extend(speaker_turn_detection_results)
 
-    dialogue_detection_json_file = os.path.join(save_path, f"dialogue_detection.json")
-    speaker_turn_detection_json_file = os.path.join(save_path, f"speaker_turn_detection.json")
+    dialogue_detection_json_file = os.path.join(save_path, f"{flag}.dialogue_detection.json")
+    speaker_turn_detection_json_file = os.path.join(save_path, f"{flag}.speaker_turn_detection.json")
     write_json_file(dialogue_detection_json_file, total_dialogue_detection_results)
     write_json_file(speaker_turn_detection_json_file, total_speaker_turn_detection_results)
 

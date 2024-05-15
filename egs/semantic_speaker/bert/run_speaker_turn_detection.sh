@@ -14,6 +14,8 @@
 
 set -e
 
+. ./path.sh
+
 stage=1
 stop_stage=3
 

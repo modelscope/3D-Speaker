@@ -53,15 +53,29 @@ def load_json_file(json_file):
 
 
 def load_trans7time_list(filename):
-    trans7time_list = []
+    """
+        trans7time: (spk_id, st, ed, content)
+    """
     with open(filename, "r") as fr:
+        trans7time_list = []
         lines = fr.readlines()
         for line in lines:
-            ps = line.strip().split()
-            trans7time_list.append((
-                ps[0], float(ps[1]), float(ps[2]), "".join(ps[3:])
+            trans7time_list.append(line.strip().split())
+        result_trans7time_list = []
+    for index, item in enumerate(trans7time_list):
+        if len(item) <= 2:
+            raise ValueError(f"filename {filename}: item - {index} = {item}")
+        if len(item) == 3:
+            st = float(item[1])
+            ed = float(item[2])
+            result_trans7time_list.append((
+                item[0], st, ed, ""
             ))
-    return trans7time_list
+        else:
+            result_trans7time_list.append((
+                item[0], float(item[1]), float(item[2]), "".join(item[3:])
+            ))
+    return result_trans7time_list
 
 
 def write_json_file(json_file, data):
