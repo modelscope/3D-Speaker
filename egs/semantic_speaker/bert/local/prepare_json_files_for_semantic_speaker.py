@@ -1,12 +1,12 @@
 from typing import List
 import os
-import logging
 import argparse
 import tqdm
 
 from speakerlab.utils.fileio import load_wav_scp, write_json_file, load_trans7time_list
+from speakerlab.utils.utils import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_args():

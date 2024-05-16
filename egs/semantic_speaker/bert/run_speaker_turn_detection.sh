@@ -34,7 +34,7 @@ fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   # Prepare semantic files
-  echo "Stage 2: prepare aishell-4 and alimeeting train and test files"
+  echo "Stage 2.1: prepare aishell-4 and alimeeting train and test files"
   aishell_4_file_path=$work/corpus/aishell_4/semantic_files/
   alimeeting_file_path=$work/corpus/alimeeting/semantic_files/
   python local/prepare_files_for_aishell_4.py --home_path $work/corpus/aishell_4/ --save_path $aishell_4_file_path
@@ -46,16 +46,17 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   cat $aishell_4_file_path/test_trans7time.scp $alimeeting_file_path/test_far_trans7time.scp > $work/corpus/total_test_trans7time.scp
 
   # Prepare files in json format for model input
+  echo "Stage 2.2: prepare json files for semantic tasks"
   json_path=$work/corpus/json_files/
   mkdir -p $json_path
   python local/prepare_json_files_for_semantic_speaker.py \
     --flag train --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
   python local/prepare_json_files_for_semantic_speaker.py \
-    --flag valid --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --flag valid --trans7time_scp_file $work/corpus/total_valid_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
   python local/prepare_json_files_for_semantic_speaker.py \
-    --flag test --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --flag test --trans7time_scp_file $work/corpus/total_test_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
 fi
 

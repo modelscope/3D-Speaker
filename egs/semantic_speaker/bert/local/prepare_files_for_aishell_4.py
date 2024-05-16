@@ -1,7 +1,6 @@
 import argparse
 import os
 import textgrid
-import logging
 import tqdm
 
 from speakerlab.utils.fileio import write_wav_scp, write_trans7time_list

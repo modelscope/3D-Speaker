@@ -1,12 +1,12 @@
 import argparse
 import os
 import textgrid
-import logging
 import tqdm
 
 from speakerlab.utils.fileio import write_wav_scp, write_trans7time_list
+from speakerlab.utils.utils import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_args():

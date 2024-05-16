@@ -1,11 +1,10 @@
 import argparse
 import tqdm
-import logging
 
 from speakerlab.utils.fileio import write_json_file, load_json_file
+from speakerlab.utils.utils import get_logger
 
-
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_args():
