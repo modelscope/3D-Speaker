@@ -63,7 +63,7 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3]; then
   echo "Stage 3: train speaker-turn detection model"
   json_path=$work/corpus/json_files/
   output_path=$work/speaker_turn_detection_experiments/
-  CUDA_VISIBLE_DEVICES=0,1,2,3 python bin/run_dialogue_detection.py \
+  CUDA_VISIBLE_DEVICES=0,1,2,3 python bin/run_speaker_turn_detection.py \
     --model_name_or_path bert-base-chinese \
     --max_seq_length 128 --pad_to_max_length \
      --train_file $json_path/train.speaker_turn_detection.json \

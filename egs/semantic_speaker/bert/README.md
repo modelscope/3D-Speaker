@@ -45,10 +45,49 @@ You can also organize your own dataset in the following format:
         }
       ]
     ```
+
 You can find more details from `egs/semantic_speaker/bert/local/prepare_json_files_for_semantic_speaker.py`.
 
-## Usage and Documents
+## Usage
 
+We provide two speaker-related semantic tasks: `Dialogue Detection` and `Speaker Turn Detection`.
+The run scripts are `egs/semantic_speaker/bert/run_dialogue_detection.sh` and `egs/semantic_speaker/bert/run_speaker_turn_detection.sh`.
+They share the same data preprocessing and the core parts are `egs/semantic_speaker/bert/bin/run_dialogue_detection.py` 
+and `egs/semantic_speaker/bert/bin/run_speaker_turn_detection.py`, respectively.
+
+* Dialogue Detection
+   The shell script is like:
+   ```shell
+      python bin/run_dialogue_detection.py \
+         --model_name_or_path bert-base-chinese \
+         --max_seq_length 128 --pad_to_max_length \
+         --train_file $json_path/train.dialogue_detection.json \
+         --validation_file $json_path/valid.dialogue_detection.json \
+         --test_file $json_path/test.dialogue_detection.json \
+         --do_train --do_eval --do_predict \
+         --per_device_train_batch_size 128 --per_device_eval_batch_size 128 --num_train_epochs 5 \
+         --output_dir $output_path --overwrite_output_dir
+   ```
+   The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
+   You can also change them to your own json files. 
+   The `model_name_or_path` is the path to the pre-trained BERT model and you can change it to other pre-trained model.
+  * Speaker Turn Detection
+     The shell script is like:
+     ```shell
+        python bin/run_speaker_turn_detection.py \
+            --model_name_or_path bert-base-chinese \
+            --max_seq_length 128 --pad_to_max_length \
+            --train_file $json_path/train.speaker_turn_detection.json \
+            --validation_file $json_path/valid.speaker_turn_detection.json \
+            --test_file $json_path/test.speaker_turn_detection.json \
+            --do_train --do_eval --do_predict \
+            --text_column_name sentence --label_column_name change_point_list --label_num 2 \
+            --per_device_train_batch_size 64 --per_device_eval_batch_size 64 --num_train_epochs 5 \
+            --output_dir $output_path --overwrite_output_dir
+     ```
+     The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
+     The `text_column_name` and `label_column_name` are the column names of the text and label in the json files. To match the data preprocessing, 
+     `sentence` and `change_point_list` should be fixed to read the specific columns.
 
 
 ## Citation
@@ -89,6 +128,3 @@ The Alimeeting and Aishell-4 dataset we used are from the following papers:
     organization={IEEE}
 }
 ```
-
-
-
