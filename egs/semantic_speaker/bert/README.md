@@ -56,6 +56,12 @@ They share the same data preprocessing and the core parts are `egs/semantic_spea
 and `egs/semantic_speaker/bert/bin/run_speaker_turn_detection.py`, respectively.
 
 * Dialogue Detection
+   To run `Speaker-Turn Detection` task, use the following command:
+   ```shell
+      bash run_speaker_turn_detection.sh exp/
+   ```
+   The only parameter is `exp/`, which is the path to the output directory. (We recommend you to use `exp/` as the output directory will be ignored by git)
+   
    The shell script is like:
    ```shell
       python bin/run_dialogue_detection.py \
@@ -71,23 +77,30 @@ and `egs/semantic_speaker/bert/bin/run_speaker_turn_detection.py`, respectively.
    The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
    You can also change them to your own json files. 
    The `model_name_or_path` is the path to the pre-trained BERT model and you can change it to other pre-trained model.
-  * Speaker Turn Detection
-     The shell script is like:
-     ```shell
-        python bin/run_speaker_turn_detection.py \
-            --model_name_or_path bert-base-chinese \
-            --max_seq_length 128 --pad_to_max_length \
-            --train_file $json_path/train.speaker_turn_detection.json \
-            --validation_file $json_path/valid.speaker_turn_detection.json \
-            --test_file $json_path/test.speaker_turn_detection.json \
-            --do_train --do_eval --do_predict \
-            --text_column_name sentence --label_column_name change_point_list --label_num 2 \
-            --per_device_train_batch_size 64 --per_device_eval_batch_size 64 --num_train_epochs 5 \
-            --output_dir $output_path --overwrite_output_dir
-     ```
-     The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
-     The `text_column_name` and `label_column_name` are the column names of the text and label in the json files. To match the data preprocessing, 
-     `sentence` and `change_point_list` should be fixed to read the specific columns.
+* Speaker Turn Detection
+   To run `Speaker-Turn Detection` task, use the following command:
+   ```shell
+      bash run_speaker_turn_detection.sh exp/
+   ```
+   The only parameter is `exp/`, which is the path to the output directory. 
+   If you have run `Dialogue Detection` before, you can skip the stage 1(downloading datasets).
+   
+   The shell script is like:
+   ```shell
+      python bin/run_speaker_turn_detection.py \
+          --model_name_or_path bert-base-chinese \
+          --max_seq_length 128 --pad_to_max_length \
+          --train_file $json_path/train.speaker_turn_detection.json \
+          --validation_file $json_path/valid.speaker_turn_detection.json \
+          --test_file $json_path/test.speaker_turn_detection.json \
+          --do_train --do_eval --do_predict \
+          --text_column_name sentence --label_column_name change_point_list --label_num 2 \
+          --per_device_train_batch_size 64 --per_device_eval_batch_size 64 --num_train_epochs 5 \
+          --output_dir $output_path --overwrite_output_dir
+   ```
+   The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
+   The `text_column_name` and `label_column_name` are the column names of the text and label in the json files. To match the data preprocessing, 
+   `sentence` and `change_point_list` should be fixed to read the specific columns.
 
 
 ## Citation
@@ -106,7 +119,6 @@ We have published the following paper combining the semantic speaker-related inf
   journal={ArXiv},
   year={2023},
   volume={abs/2309.10456},
-  url={https://api.semanticscholar.org/CorpusID:262054443}
 }
 ```
 
