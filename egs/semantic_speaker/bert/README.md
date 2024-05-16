@@ -1,6 +1,14 @@
 # Semantic Speaker Information Extraction
 
 
+## Modelscope
+You can find our pre-trained model on `Modelscope`:
+* [Dialogue Detection](https://modelscope.cn/models/iic/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary)
+* [Speaker-Turn Detection](https://modelscope.cn/models/iic/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary)
+
+You can use `modelscope` to download and use the model.
+
+
 ## Data Preparation
 
 The datasets we use contains [Alimeeting](https://www.openslr.org/119/) and [Aishell-4](https://www.openslr.org/111/).
@@ -101,6 +109,9 @@ and `egs/semantic_speaker/bert/bin/run_speaker_turn_detection.py`, respectively.
    The `--train_file`, `--validation_file`, and `--test_file` are the json files for training, validation, and testing, respectively.
    The `text_column_name` and `label_column_name` are the column names of the text and label in the json files. To match the data preprocessing, 
    `sentence` and `change_point_list` should be fixed to read the specific columns.
+
+## Acknowledgement
+We have borrowed some codes from the `transformers`.
 
 
 ## Citation
