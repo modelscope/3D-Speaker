@@ -16,7 +16,7 @@ set -e
 
 . ./path.sh
 
-stage=2
+stage=1
 stop_stage=3
 
 work=$1

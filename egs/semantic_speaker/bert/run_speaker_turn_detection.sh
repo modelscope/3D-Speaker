@@ -60,7 +60,7 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
     --sentence_length 96 --sentence_shift 32
 fi
 
-if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3]; then
+if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   # Run speaker-turn detection
   echo "Stage 3: train speaker-turn detection model"
   json_path=$work/corpus/json_files/
