@@ -96,4 +96,5 @@ def write_trans7time_list(fpath, trans7time_list):
     """
     with open(fpath, 'w') as fw:
         for spk_id, start_time, end_time, text in trans7time_list:
+            text = text.replace("\n", "").replace("\r", "")
             fw.write(f'{spk_id} {start_time} {end_time} {text}\n')

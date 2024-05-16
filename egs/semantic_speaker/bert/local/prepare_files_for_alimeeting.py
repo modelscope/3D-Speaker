@@ -27,7 +27,7 @@ def solve_textgrid(textgrid_file, utt_id):
     trans7time_list = []
     tg = textgrid.TextGrid.fromFile(textgrid_file)
 
-    for i in tqdm.tqdm(range(len(tg))):
+    for i in range(len(tg)):
         for j in range(len(tg[i])):
             cur_seg = tg[i][j]
             if cur_seg.mark:
@@ -59,7 +59,7 @@ def build_textgrid_wav_files(initial_path,
     textgrid_items = os.listdir(initial_textgrid_path)
 
     trans7time_scp = dict()
-    for textgrid_item in textgrid_items:
+    for textgrid_item in tqdm.tqdm(textgrid_items):
         textgrid_file = os.path.join(initial_textgrid_path, textgrid_item)
         utt_id = textgrid_item[:11]
         trans7time_list, rttm_list = solve_textgrid(textgrid_file, utt_id)
@@ -79,6 +79,8 @@ def main():
         os.makedirs(save_path)
 
     train_home_path = os.path.join(home_path, "Train_Ali")
+    if not os.path.exists(train_home_path):
+        train_home_path = home_path
     train_near_path = os.path.join(train_home_path, "Train_Ali_near")
     train_far_path = os.path.join(train_home_path, "Train_Ali_far")
     train_near_trans7time_scp_file = os.path.join(save_path, "train_near_trans7time.scp")

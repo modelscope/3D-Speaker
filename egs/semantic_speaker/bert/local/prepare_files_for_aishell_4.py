@@ -5,8 +5,9 @@ import logging
 import tqdm
 
 from speakerlab.utils.fileio import write_wav_scp, write_trans7time_list
+from speakerlab.utils.utils import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_args():
@@ -305,10 +306,41 @@ def solve_trans7time_list_punctuation(trans7time_list):
     return result_trans7time_list
 
 
+def correct_aishell_4_from_some_source(utt_id, textgrid_file):
+    """
+        It seems aishell_4 from different source have some mistakes so that the TextGrid cannot read it
+    """
+    if utt_id == "20200622_M_R002S07C01":
+        logger.info(f"correct {utt_id}")
+        result_lines = []
+        with open(textgrid_file, "r") as fr:
+            lines = fr.readlines()
+            for line in lines:
+                if line.find("2104.492") >= 0:
+                    line = line.replace("2104.492", "2187.436")
+                result_lines.append(line)
+        with open(textgrid_file, "w") as fw:
+            for line in result_lines:
+                fw.write(f"{line}")
+    elif utt_id == "20200710_M_R002S06C01":
+        logger.info(f"correct {utt_id}")
+        result_lines = []
+        with open(textgrid_file, "r") as fr:
+            lines = fr.readlines()
+            for line in lines:
+                if line.find("1836.689") >= 0:
+                    line = line.replace("1836.689", "1846.773")
+                result_lines.append(line)
+        with open(textgrid_file, "w") as fw:
+            for line in result_lines:
+                fw.write(f"{line}")
+
+
 def convert_textgrid_to_trans7time(textgrid_scp, save_path):
     trans7time_scp = dict()
     for utt_id in tqdm.tqdm(textgrid_scp):
         textgrid_file = textgrid_scp[utt_id]
+        correct_aishell_4_from_some_source(utt_id, textgrid_file)
         tg = textgrid.TextGrid.fromFile(textgrid_file)
         trans7time_list = []
         for i in range((len(tg))):
@@ -340,6 +372,7 @@ def main():
 
     textgrid_scp = dict()
     for base_folder in tqdm.tqdm(base_folders):
+        logger.info(f"Start {base_folder}")
         cur_textgrid_scp = dict()
 
         cur_folder = os.path.join(home_path, base_folder)

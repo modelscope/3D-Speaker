@@ -47,6 +47,7 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
 
   # Prepare files in json format for model input
   json_path=$work/corpus/json_files/
+  mkdir -p $json_path
   python local/prepare_json_files_for_semantic_speaker.py \
     --flag train --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
@@ -63,7 +64,8 @@ if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3]; then
   echo "Stage 3: train speaker-turn detection model"
   json_path=$work/corpus/json_files/
   output_path=$work/speaker_turn_detection_experiments/
-  CUDA_VISIBLE_DEVICES=0,1,2,3 python bin/run_speaker_turn_detection.py \
+  mkdir -p $output_path
+  CUDA_VISIBLE_DEVICES=4,5,6,7 python bin/run_speaker_turn_detection.py \
     --model_name_or_path bert-base-chinese \
     --max_seq_length 128 --pad_to_max_length \
      --train_file $json_path/train.speaker_turn_detection.json \

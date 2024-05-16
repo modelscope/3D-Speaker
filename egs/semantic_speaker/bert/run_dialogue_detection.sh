@@ -16,7 +16,7 @@ set -e
 
 . ./path.sh
 
-stage=1
+stage=2
 stop_stage=3
 
 work=$1
@@ -34,7 +34,7 @@ fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   # Prepare semantic files
-  echo "Stage 2: prepare aishell-4 and alimeeting train and test files"
+  echo "Stage 2.1: prepare aishell-4 and alimeeting train and test files"
   aishell_4_file_path=$work/corpus/aishell_4/semantic_files/
   alimeeting_file_path=$work/corpus/alimeeting/semantic_files/
   python local/prepare_files_for_aishell_4.py --home_path $work/corpus/aishell_4/ --save_path $aishell_4_file_path
@@ -46,23 +46,26 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
   cat $aishell_4_file_path/test_trans7time.scp $alimeeting_file_path/test_far_trans7time.scp > $work/corpus/total_test_trans7time.scp
 
   # Prepare files in json format for model input
+  echo "Stage 2.2: prepare json files for semantic tasks"
   json_path=$work/corpus/json_files/
+  mkdir -p $json_path
   python local/prepare_json_files_for_semantic_speaker.py \
     --flag train --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
   python local/prepare_json_files_for_semantic_speaker.py \
-    --flag valid --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --flag valid --trans7time_scp_file $work/corpus/total_valid_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
   python local/prepare_json_files_for_semantic_speaker.py \
-    --flag test --trans7time_scp_file $work/corpus/total_train_trans7time.scp --save_path $json_path \
+    --flag test --trans7time_scp_file $work/corpus/total_test_trans7time.scp --save_path $json_path \
     --sentence_length 96 --sentence_shift 32
 fi
 
-if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3]; then
+if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   # Run dialogue detection
   echo "Stage 3: train and test dialogue detection model"
   json_path=$work/corpus/json_files/
   output_path=$work/dialogue_detection_experiments/
+  mkdir -p $output_path
   CUDA_VISIBLE_DEVICES=0,1,2,3 python bin/run_dialogue_detection.py \
     --model_name_or_path bert-base-chinese \
     --max_seq_length 128 --pad_to_max_length \
