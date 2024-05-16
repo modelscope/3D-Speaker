@@ -12,6 +12,46 @@ import torch
 from torch import nn
 import torch.distributed as dist
 
+def one_hot(targets, num_classes=1024, smoothing=0.0):
+    off_value = smoothing / num_classes
+    on_value = 1. - smoothing + off_value
+    targets = targets.long().view(-1, 1)
+    return torch.full((len(targets), num_classes), off_value).scatter_(1, targets, on_value)
+
+class AllReduce(torch.autograd.Function):
+
+    @staticmethod
+    def forward(ctx, x):
+        if (
+            dist.is_available()
+            and dist.is_initialized()
+            and (dist.get_world_size() > 1)
+        ):
+            x = x.contiguous() / dist.get_world_size()
+            dist.all_reduce(x)
+        return x
+
+    @staticmethod
+    def backward(ctx, grads):
+        return grads
+
+class AllReduceSum(torch.autograd.Function):
+
+    @staticmethod
+    def forward(ctx, x):
+        if (
+            dist.is_available()
+            and dist.is_initialized()
+            and (dist.get_world_size() > 1)
+        ):
+            x = x.contiguous()
+            dist.all_reduce(x)
+        return x
+
+    @staticmethod
+    def backward(ctx, grads):
+        return grads
+
 def get_params_groups(model):
         regularized = []
         not_regularized = []

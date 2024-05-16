@@ -104,6 +104,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2024.5] Releasing SDPN model training and inference recipes for VoxCeleb.
+- [2024.5] Releasing multi-modal ([visual module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/ava-asd/talknet)) training recipes.
 - [2024.4] Releasing [ONNX Runtime](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
 - [2024.4] Releasing [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
 - [2024.2] Releasing [language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) integrating phonetic information recipes for more higher recognition accuracy.
@@ -123,8 +125,8 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## To be expected :fire:
-- [2024.4] Releasing asnormalization in speaker verification.
-- [2024.4] Releasing multi-modal (semantic and visual module) training recipes.
+- [2024.5] Releasing asnormalization in speaker verification.
+- [2024.5] Releasing multi-modal (semantic module) training recipes.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
