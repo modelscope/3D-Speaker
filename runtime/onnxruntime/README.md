@@ -92,7 +92,7 @@ The `/path/to/embedding_scp_file` and `/path/to/save/embeddings/` means the embe
 |CAM++|7.18M|0.049|
 |ERes2Net-Base|4.6M|0.076|
 |ERes2Net-Large|22.6M|0.191|
-|ERes2Net-Huge|-|0.420|
+|ERes2Net-Huge|55.16M|0.420|
 |ERes2NetV2|17.8M|0.142|
 
 
