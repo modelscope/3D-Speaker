@@ -52,7 +52,8 @@ fi
 if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
   # Extract embeddings of test datasets.
   echo "Stage5: Extracting speaker embeddings..."
-  torchrun --nproc_per_node=8 speakerlab/bin/extract.py --exp_dir $exp_lm_dir \
+  num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/extract.py --exp_dir $exp_lm_dir \
            --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
 fi
 

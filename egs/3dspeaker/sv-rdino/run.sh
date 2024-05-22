@@ -30,7 +30,8 @@ fi
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "Stage4: Extracting speaker embeddings ..."
-  torchrun --nproc_per_node=8 speakerlab/bin/extract_rdino.py --exp_dir $exp_dir \
+  num_gpu=$(echo $gpus | awk -F ' ' '{print NF}')
+  torchrun --nproc_per_node=$num_gpu speakerlab/bin/extract_rdino.py --exp_dir $exp_dir \
            --data $data/3dspeaker/test/wav.scp --use_gpu --gpu $gpus
 fi
 
