@@ -48,8 +48,10 @@ def main():
     # Build the embedding model
     teacher_model = build('teacher_model', config)
 
-    # Recover the embedding params of 60 epoch
-    ckp_path = f"{args.exp_dir}/models/checkpoint0060.pth"
+    # If RDINO system, recover the embedding params of 60 epoch
+    # ckp_path = f"{args.exp_dir}/models/checkpoint0060.pth"
+    # If SDPN system, recover the embedding params of 150 epoch
+    ckp_path = f"{args.exp_dir}/models/checkpoint.pth"
     checkpoint = torch.load(ckp_path, map_location=device)
     teacher_model = load_params(teacher_model, checkpoint['teacher'])
 
