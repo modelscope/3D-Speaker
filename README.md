@@ -105,6 +105,7 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 
 
 ## What‘s new :fire:
+- [2024.5] Releasing [X-vector](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
 - [2024.5] Releasing [SDPN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
 - [2024.5] Releasing [visual module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/ava-asd/talknet) and [semantic module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/semantic_speaker/bert) training recipes.
 - [2024.4] Releasing [ONNX Runtime](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
