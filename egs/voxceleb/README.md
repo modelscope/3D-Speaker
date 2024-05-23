@@ -25,6 +25,7 @@ bash run.sh
  EER(%) of systems on VoxCeleb-O, VoxCeleb-E and VoxCeleb-H.
 | Model | Params | VoxCeleb-O | VoxCeleb-E | VoxCeleb-H |
 |:-----:|:------:| :------:|:------:|:------:|
+| TDNN | 4.34 M | 2.22 | 2.17 | 3.63 |
 | Res2Net | 4.03 M | 1.56 | 1.41 | 2.48 |
 | ResNet34 | 6.34 M | 1.05 | 1.11 | 1.99 |
 | ERes2Net-base | 6.61 M | 0.96 | 1.06 | 1.96 |
