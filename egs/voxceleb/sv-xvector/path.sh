@@ -1,0 +1,3 @@
+export PATH=$PWD:$PATH
+export PYTHONPATH=../../../:$PYTHONPATH
+export OMP_NUM_THREADS=1
