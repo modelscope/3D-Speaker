@@ -39,14 +39,11 @@ bash run.sh
 # Speaker verification: ECAPA-TDNN on 3D-Speaker dataset
 cd egs/3dspeaker/sv-ecapa/
 bash run.sh
-# Speaker verification: ResNet on 3D-Speaker dataset
-cd egs/3dspeaker/sv-resnet/
-bash run.sh
-# Speaker verification: Res2Net on 3D-Speaker dataset
-cd egs/3dspeaker/sv-res2net/
-bash run.sh
 # Self-supervised speaker verification: RDINO on 3D-Speaker dataset
 cd egs/3dspeaker/sv-rdino/
+bash run.sh
+# Self-supervised speaker verification: SDPN on VoxCeleb dataset
+cd egs/voxceleb/sv-sdpn/
 bash run.sh
 # Audio and multimodal Speaker diarization:
 cd egs/3dspeaker/speaker-diarization/
