@@ -143,6 +143,12 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Citations
 If you find this repository useful, please consider giving a star :star: and citation :t-rex::
 ```BibTeX
+@article{chen2024eres2netv2,
+  title={ERes2NetV2: Boosting Short-Duration Speaker Verification Performance with Computational Efficiency},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Zhang, Shiliang and Li, Junjie},
+  journal={arXiv preprint arXiv:2406.02167},
+  year={2024}
+}
 @article{chen20243d,
   title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
