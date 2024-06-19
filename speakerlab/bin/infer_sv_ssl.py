@@ -39,7 +39,7 @@ from modelscope.hub.snapshot_download import snapshot_download
 from modelscope.pipelines.util import is_official_hub_path
 
 parser = argparse.ArgumentParser(description='Extract speaker embeddings.')
-parser.add_argument('--yaml', default='conf/rdino.yaml', type=str, help='Config file')
+parser.add_argument('--yaml', default='egs/voxceleb/sv-sdpn/conf/sdpn.yaml', type=str, help='Config file')
 parser.add_argument('--model_id', default='', type=str, help='Model id in modelscope')
 parser.add_argument('--wavs', nargs='+', type=str, help='Wavs')
 parser.add_argument('--local_model_dir', default='pretrained', type=str, help='Local model dir')
@@ -53,6 +53,10 @@ supports = {
         'revision': 'v1.0.1', 
         'model_pt': 'rdino.pth', 
     },
+    'iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k':{
+        'revision': 'v1.0.0',
+        'model_pt': 'sdpn.pth',
+    }
 }
 
 feature_extractor = transforms.MelSpectrogram(

@@ -66,12 +66,12 @@ model_id=iic/speech_eres2netv2_sv_zh-cn_16k-common
 # CAM++ trained on 200k labeled speakers
 model_id=iic/speech_campplus_sv_zh-cn_16k-common
 # Run CAM++ or ERes2Net inference
-python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+python speakerlab/bin/infer_sv.py --model_id $model_id
 
-# RDINO trained on VoxCeleb
-model_id=iic/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
-# Run rdino inference
-python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
+# SDPN trained on VoxCeleb
+model_id=iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k
+# Run SDPN inference
+python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
 ```
 
 ## Overview of Content
@@ -123,10 +123,6 @@ python speakerlab/bin/infer_sv_rdino.py --model_id $model_id --wavs $wav_path
 - [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
-## To be expected :fire:
-- [2024.5] Releasing asnormalization in speaker verification.
-- [2024.5] Supporting more effective models.
-
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
 - email: {chenyafeng.cyf, zsq174630, tongmu.wh, shuli.cly}@alibaba-inc.com
@@ -145,38 +141,44 @@ If you find this repository useful, please consider giving a star :star: and cit
 ```BibTeX
 @article{chen2024eres2netv2,
   title={ERes2NetV2: Boosting Short-Duration Speaker Verification Performance with Computational Efficiency},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Zhang, Shiliang and Li, Junjie},
-  journal={arXiv preprint arXiv:2406.02167},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and and others},
+  year={2024},
+  booktitle={INTERSPEECH}
+}
+@article{chen2024sdpn,
+  title={Self-Distillation Prototypes Network: Learning Robust Speaker Representations without Supervision},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
+  url={https://arxiv.org/pdf/2406.11169},
   year={2024}
 }
 @article{chen20243d,
   title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
-  journal={arXiv preprint arXiv:2403.19971},
+  url={https://arxiv.org/pdf/2403.19971},
   year={2024}
 }
 @inproceedings{zheng20233d,
   title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
   author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
-  url={https://arxiv.org/pdf/2306.15354.pdf},
+  url={https://arxiv.org/pdf/2306.15354},
   year={2023}
 }
 @inproceedings{wang2023cam++,
   title={CAM++: A Fast and Efficient Network For Speaker Verification Using Context-Aware Masking},
   author={Wang, Hui and Zheng, Siqi and Chen, Yafeng and Cheng, Luyao and Chen, Qian},
-  year={2023},
-  booktitle={INTERSPEECH}
+  booktitle={INTERSPEECH},
+  year={2023}
 }
 @inproceedings{chen2023enhanced,
   title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Qi, Jiajun},
-  year={2023},
-  booktitle={INTERSPEECH}
+  booktitle={INTERSPEECH},
+  year={2023}
 }
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
-  booktitle={ICASSP 2023},
+  booktitle={ICASSP},
   year={2023}
 }
 ```
