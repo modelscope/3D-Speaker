@@ -142,13 +142,13 @@ If you find this repository useful, please consider giving a star :star: and cit
 @article{chen2024eres2netv2,
   title={ERes2NetV2: Boosting Short-Duration Speaker Verification Performance with Computational Efficiency},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and and others},
-  year={2024},
-  booktitle={INTERSPEECH}
+  booktitle={INTERSPEECH},
+  year={2024}
 }
 @article{chen2024sdpn,
   title={Self-Distillation Prototypes Network: Learning Robust Speaker Representations without Supervision},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
-  url={https://arxiv.org/pdf/2406.11169},
+  url={https://arxiv.org/pdf/2308.02774},
   year={2024}
 }
 @article{chen20243d,
