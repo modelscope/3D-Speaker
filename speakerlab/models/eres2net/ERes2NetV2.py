@@ -29,14 +29,14 @@ class ReLU(nn.Hardtanh):
 
 
 class BasicBlockERes2NetV2(nn.Module):
-    expansion = 2
 
-    def __init__(self, in_planes, planes, stride=1, baseWidth=26, scale=2):
+    def __init__(self, in_planes, planes, stride=1, baseWidth=26, scale=2, expansion=2):
         super(BasicBlockERes2NetV2, self).__init__()
         width = int(math.floor(planes*(baseWidth/64.0)))
         self.conv1 = nn.Conv2d(in_planes, width*scale, kernel_size=1, stride=stride, bias=False)
         self.bn1 = nn.BatchNorm2d(width*scale)
         self.nums = scale
+        self.expansion = expansion
 
         convs=[]
         bns=[]
@@ -90,15 +90,15 @@ class BasicBlockERes2NetV2(nn.Module):
 
         return out
 
-class BasicBlockERes2NetV2_AFF(nn.Module):
-    expansion = 2
+class BasicBlockERes2NetV2AFF(nn.Module):
 
-    def __init__(self, in_planes, planes, stride=1, baseWidth=26, scale=2):
-        super(BasicBlockERes2NetV2_AFF, self).__init__()
+    def __init__(self, in_planes, planes, stride=1, baseWidth=26, scale=2, expansion=2):
+        super(BasicBlockERes2NetV2AFF, self).__init__()
         width = int(math.floor(planes*(baseWidth/64.0)))
         self.conv1 = nn.Conv2d(in_planes, width*scale, kernel_size=1, stride=stride, bias=False)
         self.bn1 = nn.BatchNorm2d(width*scale)
         self.nums = scale
+        self.expansion = expansion
 
         convs=[]
         fuse_models=[]
@@ -161,11 +161,14 @@ class BasicBlockERes2NetV2_AFF(nn.Module):
 class ERes2NetV2(nn.Module):
     def __init__(self,
                  block=BasicBlockERes2NetV2,
-                 block_fuse=BasicBlockERes2NetV2_AFF,
+                 block_fuse=BasicBlockERes2NetV2AFF,
                  num_blocks=[3, 4, 6, 3],
                  m_channels=64,
                  feat_dim=80,
                  embedding_size=192,
+                 baseWidth=26,
+                 scale=2,
+                 expansion=2,
                  pooling_func='TSTP',
                  two_emb_layer=False):
         super(ERes2NetV2, self).__init__()
@@ -174,6 +177,9 @@ class ERes2NetV2(nn.Module):
         self.embedding_size = embedding_size
         self.stats_dim = int(feat_dim / 8) * m_channels * 8
         self.two_emb_layer = two_emb_layer
+        self.baseWidth = baseWidth
+        self.scale = scale
+        self.expansion = expansion
 
         self.conv1 = nn.Conv2d(1,
                                m_channels,
@@ -200,15 +206,16 @@ class ERes2NetV2(nn.Module):
                                        stride=2)
 
         # Downsampling module
-        self.layer3_ds = nn.Conv2d(m_channels * 8, m_channels * 16, kernel_size=3, padding=1, stride=2, bias=False)
+        self.layer3_ds = nn.Conv2d(m_channels * 4 * self.expansion, m_channels * 8 * self.expansion, kernel_size=3, \
+                                   padding=1, stride=2, bias=False)
 
         # Bottom-up fusion module
-        self.fuse34 = AFF(channels=m_channels * 16, r=4)
+        self.fuse34 = AFF(channels=m_channels * 8 * self.expansion, r=4)
 
         self.n_stats = 1 if pooling_func == 'TAP' or pooling_func == "TSDP" else 2
         self.pool = getattr(pooling_layers, pooling_func)(
-            in_dim=self.stats_dim * block.expansion)
-        self.seg_1 = nn.Linear(self.stats_dim * block.expansion * self.n_stats,
+            in_dim=self.stats_dim * self.expansion)
+        self.seg_1 = nn.Linear(self.stats_dim * self.expansion * self.n_stats,
                                embedding_size)
         if self.two_emb_layer:
             self.seg_bn_1 = nn.BatchNorm1d(embedding_size, affine=False)
@@ -221,8 +228,8 @@ class ERes2NetV2(nn.Module):
         strides = [stride] + [1] * (num_blocks - 1)
         layers = []
         for stride in strides:
-            layers.append(block(self.in_planes, planes, stride))
-            self.in_planes = planes * block.expansion
+            layers.append(block(self.in_planes, planes, stride, baseWidth=self.baseWidth, scale=self.scale, expansion=self.expansion))
+            self.in_planes = planes * self.expansion
         return nn.Sequential(*layers)
 
     def forward(self, x):
@@ -249,7 +256,7 @@ class ERes2NetV2(nn.Module):
 if __name__ == '__main__':
 
     x = torch.randn(1, 300, 80)
-    model = ERes2NetV2(feat_dim=80, embedding_size=192, m_channels=64)
+    model = ERes2NetV2(feat_dim=80, embedding_size=192, m_channels=64, baseWidth=26, scale=2, expansion=2)
     model.eval()
     y = model(x)
     print(y.size())
