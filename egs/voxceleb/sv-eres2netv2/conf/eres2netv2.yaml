@@ -28,6 +28,9 @@ num_workers: 16
 fbank_dim: 80
 m_channels: 64
 embedding_size: 192
+baseWidth: 26
+scale: 2
+expansion: 2
 num_classes: 5994
 
 wav_reader:
@@ -88,6 +91,9 @@ embedding_model:
     feat_dim: <fbank_dim>
     embedding_size: <embedding_size>
     m_channels: <m_channels>
+    baseWidth: <baseWidth>
+    scale: <scale>
+    expansion: <expansion>
 
 classifier:
   obj: speakerlab.models.campplus.classifier.CosineClassifier

@@ -29,6 +29,9 @@ num_workers: 16
 fbank_dim: 80
 m_channels: 64
 embedding_size: 192
+baseWidth: 26
+scale: 2
+expansion: 2
 num_classes: 5994
 
 wav_reader:

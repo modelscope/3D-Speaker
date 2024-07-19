@@ -68,6 +68,20 @@ ERes2NetV2_COMMON = {
     'args': {
         'feat_dim': 80,
         'embedding_size': 192,
+        'baseWidth': 26,
+        'scale': 2,
+        'expansion': 2,
+    },
+}
+
+ERes2NetV2_w24s4ep4_COMMON = {
+    'obj': 'speakerlab.models.eres2net.ERes2NetV2.ERes2NetV2',
+    'args': {
+        'feat_dim': 80,
+        'embedding_size': 192,
+        'baseWidth': 24,
+        'scale': 4,
+        'expansion': 4,
     },
 }
 
@@ -133,6 +147,12 @@ supports = {
         'revision': 'v1.0.1', 
         'model': ERes2NetV2_COMMON,
         'model_pt': 'pretrained_eres2netv2.ckpt',
+    },
+    # ERes2NetV2_w24s4ep4 trained on 200k labeled speakers
+    'iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.1', 
+        'model': ERes2NetV2_w24s4ep4_COMMON,
+        'model_pt': 'pretrained_eres2netv2w24s4ep4.ckpt',
     },
     # ERes2Net_Base trained on 200k labeled speakers
     'iic/speech_eres2net_base_200k_sv_zh-cn_16k-common': {
