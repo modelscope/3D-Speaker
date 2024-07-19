@@ -106,7 +106,7 @@ ERes2Net_Large_3D_Speaker = {
     },
 }
 
-EPACA_CNCeleb = {
+ECAPA_CNCeleb = {
     'obj': 'speakerlab.models.ecapa_tdnn.ECAPA_TDNN.ECAPA_TDNN',
     'args': {
         'input_size': 80,
@@ -173,19 +173,19 @@ supports = {
     # ECAPA-TDNN trained on CNCeleb
     'iic/speech_ecapa-tdnn_sv_zh-cn_cnceleb_16k': {
         'revision': 'v1.0.0', 
-        'model': EPACA_CNCeleb,
+        'model': ECAPA_CNCeleb,
         'model_pt': 'ecapa-tdnn.ckpt',
     },
     # ECAPA-TDNN trained on 3dspeaker
     'iic/speech_ecapa-tdnn_sv_zh-cn_3dspeaker_16k': {
         'revision': 'v1.0.0', 
-        'model': EPACA_CNCeleb,
+        'model': ECAPA_CNCeleb,
         'model_pt': 'ecapa-tdnn.ckpt',
     },
     # ECAPA-TDNN trained on VoxCeleb
     'iic/speech_ecapa-tdnn_sv_en_voxceleb_16k': {
         'revision': 'v1.0.1', 
-        'model': EPACA_CNCeleb,
+        'model': ECAPA_CNCeleb,
         'model_pt': 'ecapa_tdnn.bin',
     },
 }
@@ -261,7 +261,7 @@ def main():
         feat = feature_extractor(wav).unsqueeze(0).to(device)
         # compute embedding
         with torch.no_grad():
-            embedding = embedding_model(feat).detach().cpu().numpy()
+            embedding = embedding_model(feat).detach().squeeze(0).cpu().numpy()
         
         if save:
             save_path = embedding_dir / (
@@ -293,7 +293,7 @@ def main():
         # compute similarity score
         print('[INFO]: Computing the similarity score...')
         similarity = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
-        scores = similarity(torch.from_numpy(embedding1), torch.from_numpy(embedding2)).item()
+        scores = similarity(torch.from_numpy(embedding1).unsqueeze(0), torch.from_numpy(embedding2).unsqueeze(0)).item()
         print('[INFO]: The similarity score between two input wavs is %.4f' % scores)
     elif len(args.wavs) == 1:
         # input one wav file
