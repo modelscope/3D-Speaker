@@ -7,7 +7,7 @@ based on the given model id, and extract embeddings from input wav list, suitabl
 embedding extraction. 
 Please pre-install "modelscope".
 Usage:
-    `python infer_sv.py --model_id $model_id --wavs $wav_list --feat_out_dir $feat_out_dir`
+    `python infer_sv_batch.py --model_id $model_id --wavs $wav_list --feat_out_dir $feat_out_dir`
 """
 
 import os
