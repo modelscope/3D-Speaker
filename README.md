@@ -67,6 +67,8 @@ model_id=iic/speech_eres2netv2_sv_zh-cn_16k-common
 model_id=iic/speech_campplus_sv_zh-cn_16k-common
 # Run CAM++ or ERes2Net inference
 python speakerlab/bin/infer_sv.py --model_id $model_id
+# Run batch inference
+python speakerlab/bin/infer_sv_batch.py --model_id $model_id --wavs $wav.list
 
 # SDPN trained on VoxCeleb
 model_id=iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k
