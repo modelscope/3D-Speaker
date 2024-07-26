@@ -362,6 +362,7 @@ class IterWavList(IterableDataset):
                 wavs = self.load_wav(data_path)
             except:
                 print(f'[WARNING]: Error reading {data_path}, please check.')
+                continue
             wav_id = os.path.basename(data_path).rsplit('.', 1)[0]
             feats = []
             for wav in wavs:
