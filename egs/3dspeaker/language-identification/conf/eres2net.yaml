@@ -18,7 +18,6 @@ sample_rate: 16000
 aug_prob: 0.6
 speed_pertub: False
 lr: 0.01
-min_lr: !!float 1e-4
 
 # dataloader
 batch_size: 128
