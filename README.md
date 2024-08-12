@@ -104,6 +104,7 @@ python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
 
 
 ## What‘s new :fire:
+- [2024.8] Releasing [ERes2NetV2](https://modelscope.cn/models/iic/speech_eres2netv2_sv_zh-cn_16k-common) and [ERes2NetV2_w24s4ep4](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common) pretrained models trained on 200k-speaker datasets.
 - [2024.5] Releasing [X-vector](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
 - [2024.5] Releasing [SDPN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
 - [2024.5] Releasing [visual module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/ava-asd/talknet) and [semantic module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/semantic_speaker/bert) training recipes.
