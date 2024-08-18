@@ -24,7 +24,7 @@ def addreverb(wav, rir_wav):
 def addnoise(wav, noise=None, snr_high=15, snr_low=0):
     # wav: [T,], noise: [T,]
     if noise is None:
-        noise = torch.randn_like(waveform)
+        noise = torch.randn_like(wav)
     noise = noise.numpy()
     wav = wav.numpy()
 
