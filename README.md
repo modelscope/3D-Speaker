@@ -74,6 +74,9 @@ python speakerlab/bin/infer_sv_batch.py --model_id $model_id --wavs $wav_list
 model_id=iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k
 # Run SDPN inference
 python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
+# Run RDINO inference
+model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
+python speakerlab/bin/infer_sv_ssl.py --model_id $model_id --yaml egs/voxceleb/sv-rdino/conf/rdino.yaml
 ```
 
 ## Overview of Content
