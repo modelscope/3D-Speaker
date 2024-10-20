@@ -17,6 +17,7 @@ import sys
 import json
 import argparse
 import torchaudio
+from torchaudio.transforms import Resample
 
 try:
     import modelscope
@@ -65,10 +66,12 @@ def main():
     json_dict = {}
     print(f'[INFO]: Start computing VAD...')
     for wpath in wavs:
-        _, fs = torchaudio.load(wpath)
-        assert fs == VAD_PRETRAINED['sample_rate'], \
-            "The sample rate of %s is not %d, please resample it first." % (
-                wpath, VAD_PRETRAINED['sample_rate'])
+        waveform, fs = torchaudio.load(wpath)
+        if fs != VAD_PRETRAINED['sample_rate']:
+          print(f"[INFO]: Resampling {wpath} from {fs} Hz to {VAD_PRETRAINED['sample_rate']} Hz.")
+          resampler = Resample(orig_freq=fs, new_freq=VAD_PRETRAINED['sample_rate'])
+          waveform = resampler(waveform)
+          fs = VAD_PRETRAINED['sample_rate']
         vad_time = vad_pipeline(wpath)[0]
         wid = os.path.basename(wpath).rsplit('.', 1)[0]
         for vad_t in vad_time['value']:
