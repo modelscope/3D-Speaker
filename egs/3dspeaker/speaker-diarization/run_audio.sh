@@ -11,27 +11,7 @@ set -e
 stage=1
 stop_stage=6
 
-# Add a command-line argument for the audio file
-audio_file=""
-while getopts "a:" opt; do
-  case $opt in
-    a)
-      audio_file=$OPTARG
-      ;;
-    *)
-      echo "Usage: $0 -a <audio_file>"
-      exit 1
-      ;;
-  esac
-done
-
-if [ -z "$audio_file" ]; then
-  echo "Audio file not specified. Use -a to specify the audio file."
-  exit 1
-fi
-
-# Use the specified audio file
-wav_list=$audio_file
+wav_list=examples/wav.list
 exp=exp
 conf_file=conf/diar.yaml
 gpus="0 1 2 3"
@@ -46,7 +26,12 @@ rttm_dir=$exp/rttm
 if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
   echo "$(basename $0) Stage 1: Prepare input wavs..."
   mkdir -p examples
-  echo "$audio_file" > examples/wav.list
+  wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
+?Revision=master&FilePath=examples/2speakers_example.wav" -O examples/2speakers_example.wav
+  wget "https://modelscope.cn/api/v1/models/damo/speech_eres2net-large_speaker-diarization_common/repo\
+?Revision=master&FilePath=examples/2speakers_example.rttm" -O examples/2speakers_example.rttm
+  echo "examples/2speakers_example.wav" > examples/wav.list
+  echo "examples/2speakers_example.rttm" > examples/refrttm.list
 fi
 
 if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
