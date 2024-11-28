@@ -6,7 +6,7 @@ This recipe offers speaker diarization methods that address the problem of "who 
 ## Datasets Evaluation
 The DER results from the audio-only diarization pipeline across various benchmarks and internal multi-speaker datasets.
 | Test | DER(w/o Overlap-detection) | DER(w/ Overlap-detection)| [pyannote.audio](https://github.com/pyannote/pyannote-audio) |
-|:-----:|:------:|:------:|
+|:-----:|:------:|:------:|:------:|
 |[Aishell-4](https://arxiv.org/abs/2104.03603)|23.04%|**10.30%**|12.2%|
 |[Alimeeting](https://www.openslr.org/119/)|32.79%|**19.73%**|24.4%|
 |[AMI_Headset-mix](https://groups.inf.ed.ac.uk/ami/corpus/)|26.56%|18.78%|18.8%|
