@@ -17,7 +17,6 @@ import json
 import pickle
 import argparse
 import torch
-import torchaudio
 
 try:
     import modelscope
