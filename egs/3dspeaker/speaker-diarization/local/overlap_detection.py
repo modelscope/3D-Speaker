@@ -4,11 +4,6 @@
 """
 This script will download the pretrained models from pyannote/segmentation-3.0 (https://huggingface.co/pyannote/segmentation-3.0)
 and perform the overlap detection given the audio. Please pre-install "pyannote".
-Usage:
-    1. do overlap detection from one wav file.
-        `python voice_activity_detection.py --wavs $wav_path --out_file $vad_json `
-    2. do overlap detection from the wav list.
-        `python voice_activity_detection.py --wavs $wav_list --out_file $vad_json `
 """
 
 import os
