@@ -43,7 +43,7 @@ def make_rttms(seg_list, out_rttm, rec_id):
                 seg_st = p
             new_seg_list.append([rec_id, seg_st, seg_ed, cluster_id])
 
-    line_str ="SPEAKER {} 0 {:.2f} {:.2f} <NA> <NA> {:d} <NA> <NA>\n"
+    line_str ="SPEAKER {} 0 {:.3f} {:.3f} <NA> <NA> {:d} <NA> <NA>\n"
     with open(out_rttm,'w') as f:
         for seg in new_seg_list:
             seg_id, seg_st, seg_ed, cluster_id = seg

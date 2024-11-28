@@ -74,6 +74,11 @@ python speakerlab/bin/infer_sv_batch.py --model_id $model_id --wavs $wav_list
 model_id=iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k
 # Run SDPN inference
 python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
+
+# Run diarization inference
+python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_dir $out_dir
+# Enable overlap detection
+python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_dir $out_dir --include_overlap --hf_access_token $hf_access_token
 ```
 
 ## Overview of Content
@@ -93,7 +98,7 @@ python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
   - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) training recipes on [CN-Celeb](http://cnceleb.org/).
 
 - **Speaker Diarization**
-  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprise multiple modules, including voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
+  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprise multiple modules, including overlap detection[optional], voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
 - **Language Identification**
   - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
@@ -104,6 +109,7 @@ python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
 
 
 ## What‘s new :fire:
+- [2024.12] Update [diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes and add results on multiple diarization benchmarks.
 - [2024.8] Releasing [ERes2NetV2](https://modelscope.cn/models/iic/speech_eres2netv2_sv_zh-cn_16k-common) and [ERes2NetV2_w24s4ep4](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common) pretrained models trained on 200k-speaker datasets.
 - [2024.5] Releasing [X-vector](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
 - [2024.5] Releasing [SDPN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
@@ -136,7 +142,7 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Acknowledge
 3D-Speaker contains third-party components and code modified from some open-source repos, including: <br>
 [Speechbrain](https://github.com/speechbrain/speechbrain), [Wespeaker](https://github.com/wenet-e2e/wespeaker), [D-TDNN](https://github.com/yuyq96/D-TDNN), [DINO](https://github.com/facebookresearch/dino), [Vicreg](https://github.com/facebookresearch/vicreg), [TalkNet-ASD
-](https://github.com/TaoRuijie/TalkNet-ASD), [Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
+](https://github.com/TaoRuijie/TalkNet-ASD), [Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB), [pyannote.audio](https://github.com/pyannote/pyannote-audio)
 
 
 ## Citations

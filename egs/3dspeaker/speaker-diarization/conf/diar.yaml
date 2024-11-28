@@ -25,7 +25,7 @@ cluster:
     max_num_spks: 15
     min_cluster_size: 4
     oracle_num: null
-    pval: 0.032
+    pval: 0.012
 
 # cluster:
 #   obj: speakerlab.process.cluster.CommonClustering 

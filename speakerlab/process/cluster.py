@@ -32,7 +32,10 @@ class SpectralCluster:
         self.pval = pval
         self.k = oracle_num
 
-    def __call__(self, X, pval=None, oracle_num=None):
+    def __call__(self, X, **kwargs):
+        pval = kwargs.get('pval', None)
+        oracle_num = kwargs.get('speaker_num', None)
+
         # Similarity matrix computation
         sim_mat = self.get_sim_mat(X)
 
@@ -123,7 +126,7 @@ class UmapHdbscan:
         self.min_cluster_size = min_cluster_size
         self.metric = metric
 
-    def __call__(self, X):
+    def __call__(self, X, **kwargs):
         umap_X = umap.UMAP(
             n_neighbors=self.n_neighbors,
             min_dist=0.0,
@@ -143,7 +146,7 @@ class AHCluster:
     def __init__(self, fix_cos_thr=0.2):
         self.fix_cos_thr = fix_cos_thr
 
-    def __call__(self, X):
+    def __call__(self, X, **kwargs):
         scr_mx = cosine_similarity(X)
         scr_mx = squareform(-scr_mx, checks=False)
         lin_mat = fastcluster.linkage(scr_mx, method='average', preserve_input='False')
@@ -174,13 +177,13 @@ class CommonClustering:
                 '%s is not currently supported.' % self.cluster_type
             )
 
-    def __call__(self, X):
+    def __call__(self, X, **kwargs):
         # clustering and return the labels
         assert len(X.shape) == 2, 'Shape of input should be [N, C]'
         if X.shape[0] < self.cluster_line:
             return np.ones(X.shape[0], dtype=int)
         # clustering
-        labels = self.cluster(X)
+        labels = self.cluster(X, **kwargs)
 
         # remove extremely minor cluster
         labels = self.filter_minor_cluster(labels, X, self.min_cluster_size)

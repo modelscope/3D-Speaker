@@ -17,7 +17,7 @@ def main(args):
     result_dir = os.path.join(args.exp_dir, 'result')
     os.makedirs(result_dir, exist_ok=True)
 
-    concate_rttm_file = sys_rttm_dir + "/sys_output.rttm"
+    concate_rttm_file = sys_rttm_dir + "/sys_output_rttm"
     if os.path.exists(concate_rttm_file):
         os.remove(concate_rttm_file)
 
