@@ -11,28 +11,33 @@ set -e
 stage=1
 stop_stage=6
 
-video_list=examples/video.list
+examples=examples
 exp=exp_video
 conf_file=conf/diar_video.yaml
 onnx_dir=pretrained_models
 gpus="0 1 2 3"
-nj=8
+nj=4
 
 . local/parse_options.sh || exit 1
 
+video_list=$examples/video.list
 raw_data_dir=$exp/raw
 visual_embs_dir=$exp/embs_video
 rttm_dir=$exp/rttm
 
 if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
-  echo "$(basename $0) Stage1: Prepare input videos..."
-  mkdir -p examples
-  wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/repo\
-?Revision=master&FilePath=examples/7speakers_example.mp4" -O examples/7speakers_example.mp4
-  wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/repo\
-?Revision=master&FilePath=examples/7speakers_example.rttm" -O examples/7speakers_example.rttm
-  echo "examples/7speakers_example.mp4" > examples/video.list
-  echo "examples/7speakers_example.rttm" > examples/refrttm.list
+  if [ ! -f "$video_list" ]; then
+    echo "$(basename $0) Stage1: Prepare input videos..."
+    mkdir -p examples
+    wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\
+resolve/master/examples/7speakers_example.mp4" -O $examples/7speakers_example.mp4
+    wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\
+resolve/master/examples/7speakers_example.rttm" -O $examples/7speakers_example.rttm
+    echo "examples/7speakers_example.mp4" > $examples/video.list
+    echo "examples/7speakers_example.rttm" > $examples/refrttm.list
+  else
+    echo "$(basename $0) Stage 1: $video_list exists. Skip this stage."
+  fi
 fi
 
 if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
@@ -42,7 +47,7 @@ if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
   for m in version-RFB-320.onnx asd.onnx fqa.onnx face_recog_ir101.onnx; do
     if [ ! -e $onnx_dir/$m ]; then
       echo "$(basename $0) Stage2: Download pretrained models $m"
-      wget -O $onnx_dir/$m "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/repo?Revision=master&FilePath=onnx/$m"
+      wget -O $onnx_dir/$m "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/resolve/master/onnx/$m"
     fi
   done
   cat $video_list | while read video_file; do
@@ -66,7 +71,7 @@ cat $video_list | while read video_file; do filename=$(basename $video_file);ech
 
 if [ ${stage} -le 3 ] && [ ${stop_stage} -ge 3 ]; then
   echo "$(basename $0) Stage3: Extract audio speaker embeddings..."
-  bash run_audio.sh --stage 2 --stop_stage 4 --wav_list $raw_data_dir/wav.list --exp $exp
+  bash run_audio.sh --stage 2 --stop_stage 4 --examples $raw_data_dir --exp $exp
 fi
 
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then
@@ -83,7 +88,7 @@ fi
 
 if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
   echo "$(basename $0) Stage6: Get the final metrics..."
-  ref_rttm_list=examples/refrttm.list
+  ref_rttm_list=$examples/refrttm.list
   if [ -f $ref_rttm_list ]; then
     cat $ref_rttm_list | while read line;do cat $line;done > $exp/concat_ref_rttm
     echo "Computing DER..."

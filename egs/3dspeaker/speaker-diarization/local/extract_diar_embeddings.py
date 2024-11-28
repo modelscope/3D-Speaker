@@ -20,6 +20,8 @@ import torch.distributed as dist
 
 from speakerlab.utils.config import yaml_config_loader, Config
 from speakerlab.utils.builder import build
+from speakerlab.utils.fileio import load_audio
+from speakerlab.utils.utils import circle_pad
 
 from modelscope.hub.snapshot_download import snapshot_download
 from modelscope.pipelines.util import is_official_hub_path
@@ -30,6 +32,7 @@ parser.add_argument('--pretrained_model', default=None, type=str, help='Path of 
 parser.add_argument('--conf', default=None, help='Config file')
 parser.add_argument('--subseg_json', default='', type=str, help='Sub-segments info')
 parser.add_argument('--embs_out', default='', type=str, help='Out embedding dir')
+parser.add_argument('--batchsize', default=64, type=int, help='Batchsize for extracting embeddings')
 parser.add_argument('--use_gpu', action='store_true', help='Use gpu or not')
 parser.add_argument('--gpu', nargs='+', help='GPU id to use.')
 
@@ -182,18 +185,25 @@ def main():
         if not os.path.isfile(stat_emb_file):
             embeddings = []
             wav_path = meta[list(meta.keys())[0]]['file']
-            wav, fs = torchaudio.load(wav_path)
-            for segid in meta:
-                sample_start = int(meta[segid]['start']*fs)
-                sample_stop = int(meta[segid]['stop']*fs)
-                wav_seg = wav[:, sample_start:sample_stop]
-                feat = feature_extractor(wav_seg).unsqueeze(0)
-                feat = feat.to(device)
-                with torch.no_grad():
-                    emb = embedding_model(feat).cpu().numpy()
-                embeddings.append(emb)
-                
-            embeddings = np.concatenate(embeddings, axis=0)
+            obj_fs = feature_extractor.sample_rate
+            wav = load_audio(wav_path, obj_fs=obj_fs)
+ 
+            wavs = [wav[0, int(meta[i]['start']*obj_fs):int(meta[i]['stop']*obj_fs)] for i in meta]
+            max_len = max([x.shape[0] for x in wavs])
+            wavs = [circle_pad(x, max_len) for x in wavs]
+            wavs = torch.stack(wavs).unsqueeze(1)
+
+            embeddings = []
+            batch_st = 0
+            with torch.no_grad():
+                while batch_st < wavs.shape[0]:
+                    wavs_batch = wavs[batch_st: batch_st+args.batchsize].to(device)
+                    feats_batch = torch.vmap(feature_extractor)(wavs_batch)
+                    embeddings_batch = embedding_model(feats_batch).cpu()
+                    embeddings.append(embeddings_batch)
+                    batch_st += args.batchsize
+            embeddings = torch.cat(embeddings, dim=0).numpy()
+
             stat_obj = {
                 'embeddings': embeddings, 
                 'times': [[meta[i]['start'], meta[i]['stop']] for i in meta]

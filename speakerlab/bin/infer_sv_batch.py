@@ -3,7 +3,7 @@
 
 """
 This script will download pretrained models from modelscope (https://www.modelscope.cn/models)
-based on the given model id, and extract embeddings from input wav list, suitable for large-scale 
+based on the given model id, and extract embeddings from input wav list, designed for large-scale 
 embedding extraction. 
 Please pre-install "modelscope".
 Usage:
@@ -41,7 +41,7 @@ parser.add_argument('--local_model_dir', default='pretrained', type=str, help='L
 parser.add_argument('--feat_out_dir', default='', type=str, help='Feat out dir')
 parser.add_argument('--feat_out_format', choices=['npy', 'ark'], default='npy', type=str, help='Feat out format, npy or ark')
 parser.add_argument('--batch_size', default=None, type=int, help='Batch size')
-parser.add_argument('--close_progress_bar', action='store_true', help='Close the progress bar')
+parser.add_argument('--diable_progress_bar', action='store_true', help='Disable the progress bar')
 
 CAMPPLUS_VOX = {
     'obj': 'speakerlab.models.campplus.DTDNN.CAMPPlus',
@@ -301,7 +301,7 @@ def main_process(rank, nprocs, args, wav_list, embedding_model):
         multiprocessing_context=data_mp_context,
         num_workers=16, pin_memory=True, prefetch_factor=2)
     
-    if rank == 0 and (not args.close_progress_bar):
+    if rank == 0 and (not args.diable_progress_bar):
         pbar = tqdm(total=len(wav_loader))
         pbar.set_description("Processing")
 
@@ -322,9 +322,9 @@ def main_process(rank, nprocs, args, wav_list, embedding_model):
                 elif args.feat_out_format == 'ark':
                     writer(wav_id, wav_embedding)
 
-            if rank == 0 and (not args.close_progress_bar):
+            if rank == 0 and (not args.diable_progress_bar):
                 pbar.update(len(wav_ids))
-    if rank == 0 and (not args.close_progress_bar):
+    if rank == 0 and (not args.diable_progress_bar):
         pbar.close()
 
 

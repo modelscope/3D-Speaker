@@ -8,3 +8,4 @@ fastcluster
 opencv-python
 python_speech_features
 onnxruntime-gpu
+pyannote

@@ -13,11 +13,10 @@ Usage:
 """
 
 import os
-import sys
 import json
+import pickle
 import argparse
-import torchaudio
-from torchaudio.transforms import Resample
+import torch
 
 try:
     import modelscope
@@ -28,19 +27,31 @@ except ImportError:
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
+try:
+    from speakerlab.utils.utils import merge_vad
+except:
+    pass
+
 parser = argparse.ArgumentParser(description='Voice activity detection')
 parser.add_argument('--wavs', default='', type=str, help='Wavs')
 parser.add_argument('--out_file', default='', type=str, help='output file')
 
-# Use pretrained model from modelscope. So "model_id", "model_revision" and "sample_rate" are necessary.
+# Use pretrained model from modelscope. So "model_id" and "model_revision" are necessary.
 VAD_PRETRAINED = {
     'model_id': 'iic/speech_fsmn_vad_zh-cn-16k-common-pytorch',
     'model_revision': 'v2.0.4',
-    'sample_rate': 16000,
 }
 
 def main():
     args = parser.parse_args()
+    out_dir = os.path.dirname(os.path.abspath(args.out_file))
+    segmentation_file = os.path.join(out_dir, 'segmentation.pkl')
+    if os.path.exists(segmentation_file):
+        consider_segmentation = True
+        with open(segmentation_file, 'rb') as f:
+            segmentations = pickle.load(f)
+    else:
+        consider_segmentation = False
 
     wavs = []
     if args.wavs.endswith('.wav'):
@@ -60,29 +71,27 @@ def main():
     vad_pipeline = pipeline(
         task=Tasks.voice_activity_detection, 
         model=VAD_PRETRAINED['model_id'], 
-        model_revision=VAD_PRETRAINED['model_revision']
+        model_revision=VAD_PRETRAINED['model_revision'],
+        device='cuda' if torch.cuda.is_available() else 'cpu',
         )
-    
+
     json_dict = {}
     print(f'[INFO]: Start computing VAD...')
-    for wpath in wavs:
-        waveform, fs = torchaudio.load(wpath)
-        if fs != VAD_PRETRAINED['sample_rate']:
-          print(f"[INFO]: Resampling {wpath} from {fs} Hz to {VAD_PRETRAINED['sample_rate']} Hz.")
-          resampler = Resample(orig_freq=fs, new_freq=VAD_PRETRAINED['sample_rate'])
-          waveform = resampler(waveform)
-          fs = VAD_PRETRAINED['sample_rate']
+    for wpath in wavs:        
         vad_time = vad_pipeline(wpath)[0]
+        vad_time = [[vad_t[0]/1000, vad_t[1]/1000] for vad_t in vad_time['value']]
+        if consider_segmentation:
+            basename = os.path.basename(wpath).rsplit('.', 1)[0]
+            vad_time = merge_vad(vad_time, segmentations[basename]['valid_field'])
+        vad_time = [[round(vad_t[0], 3), round(vad_t[1], 3)] for vad_t in vad_time]
+
         wid = os.path.basename(wpath).rsplit('.', 1)[0]
-        for vad_t in vad_time['value']:
-            strt = round(vad_t[0]/1000, 2)
-            end = round(vad_t[1]/1000, 2)
+        for strt, end in vad_time:
             subsegmentid = wid + '_' + str(strt) + '_' + str(end)
             json_dict[subsegmentid] = {
                         'file': wpath,
                         'start': strt,
                         'stop': end,
-                        'sample_rate': fs,
                 }
     dirname = os.path.dirname(args.out_file)
     os.makedirs(dirname, exist_ok=True)

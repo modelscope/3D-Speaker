@@ -3,16 +3,9 @@
 # Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 import os
-import sys
 import json
-import re
-import pathlib
-import numpy as np
 import argparse
 from copy import deepcopy
-
-import torch
-import torchaudio
 
 parser = argparse.ArgumentParser(description='Cut out the sub-segments.')
 parser.add_argument('--vad', default='', type=str, help='Input vad json')
@@ -32,8 +25,8 @@ def main():
         ed = vad_json[segid]['stop']
         subseg_st = st
         subseg_dur = args.dur
-        while subseg_st + subseg_dur < ed:
-            subseg_ed = subseg_st+subseg_dur
+        while subseg_st + subseg_dur < ed + args.shift:
+            subseg_ed = min(subseg_st+subseg_dur, ed)
             item = deepcopy(vad_json[segid])
             item.update({
                 'start': round(subseg_st, 2),
@@ -43,17 +36,6 @@ def main():
                 '_'+str(round(subseg_ed, 2))
             subseg_json[subsegid] = item
             subseg_st += args.shift
-        if subseg_st < ed:
-            subseg_st = min(ed-subseg_dur, subseg_st)
-            subseg_st = max(subseg_st, st)
-            item = deepcopy(vad_json[segid])
-            item.update({
-                'start': round(subseg_st, 2),
-                'stop': round(ed, 2)
-            })
-            subsegid = wavid+'_'+str(round(subseg_st, 2))+\
-                '_'+str(round(ed, 2))
-            subseg_json[subsegid] = item
 
     dirname = os.path.dirname(args.out_file)
     os.makedirs(dirname, exist_ok=True)

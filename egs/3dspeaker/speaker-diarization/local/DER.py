@@ -39,7 +39,7 @@ def DER(
     ref_rttm,
     sys_rttm,
     ignore_overlap=False,
-    collar=0.25,
+    collar=0,
     individual_file_scores=False,
 ):
     """Computes Missed Speaker percentage (MS), False Alarm (FA),
