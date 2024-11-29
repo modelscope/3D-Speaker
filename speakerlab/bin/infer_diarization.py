@@ -154,6 +154,7 @@ class Diarization3Dspeaker():
         hf_access_token (str, default=None): Access token for Hugging Face, required if 
             include_overlap is True. This token allows access to pynnote segmentation models 
             available on the Hugging Face that handles overlapping speech.
+        speaker_num (int, default=None): Specify number of speakers.
         model_cache_dir (str, default=None): If specified, the pretrained model will be downloaded 
             to this directory; only pretrained from modelscope are supported.
     Usage:
