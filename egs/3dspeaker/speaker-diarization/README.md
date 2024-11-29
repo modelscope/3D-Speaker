@@ -11,10 +11,10 @@ The DER results from the audio-only diarization pipeline across various benchmar
 |[Alimeeting](https://www.openslr.org/119/)|32.79%|**19.73%**|24.4%|
 |[AMI_Headset-mix](https://groups.inf.ed.ac.uk/ami/corpus/)|26.56%|18.78%|18.8%|
 |[VoxConverse](https://github.com/joonson/voxconverse)|12.09%|11.75%|**11.3%**|
-|internal-dataset-1|**16.80%**|18.91%|22.37%|
-|internal-dataset-1|**11.98%**|12.78%|17.86%|
+|Meeting-CN_ZH-1|**16.80%**|18.91%|22.37%|
+|Meeting-CN_ZH-2|**11.98%**|12.78%|17.86%|
 
-The DER results of two diarization pipelines on a internal multi-person conversation video dataset.
+The DER results of two diarization pipelines on a multi-person conversation video dataset.
 | Pipeline | DER |
 |:-----:|:------:|
 |Audio-only diarization|5.3%|
@@ -38,11 +38,11 @@ sudo apt-get install ffmpeg
 bash run_video.sh
 ```
 ### Diarization with Overlap Detection
-If you want to include overlap region in final diarization results, you can run 
+If you want to include overlapping speakers in final diarization results, you can run 
 ``` sh
 bash run_audio.sh --include_overlap=true --hf_access_token=hf_xxx
 ```
-The [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) is used as overlap detection module. Make sure to accept [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) user conditions and create an access token at [hf.co/settings/tokens](https://hf.co/settings/tokens)
+The [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) is used as a overlapping speech detection module. Make sure to accept [pyannote/segmentation-3.0](https://huggingface.co/pyannote/segmentation-3.0) user conditions and create an access token at [hf.co/settings/tokens](https://hf.co/settings/tokens)
 
 ### More Quick Audio Diarization
 For those who wish to bypass the detailed stages in `run_audio.sh` and quickly obtain audio diarization results, run:
