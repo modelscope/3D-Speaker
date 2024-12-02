@@ -20,7 +20,7 @@
 ## Quickstart
 ### Install 3D-Speaker
 ``` sh
-git clone https://github.com/alibaba-damo-academy/3D-Speaker.git && cd 3D-Speaker
+git clone https://github.com/modelscope/3D-Speaker.git && cd 3D-Speaker
 conda create -n 3D-Speaker python=3.8
 conda activate 3D-Speaker
 pip install -r requirements.txt
@@ -88,24 +88,24 @@ python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_di
 ## Overview of Content
 
 - **Supervised Speaker Verification**
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net), [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2netv2), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-res2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+  - [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B), [ERes2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net), [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2netv2), [ECAPA-TDNN](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-ecapa), [ResNet](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-resnet) and [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-res2net) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-eres2net), [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
+  - [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net), [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2), [ECAPA-TDNN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa), [ResNet](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/). 
 
-  - [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-eres2net), [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-eres2netv2), [ECAPA-TDNN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-ecapa), [ResNet](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-res2net) training recipes on [CN-Celeb](http://cnceleb.org/).
+  - [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-cam%2B%2B), [ERes2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-eres2net), [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-eres2netv2), [ECAPA-TDNN](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-ecapa), [ResNet](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-resnet) and [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-res2net) training recipes on [CN-Celeb](http://cnceleb.org/).
 
 - **Self-supervised Speaker Verification**
-  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/voxceleb/sv-rdino) and [SDPN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/)
+  - [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-rdino) and [SDPN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) training recipes on [VoxCeleb](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/)
     
-  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+  - [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
-  - [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) training recipes on [CN-Celeb](http://cnceleb.org/).
+  - [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) training recipes on [CN-Celeb](http://cnceleb.org/).
 
 - **Speaker Diarization**
-  - [Speaker diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/speaker-diarization) inference recipes which comprise multiple modules, including overlap detection[optional], voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
+  - [Speaker diarization](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) inference recipes which comprise multiple modules, including overlap detection[optional], voice activity detection, speech segmentation, speaker embedding extraction, and speaker clustering. 
 
 - **Language Identification**
-  - [Language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
+  - [Language identification](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/language-identification) training recipes on [3D-Speaker](https://3dspeaker.github.io/).
 
 - **3D-Speaker Dataset**
   - Dataset introduction and download address: [3D-Speaker](https://3dspeaker.github.io/) <br>
@@ -113,26 +113,26 @@ python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_di
 
 
 ## What‘s new :fire:
-- [2024.12] Update [diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes and add results on multiple diarization benchmarks.
+- [2024.12] Update [diarization](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes and add results on multiple diarization benchmarks.
 - [2024.8] Releasing [ERes2NetV2](https://modelscope.cn/models/iic/speech_eres2netv2_sv_zh-cn_16k-common) and [ERes2NetV2_w24s4ep4](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common) pretrained models trained on 200k-speaker datasets.
-- [2024.5] Releasing [X-vector](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
-- [2024.5] Releasing [SDPN](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
-- [2024.5] Releasing [visual module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/ava-asd/talknet) and [semantic module](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/semantic_speaker/bert) training recipes.
-- [2024.4] Releasing [ONNX Runtime](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
-- [2024.4] Releasing [ERes2NetV2](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
-- [2024.2] Releasing [language identification](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/language-identification) integrating phonetic information recipes for more higher recognition accuracy.
-- [2024.2] Releasing [multimodal diarization](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes which fuses audio and video image input to produce more accurate results.
-- [2024.1] Releasing [ResNet34](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) model training and inference recipes for 3D-Speaker, VoxCeleb and CN-Celeb datasets.
-- [2024.1] Releasing [large-margin finetune recipes](https://github.com/alibaba-damo-academy/3D-Speaker/blob/main/egs/voxceleb/sv-eres2net/run.sh) in speaker verification and adding [diarization recipes](https://github.com/alibaba-damo-academy/3D-Speaker/blob/main/egs/3dspeaker/speaker-diarization/run.sh). 
+- [2024.5] Releasing [X-vector](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
+- [2024.5] Releasing [SDPN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
+- [2024.5] Releasing [visual module](https://github.com/modelscope/3D-Speaker/tree/main/egs/ava-asd/talknet) and [semantic module](https://github.com/modelscope/3D-Speaker/tree/main/egs/semantic_speaker/bert) training recipes.
+- [2024.4] Releasing [ONNX Runtime](https://github.com/modelscope/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
+- [2024.4] Releasing [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
+- [2024.2] Releasing [language identification](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/language-identification) integrating phonetic information recipes for more higher recognition accuracy.
+- [2024.2] Releasing [multimodal diarization](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes which fuses audio and video image input to produce more accurate results.
+- [2024.1] Releasing [ResNet34](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) and [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) model training and inference recipes for 3D-Speaker, VoxCeleb and CN-Celeb datasets.
+- [2024.1] Releasing [large-margin finetune recipes](https://github.com/modelscope/3D-Speaker/blob/main/egs/voxceleb/sv-eres2net/run.sh) in speaker verification and adding [diarization recipes](https://github.com/modelscope/3D-Speaker/blob/main/egs/3dspeaker/speaker-diarization/run.sh). 
 - [2023.11] [ERes2Net-base](https://modelscope.cn/models/damo/speech_eres2net_base_200k_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
-- [2023.10] Releasing [ECAPA model](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) training and inference recipes for three datasets.
-- [2023.9] Releasing [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) model training and inference recipes for [CN-Celeb](http://cnceleb.org/).
+- [2023.10] Releasing [ECAPA model](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) training and inference recipes for three datasets.
+- [2023.9] Releasing [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/cnceleb/sv-rdino) model training and inference recipes for [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_cn_cnceleb_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_cnceleb_16k/summary) and [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_cnceleb_16k/summary) benchmarks in [CN-Celeb](http://cnceleb.org/).
 - [2023.8] Releasing [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_base_lre_en-cn_16k/summary) annd [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English. 
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Base](https://modelscope.cn/models/damo/speech_eres2net_base_sv_zh-cn_3dspeaker_16k/summary), [ERes2Net-Large](https://modelscope.cn/models/damo/speech_eres2net_large_sv_zh-cn_3dspeaker_16k/summary) pretrained models trained on [3D-Speaker](https://3dspeaker.github.io/).
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English.
-- [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/alibaba-damo-academy/3D-Speaker/tree/3dspeaker/egs/3dspeaker/sv-rdino).
+- [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino).
 - [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 - [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
