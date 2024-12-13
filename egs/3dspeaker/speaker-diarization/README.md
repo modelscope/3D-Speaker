@@ -5,14 +5,19 @@ This recipe offers speaker diarization methods that address the problem of "who 
 
 ## Datasets Evaluation
 The DER results from the audio-only diarization pipeline across various benchmarks and internal multi-speaker datasets.
-| Test | DER(w/o Overlap-detection) | DER(w/ Overlap-detection)| [pyannote.audio](https://github.com/pyannote/pyannote-audio) |
+| Test | DER(w/o Overlap-detection) | DER(w/ Overlap-detection)| [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
+|:-----:|:------:|:------:|:------:|:------:|
+|[Aishell-4](https://arxiv.org/abs/2104.03603)|23.04%|**10.30%**|12.2%|11.7%|
+|[Alimeeting](https://www.openslr.org/119/)|32.79%|19.73%|24.4%|**17.6%**|
+|[AMI_SDM](https://groups.inf.ed.ac.uk/ami/corpus/)|35.76%|21.76%|22.4%|**15.4%**|
+|[VoxConverse](https://github.com/joonson/voxconverse)|12.09%|11.75%|**11.3%**|28.39%|
+|Meeting-CN_ZH-1|**16.80%**|18.91%|22.37%|32.66%|
+|Meeting-CN_ZH-2|**11.98%**|12.78%|17.86%|18%|
+
+The comparison of computational efficiency for audio-only diarization on the CPU device.
+| | RTF(w/ Overlap-detection) | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
 |:-----:|:------:|:------:|:------:|
-|[Aishell-4](https://arxiv.org/abs/2104.03603)|23.04%|**10.30%**|12.2%|
-|[Alimeeting](https://www.openslr.org/119/)|32.79%|**19.73%**|24.4%|
-|[AMI_Headset-mix](https://groups.inf.ed.ac.uk/ami/corpus/)|26.56%|18.78%|18.8%|
-|[VoxConverse](https://github.com/joonson/voxconverse)|12.09%|11.75%|**11.3%**|
-|Meeting-CN_ZH-1|**16.80%**|18.91%|22.37%|
-|Meeting-CN_ZH-2|**11.98%**|12.78%|17.86%|
+|RTF|**0.03**|0.19|0.3|
 
 The DER results of two diarization pipelines on a multi-person conversation video dataset.
 | Pipeline | DER |
