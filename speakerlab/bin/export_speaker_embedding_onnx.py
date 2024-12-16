@@ -156,6 +156,21 @@ onnx_supports_dict = {
         },
         'model_pt': 'pretrained_eres2netv2.ckpt',
     },
+     # ERes2NetV2 trained on 200k labeled speakers finetuned(w24s4ep4)
+    'iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common': {
+        'revision': 'v1.0.1',
+        'model': {
+            'obj': 'speakerlab.models.eres2net.ERes2NetV2.ERes2NetV2',
+            'args': {
+                'feat_dim': 80,
+                'embedding_size': 192,
+                "baseWidth": 24,
+                "scale":4,
+                "expansion": 4                
+            },
+        },
+        'model_pt': 'pretrained_eres2netv2w24s4ep4.ckpt',
+    },
 }
 
 
