@@ -15,8 +15,10 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| ERes2Net-base | 6.61M | 0.97 |  0.090 |
-| ERes2Net-base-lm | 6.61M | 0.84  |  0.086 |
+| ERes2Net-base | 6.61M | 0.97 | 0.090 |
+| ERes2Net-base-lm | 6.61M | 0.84 | 0.088 |
+| ERes2Net-large | 22.4M | 0.57 | 0.058 |
+| ERes2Net-large-lm | 22.4M | 0.52 | 0.055 |
 
 ### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).

@@ -19,17 +19,17 @@
 
 ## Speaker Verification and Diarization Benchmark
 The EER results on VoxCeleb datasets for fully-supervised speaker verification.
-| Model | Params | VoxCeleb-O | VoxCeleb-E | VoxCeleb-H |
+| Model | Params | VoxCeleb1-O | VoxCeleb1-E | VoxCeleb1-H |
 |:-----:|:------:| :------:|:------:|:------:|
-| Res2Net | 4.03 M | 1.56 | 1.41 | 2.48 |
-| ResNet34 | 6.34 M | 1.05 | 1.11 | 1.99 |
-| ECAPA-TDNN | 20.8 M | 0.86 | 0.97 | 1.90 |
-| ERes2Net-base | 6.61 M | 0.84 | 0.96 | 1.78 |
-| CAM++ | 7.2 M | 0.65 | 0.81 | 1.58 |
-| ERes2NetV2 | 17.8M | 0.61  |  0.76 | 1.45 |
-| ERes2Net-large | 22.46 M | 0.52 | 0.75 | 1.44 |
+| [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) | 4.03 M | 1.56% | 1.41% | 2.48% |
+| [ResNet34](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) | 6.34 M | 1.05% | 1.11% | 1.99% |
+| [ECAPA-TDNN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) | 20.8 M | 0.86% | 0.97% | 1.90% |
+| [ERes2Net-base](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 6.61 M | 0.84% | 0.96% | 1.78% |
+| [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-cam%2B%2B) | 7.2 M | 0.65% | 0.81% | 1.58% |
+| [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) | 17.8M | 0.61%  |  0.76% | 1.45% |
+| [ERes2Net-large](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 22.46 M | 0.52% | 0.75% | 1.44% |
 
-The DER results across various public and internal multi-speaker datasets for speaker diarization.
+The DER results on various public and internal multi-speaker datasets for speaker diarization.
 | Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
 |:-----:|:------:|:------:|:------:|
 |[Aishell-4](https://arxiv.org/abs/2104.03603)|**10.30%**|12.2%|11.7%|
@@ -132,8 +132,7 @@ python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_di
 ## What‘s new :fire:
 - [2024.12] Update [diarization](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/speaker-diarization) recipes and add results on multiple diarization benchmarks.
 - [2024.8] Releasing [ERes2NetV2](https://modelscope.cn/models/iic/speech_eres2netv2_sv_zh-cn_16k-common) and [ERes2NetV2_w24s4ep4](https://modelscope.cn/models/iic/speech_eres2netv2w24s4ep4_sv_zh-cn_16k-common) pretrained models trained on 200k-speaker datasets.
-- [2024.5] Releasing [X-vector](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model on VoxCeleb datasets.
-- [2024.5] Releasing [SDPN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model training and inference recipes for VoxCeleb.
+- [2024.5] Releasing [SDPN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-sdpn) model and [X-vector](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-xvector) model training and inference recipes for VoxCeleb.
 - [2024.5] Releasing [visual module](https://github.com/modelscope/3D-Speaker/tree/main/egs/ava-asd/talknet) and [semantic module](https://github.com/modelscope/3D-Speaker/tree/main/egs/semantic_speaker/bert) training recipes.
 - [2024.4] Releasing [ONNX Runtime](https://github.com/modelscope/3D-Speaker/tree/main/runtime/onnxruntime) and the relevant scripts for inference.
 - [2024.4] Releasing [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) model with lower parameters and faster inference speed on VoxCeleb datasets.
@@ -150,12 +149,11 @@ python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_di
 - [2023.7] Releasing [Dialogue Detection](https://modelscope.cn/models/damo/speech_bert_dialogue-detetction_speaker-diarization_chinese/summary) and [Semantic Speaker Change Detection](https://modelscope.cn/models/damo/speech_bert_semantic-spk-turn-detection-punc_speaker-diarization_chinese/summary) in speaker diarization.
 - [2023.7] Releasing [CAM++](https://modelscope.cn/models/damo/speech_campplus_lre_en-cn_16k/summary) in language identification for Mandarin and English.
 - [2023.6] Releasing [3D-Speaker](https://3dspeaker.github.io/) dataset and its corresponding benchmarks including [ERes2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-eres2net), [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-cam%2B%2B) and [RDINO](https://github.com/modelscope/3D-Speaker/tree/main/egs/3dspeaker/sv-rdino).
-- [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
-- [2023.4] [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
+- [2023.5] [ERes2Net](https://modelscope.cn/models/damo/speech_eres2net_sv_zh-cn_16k-common/summary) and [CAM++](https://www.modelscope.cn/models/damo/speech_campplus_sv_zh-cn_16k-common/summary) pretrained model released, trained on a Mandarin dataset of 200k labeled speakers.
 
 ## Contact
 If you have any comment or question about 3D-Speaker, please contact us by
-- email: {chenyafeng.cyf, zsq174630, tongmu.wh, shuli.cly}@alibaba-inc.com
+- email: {yfchen97, wanghuii}@mail.ustc.edu.cn, {dengchong.d, zsq174630, shuli.cly}@alibaba-inc.com
 
 ## License
 3D-Speaker is released under the [Apache License 2.0](LICENSE).
