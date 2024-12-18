@@ -163,46 +163,10 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Citations
 If you find this repository useful, please consider giving a star :star: and citation :t-rex::
 ```BibTeX
-@article{chen2024sdpn,
-  title={Self-Distillation Prototypes Network: Learning Robust Speaker Representations without Supervision},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
-  booktitle={ICASSP},
-  year={2025}
-}
 @article{chen20243d,
   title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
   booktitle={ICASSP},
   year={2025}
-}
-@article{chen2024eres2netv2,
-  title={ERes2NetV2: Boosting Short-Duration Speaker Verification Performance with Computational Efficiency},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and and others},
-  booktitle={INTERSPEECH},
-  year={2024}
-}
-@inproceedings{chen2023enhanced,
-  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Qi, Jiajun},
-  booktitle={INTERSPEECH},
-  year={2023}
-}
-@inproceedings{wang2023cam++,
-  title={CAM++: A Fast and Efficient Network For Speaker Verification Using Context-Aware Masking},
-  author={Wang, Hui and Zheng, Siqi and Chen, Yafeng and Cheng, Luyao and Chen, Qian},
-  booktitle={INTERSPEECH},
-  year={2023}
-}
-@inproceedings{chen2023pushing,
-  title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
-  booktitle={ICASSP},
-  year={2023}
-}
-@inproceedings{zheng20233d,
-  title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
-  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
-  url={https://arxiv.org/pdf/2306.15354},
-  year={2023}
 }
 ```
