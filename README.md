@@ -15,7 +15,30 @@
     
 </div>
     
-<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). Furthermore, we present a large-scale speech corpus also called [3D-Speaker](https://3dspeaker.github.io/) to facilitate the research of speech representation disentanglement.
+<strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). Furthermore, we present a large-scale speech corpus also called [3D-Speaker-Dataset](https://3dspeaker.github.io/) to facilitate the research of speech representation disentanglement.
+
+## Speaker Verification and Diarization Benchmark
+The EER results on VoxCeleb datasets for fully-supervised speaker verification.
+| Model | Params | VoxCeleb-O | VoxCeleb-E | VoxCeleb-H |
+|:-----:|:------:| :------:|:------:|:------:|
+| Res2Net | 4.03 M | 1.56 | 1.41 | 2.48 |
+| ResNet34 | 6.34 M | 1.05 | 1.11 | 1.99 |
+| ECAPA-TDNN | 20.8 M | 0.86 | 0.97 | 1.90 |
+| ERes2Net-base | 6.61 M | 0.84 | 0.96 | 1.78 |
+| CAM++ | 7.2 M | 0.65 | 0.81 | 1.58 |
+| ERes2NetV2 | 17.8M | 0.61  |  0.76 | 1.45 |
+| ERes2Net-large | 22.46 M | 0.52 | 0.75 | 1.44 |
+
+The DER results across various public and internal multi-speaker datasets for speaker diarization.
+| Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
+|:-----:|:------:|:------:|:------:|
+|[Aishell-4](https://arxiv.org/abs/2104.03603)|**10.30%**|12.2%|11.7%|
+|[Alimeeting](https://www.openslr.org/119/)|19.73%|24.4%|**17.6%**|
+|[AMI_SDM](https://groups.inf.ed.ac.uk/ami/corpus/)|21.76%|22.4%|**15.4%**|
+|[VoxConverse](https://github.com/joonson/voxconverse)|11.75%|**11.3%**|28.39%|
+|Meeting-CN_ZH-1|**18.91%**|22.37%|32.66%|
+|Meeting-CN_ZH-2|**12.78%**|17.86%|18%|
+
 
 ## Quickstart
 ### Install 3D-Speaker
@@ -27,9 +50,6 @@ pip install -r requirements.txt
 ```
 ### Running experiments
 ``` sh
-# Speaker verification: ERes2Net on 3D-Speaker dataset
-cd egs/3dspeaker/sv-eres2net/
-bash run.sh
 # Speaker verification: ERes2NetV2 on 3D-Speaker dataset
 cd egs/3dspeaker/sv-eres2netv2/
 bash run.sh
@@ -38,9 +58,6 @@ cd egs/3dspeaker/sv-cam++/
 bash run.sh
 # Speaker verification: ECAPA-TDNN on 3D-Speaker dataset
 cd egs/3dspeaker/sv-ecapa/
-bash run.sh
-# Self-supervised speaker verification: RDINO on 3D-Speaker dataset
-cd egs/3dspeaker/sv-rdino/
 bash run.sh
 # Self-supervised speaker verification: SDPN on VoxCeleb dataset
 cd egs/voxceleb/sv-sdpn/
@@ -152,28 +169,28 @@ If you have any comment or question about 3D-Speaker, please contact us by
 ## Citations
 If you find this repository useful, please consider giving a star :star: and citation :t-rex::
 ```BibTeX
+@article{chen2024sdpn,
+  title={Self-Distillation Prototypes Network: Learning Robust Speaker Representations without Supervision},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
+  booktitle={ICASSP},
+  year={2025}
+}
+@article{chen20243d,
+  title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
+  booktitle={ICASSP},
+  year={2025}
+}
 @article{chen2024eres2netv2,
   title={ERes2NetV2: Boosting Short-Duration Speaker Verification Performance with Computational Efficiency},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and and others},
   booktitle={INTERSPEECH},
   year={2024}
 }
-@article{chen2024sdpn,
-  title={Self-Distillation Prototypes Network: Learning Robust Speaker Representations without Supervision},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
-  url={https://arxiv.org/pdf/2308.02774},
-  year={2024}
-}
-@article{chen20243d,
-  title={3D-Speaker-Toolkit: An Open Source Toolkit for Multi-modal Speaker Verification and Diarization},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and others},
-  url={https://arxiv.org/pdf/2403.19971},
-  year={2024}
-}
-@inproceedings{zheng20233d,
-  title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
-  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
-  url={https://arxiv.org/pdf/2306.15354},
+@inproceedings{chen2023enhanced,
+  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
+  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Qi, Jiajun},
+  booktitle={INTERSPEECH},
   year={2023}
 }
 @inproceedings{wang2023cam++,
@@ -182,16 +199,16 @@ If you find this repository useful, please consider giving a star :star: and cit
   booktitle={INTERSPEECH},
   year={2023}
 }
-@inproceedings{chen2023enhanced,
-  title={An Enhanced Res2Net with Local and Global Feature Fusion for Speaker Verification},
-  author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian and Qi, Jiajun},
-  booktitle={INTERSPEECH},
-  year={2023}
-}
 @inproceedings{chen2023pushing,
   title={Pushing the limits of self-supervised speaker verification using regularized distillation framework},
   author={Chen, Yafeng and Zheng, Siqi and Wang, Hui and Cheng, Luyao and Chen, Qian},
   booktitle={ICASSP},
+  year={2023}
+}
+@inproceedings{zheng20233d,
+  title={3D-Speaker: A Large-Scale Multi-Device, Multi-Distance, and Multi-Dialect Corpus for Speech Representation Disentanglement},
+  author={Siqi Zheng, Luyao Cheng, Yafeng Chen, Hui Wang and Qian Chen},
+  url={https://arxiv.org/pdf/2306.15354},
   year={2023}
 }
 ```
