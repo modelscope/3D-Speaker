@@ -11,7 +11,8 @@
 
 | Model | Params | EER(%) | MinDCF |
 |:-----:|:------:|:------:|:------:|
-| CAM++ | 7.18M  | 0.73 | 0.0911 |
+| CAMPPLUS | 7.18M  | 0.73 | 0.091 |
+| CAMPPLUS-lm | 7.18M  | 0.65 | 0.086 |
 
 ### Pretrained model
 Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
