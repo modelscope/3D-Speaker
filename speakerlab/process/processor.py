@@ -148,6 +148,7 @@ class FBank(object):
         # select single channel
         if wav.shape[0] > 1:
             wav = wav[0, :]
+            wav = wav.unsqueeze(0)
         assert len(wav.shape) == 2 and wav.shape[0]==1
         feat = Kaldi.fbank(wav, num_mel_bins=self.n_mels,
             sample_frequency=sr, dither=dither)

@@ -15,4 +15,16 @@
 | ResNet34 | 6.34 M | 7.29% | 8.98% | 12.81% |
 
 ### Pretrained model
-waiting...
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
+
+- 3D-Speaker-Dataset: [iic/speech_resnet34_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/iic/speech_resnet34_sv_zh-cn_3dspeaker_16k)
+
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and extracts embeddings.
+``` sh
+# Install modelscope
+pip install modelscope
+# ResNet34 trained on 3D-Speaker-Dataset
+model_id=iic/speech_resnet34_sv_zh-cn_3dspeaker_16k
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+```

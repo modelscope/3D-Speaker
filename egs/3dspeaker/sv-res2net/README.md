@@ -15,5 +15,17 @@
 | Res2Net | 4.03 M | 8.03% | 9.67% | 14.11% |
 
 ### Pretrained model
-waiting...
+Pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio).
+
+- 3D-Speaker-Dataset: [iic/speech_res2net_sv_zh-cn_3dspeaker_16k](https://modelscope.cn/models/iic/speech_res2net_sv_zh-cn_3dspeaker_16k)
+
+Here is a simple example for directly extracting embeddings. It downloads the pretrained model from [ModelScope](https://www.modelscope.cn/models) and extracts embeddings.
+``` sh
+# Install modelscope
+pip install modelscope
+# Res2Net trained on 3D-Speaker-Dataset
+model_id=iic/speech_res2net_sv_zh-cn_3dspeaker_16k
+# Run inference
+python speakerlab/bin/infer_sv.py --model_id $model_id --wavs $wav_path
+```
 
