@@ -29,8 +29,8 @@ The EER results on VoxCeleb datasets for fully-supervised speaker verification.
 | ERes2NetV2 | 17.8M | 0.61  |  0.76 | 1.45 |
 | ERes2Net-large | 22.46 M | 0.52 | 0.75 | 1.44 |
 
-The DER results across various public and internal multi-speaker datasets.
-| Test | DER(w/ Overlap-detection)| [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
+The DER results across various public and internal multi-speaker datasets for speaker diarization.
+| Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
 |:-----:|:------:|:------:|:------:|
 |[Aishell-4](https://arxiv.org/abs/2104.03603)|**10.30%**|12.2%|11.7%|
 |[Alimeeting](https://www.openslr.org/119/)|19.73%|24.4%|**17.6%**|
