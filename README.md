@@ -18,18 +18,18 @@
 <strong>3D-Speaker</strong> is an open-source toolkit for single- and multi-modal speaker verification, speaker recognition, and speaker diarization. All pretrained models are accessible on [ModelScope](https://www.modelscope.cn/models?page=1&tasks=speaker-verification&type=audio). Furthermore, we present a large-scale speech corpus also called [3D-Speaker-Dataset](https://3dspeaker.github.io/) to facilitate the research of speech representation disentanglement.
 
 ## Speaker Verification and Diarization Benchmark
-The EER results on VoxCeleb datasets for fully-supervised speaker verification.
-| Model | Params | VoxCeleb1-O | VoxCeleb1-E | VoxCeleb1-H |
+The EER results on VoxCeleb, CNCeleb and 3D-Speaker datasets for fully-supervised speaker verification.
+| Model | Params | VoxCeleb1-O | CNCeleb | 3D-Speaker |
 |:-----:|:------:| :------:|:------:|:------:|
-| [Res2Net](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-res2net) | 4.03 M | 1.56% | 1.41% | 2.48% |
-| [ResNet34](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-resnet) | 6.34 M | 1.05% | 1.11% | 1.99% |
-| [ECAPA-TDNN](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-ecapa) | 20.8 M | 0.86% | 0.97% | 1.90% |
-| [ERes2Net-base](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 6.61 M | 0.84% | 0.96% | 1.78% |
-| [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-cam%2B%2B) | 7.2 M | 0.65% | 0.81% | 1.58% |
-| [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) | 17.8M | 0.61%  |  0.76% | 1.45% |
-| [ERes2Net-large](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 22.46 M | **0.52%** | **0.75%** | **1.44%** |
+| Res2Net | 4.03 M | 1.56% | 7.96% | 8.03% |
+| ResNet34 | 6.34 M | 1.05% | 6.92% | 7.29% |
+| ECAPA-TDNN | 20.8 M | 0.86% | 8.01% | 8.87% |
+| ERes2Net-base | 6.61 M | 0.84% | 6.69% | 7.21% |
+| CAM++ | 7.2 M | 0.65% | 6.78% | 7.75% |
+| ERes2NetV2 | 17.8M | 0.61% | **6.14%** | 6.52% |
+| ERes2Net-large | 22.46 M | **0.52%** | 6.17% | **6.34%** |
 
-The DER results on various public and internal multi-speaker datasets for speaker diarization.
+The DER results on public and internal multi-speaker datasets for speaker diarization.
 | Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
 |:-----:|:------:|:------:|:------:|
 |[Aishell-4](https://arxiv.org/abs/2104.03603)|**10.30%**|12.2%|11.7%|
