@@ -27,7 +27,7 @@ The EER results on VoxCeleb datasets for fully-supervised speaker verification.
 | [ERes2Net-base](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 6.61 M | 0.84% | 0.96% | 1.78% |
 | [CAM++](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-cam%2B%2B) | 7.2 M | 0.65% | 0.81% | 1.58% |
 | [ERes2NetV2](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2netv2) | 17.8M | 0.61%  |  0.76% | 1.45% |
-| [ERes2Net-large](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 22.46 M | 0.52% | 0.75% | 1.44% |
+| [ERes2Net-large](https://github.com/modelscope/3D-Speaker/tree/main/egs/voxceleb/sv-eres2net) | 22.46 M | **0.52%** | **0.75%** | **1.44%** |
 
 The DER results on various public and internal multi-speaker datasets for speaker diarization.
 | Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
@@ -91,10 +91,6 @@ python speakerlab/bin/infer_sv_batch.py --model_id $model_id --wavs $wav_list
 model_id=iic/speech_sdpn_ecapa_tdnn_sv_en_voxceleb_16k
 # Run SDPN inference
 python speakerlab/bin/infer_sv_ssl.py --model_id $model_id
-
-# Run RDINO inference
-model_id=damo/speech_rdino_ecapa_tdnn_sv_en_voxceleb_16k
-python speakerlab/bin/infer_sv_ssl.py --model_id $model_id --yaml egs/voxceleb/sv-rdino/conf/rdino.yaml
 
 # Run diarization inference
 python speakerlab/bin/infer_diarization.py --wav [wav_list OR wav_path] --out_dir $out_dir
