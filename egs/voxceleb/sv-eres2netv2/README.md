@@ -1,4 +1,4 @@
-## ERes2Net
+## ERes2NetV2
 
 ### Training config
 - Feature: 80-dim fbank, mean normalization, speed perturb
