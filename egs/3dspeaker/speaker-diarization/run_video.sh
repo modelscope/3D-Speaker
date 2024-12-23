@@ -28,7 +28,7 @@ rttm_dir=$exp/rttm
 if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
   if [ ! -f "$video_list" ]; then
     echo "$(basename $0) Stage1: Prepare input videos..."
-    mkdir -p examples
+    mkdir -p $examples
     wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\
 resolve/master/examples/7speakers_example.mp4" -O $examples/7speakers_example.mp4
     wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\

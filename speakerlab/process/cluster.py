@@ -143,7 +143,7 @@ class AHCluster:
     This implementation is adapted from https://github.com/BUTSpeechFIT/VBx.
     """
 
-    def __init__(self, fix_cos_thr=0.2):
+    def __init__(self, fix_cos_thr=0.4):
         self.fix_cos_thr = fix_cos_thr
 
     def __call__(self, X, **kwargs):
@@ -160,7 +160,7 @@ class CommonClustering:
     """Perfom clustering for input embeddings and output the labels.
     """
 
-    def __init__(self, cluster_type, cluster_line=10, mer_cos=None, min_cluster_size=4, **kwargs):
+    def __init__(self, cluster_type, cluster_line=40, mer_cos=None, min_cluster_size=4, **kwargs):
         self.cluster_type = cluster_type
         self.cluster_line = cluster_line
         self.min_cluster_size = min_cluster_size
@@ -176,32 +176,36 @@ class CommonClustering:
             raise ValueError(
                 '%s is not currently supported.' % self.cluster_type
             )
+        if self.cluster_type != 'AHC':
+            self.cluster_for_short = AHCluster()
+        else:
+            self.cluster_for_short = self.cluster
 
     def __call__(self, X, **kwargs):
         # clustering and return the labels
         assert len(X.shape) == 2, 'Shape of input should be [N, C]'
         if X.shape[0] < self.cluster_line:
-            return np.ones(X.shape[0], dtype=int)
-        # clustering
-        labels = self.cluster(X, **kwargs)
+            labels = self.cluster_for_short(X)
+        else:
+            labels = self.cluster(X, **kwargs)
 
         # remove extremely minor cluster
         labels = self.filter_minor_cluster(labels, X, self.min_cluster_size)
         # merge similar  speaker
         if self.mer_cos is not None:
             labels = self.merge_by_cos(labels, X, self.mer_cos)
-        
+
         return labels
-    
+
     def filter_minor_cluster(self, labels, x, min_cluster_size):
         cset = np.unique(labels)
         csize = np.array([(labels == i).sum() for i in cset])
-        minor_idx = np.where(csize < self.min_cluster_size)[0]
+        minor_idx = np.where(csize <= self.min_cluster_size)[0]
         if len(minor_idx) == 0:
             return labels
-        
+
         minor_cset = cset[minor_idx]
-        major_idx = np.where(csize >= self.min_cluster_size)[0]
+        major_idx = np.where(csize > self.min_cluster_size)[0]
         if len(major_idx) == 0:
             return np.zeros_like(labels)
         major_cset = cset[major_idx]
