@@ -20,9 +20,8 @@ import torch
 
 try:
     import modelscope
-    import funasr
 except ImportError:
-    raise ImportError("Package \"modelscope\" or \"funasr\" not found. Please install them first.")
+    raise ImportError("Package \"modelscope\" not found. Please install them first.")
 
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks

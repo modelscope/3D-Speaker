@@ -34,6 +34,7 @@ def get_logger(fpath=None, fmt=None):
         fmt = "%(asctime)s - %(levelname)s: %(message)s"
     logging.basicConfig(level=logging.INFO, format=fmt)
     logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
     if fpath is not None:
         handler = logging.FileHandler(fpath)
         handler.setFormatter(logging.Formatter(fmt))

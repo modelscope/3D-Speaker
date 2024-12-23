@@ -9,7 +9,7 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=7
+stop_stage=8
 
 conf_file=conf/diar.yaml
 gpus="0 1 2 3"
@@ -89,7 +89,7 @@ if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
 fi
 
 if [ ${stage} -le 7 ] && [ ${stop_stage} -ge 7 ]; then
-  echo "$(basename $0) Stage7: Get the final metrics..."
+  echo "$(basename $0) Stage7: Get the DER metrics..."
   ref_rttm_list=$examples/refrttm.list
   if [ -f $ref_rttm_list ]; then
     cat $ref_rttm_list | while read line;do cat $line;done > $exp/concat_ref_rttm
@@ -98,4 +98,9 @@ if [ ${stage} -le 7 ] && [ ${stop_stage} -ge 7 ]; then
   else
     echo "Refrttm.list is not detected. Can't calculate the result"
   fi
+fi
+
+if [ ${stage} -le 8 ] && [ ${stop_stage} -ge 8 ]; then
+  echo "$(basename $0) Stage8: Generate segmented transcription results with speaker ID...This step may be time-consuming."
+  torchrun --nproc_per_node=$nj local/out_transcription.py --exp_dir $exp --gpu $gpus
 fi
