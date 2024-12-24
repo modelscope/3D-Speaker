@@ -266,7 +266,7 @@ class Diarization3Dspeaker():
             speaker_num = speaker_num if speaker_num is not None else self.speaker_num
         )
         speaker_num = cluster_labels.max()+1
-        output_field_labels = [[i[0], i[1], j] for i, j in zip(chunks, cluster_labels)]
+        output_field_labels = [[i[0], i[1], int(j)] for i, j in zip(chunks, cluster_labels)]
         output_field_labels = compressed_seg(output_field_labels)
         return speaker_num, output_field_labels
 
