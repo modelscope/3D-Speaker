@@ -9,7 +9,7 @@ set -e
 . ./path.sh || exit 1
 
 stage=1
-stop_stage=8
+stop_stage=7
 
 conf_file=conf/diar.yaml
 gpus="0 1 2 3"
