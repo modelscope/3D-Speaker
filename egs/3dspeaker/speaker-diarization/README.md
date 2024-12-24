@@ -35,6 +35,8 @@ pip install -r requirements.txt
 2. For audio-only diarization, run:
 ``` sh
 bash run_audio.sh
+# Use the funasr model to transcribe into Chinese text.
+bash run_audio.sh --stop_stage 8
 ```
 3. For multimodal diarization, ensure that ffmpeg is available in your environment.
 ``` sh
