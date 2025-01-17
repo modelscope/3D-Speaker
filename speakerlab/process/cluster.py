@@ -184,6 +184,8 @@ class CommonClustering:
     def __call__(self, X, **kwargs):
         # clustering and return the labels
         assert len(X.shape) == 2, 'Shape of input should be [N, C]'
+        if X.shape[0] <= 1:
+            return np.zeros(X.shape[0], dtype=int)
         if X.shape[0] < self.cluster_line:
             labels = self.cluster_for_short(X)
         else:

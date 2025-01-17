@@ -139,9 +139,7 @@ def main():
     all_rec_ids = list(set(A))
     all_rec_ids.sort()
     if len(all_rec_ids) == 0:
-        raise Exception(
-            "No recording IDs found! Please check if json file is accuratly generated."
-            )
+        print("[WARNING]:No recording IDs found! Please check if json file is accuratly generated.")
     if len(all_rec_ids) <= rank:
         print("[WARNING]: The number of threads exceeds the number of files.")
         sys.exit()

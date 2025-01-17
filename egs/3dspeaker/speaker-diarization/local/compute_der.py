@@ -30,8 +30,9 @@ def main(args):
     all_rec_ids = list(set(A))
     all_rec_ids.sort()
     if len(all_rec_ids) <= 0:
-        msg = "No recording IDs found! Please check if meta_data json file is properly generated."
-        raise ValueError(msg)
+        msg = "[ERROE] No recording IDs found! Please check if %s file is properly generated."%meta_file
+        print(msg)
+        sys.exit()
 
     out_rttm_files = []
     for rec_id in all_rec_ids:
@@ -56,7 +57,7 @@ def main(args):
         with open('%s/der.txt' %result_dir,'w') as f:
             f.write(msg)
     else: 
-        msg = 'There is no ref rttm file provided. Computing DER is Failed.'
+        msg = '[INFO] There is no ref rttm file provided. Computing DER is Failed.'
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

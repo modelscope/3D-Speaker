@@ -55,6 +55,9 @@ def audio_only_func(local_wav_list, audio_embs_dir, rttm_dir, config):
         wav_name = os.path.basename(wav_file)
         rec_id = wav_name.rsplit('.', 1)[0]
         embs_file = os.path.join(audio_embs_dir, rec_id + '.pkl')
+        if not os.path.exists(embs_file):
+            print("[WARNING]: %s does not exist, it is possible that vad model did not detect valid speech in file %s, please check it."%(embs_file, wav_file))
+            continue
         with open(embs_file, 'rb') as f:
             stat_obj = pickle.load(f)
             embeddings = stat_obj['embeddings']

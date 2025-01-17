@@ -6,6 +6,7 @@ import json
 import argparse
 import re
 import torch
+import torch.distributed as dist
 
 from speakerlab.utils.utils import silent_print
 
@@ -111,13 +112,8 @@ def main(args):
     sys_rttm_dir = os.path.join(args.exp_dir, 'rttm')
     result_dir = os.path.join(args.exp_dir, 'transcripts')
     os.makedirs(result_dir, exist_ok=True)
-
-    if 'LOCAL_RANK' in os.environ and 'WORLD_SIZE' in os.environ:
-        rank = int(os.environ['LOCAL_RANK'])
-        threads_num = int(os.environ['WORLD_SIZE'])
-    else:
-        rank = 0
-        threads_num = 1
+    rank = int(os.environ['LOCAL_RANK'])
+    threads_num = int(os.environ['WORLD_SIZE'])
 
     meta_file = os.path.join(args.exp_dir, 'json/subseg.json')
     with open(meta_file, "r") as f:
@@ -125,8 +121,6 @@ def main(args):
     all_keys = full_meta.keys()
     A = {'_'.join(word.rstrip().split("_")[:-2]):full_meta[word]['file'] for word in all_keys}
     rec_ids = list(A.keys())[rank::threads_num]
-    if len(rec_ids) == 0:
-        quit()
 
     if args.gpu is None or len(args.gpu)==0:
         args.gpu = ['0']
@@ -138,15 +132,27 @@ def main(args):
         print("[WARNING]: Gpu %s is not available. Use cpu instead." % gpu_id)
         device = 'cpu'
 
+    dist.init_process_group(backend='gloo')
     with silent_print():
-        asr_pipeline = pipeline(
-            task=Tasks.auto_speech_recognition, 
-            model=ASR_MODEL['model_id'], 
-            model_revision=ASR_MODEL['model_revision'],
-            device=device,
-            disable_pbar=True,
-            disable_update=True,
-        )
+        if rank == 0 and len(rec_ids) > 0:
+            asr_pipeline = pipeline(
+                task=Tasks.auto_speech_recognition, 
+                model=ASR_MODEL['model_id'], 
+                model_revision=ASR_MODEL['model_revision'],
+                device=device,
+                disable_pbar=True,
+                disable_update=True,
+            )
+        dist.barrier()
+        if rank != 0 and len(rec_ids) > 0:
+            asr_pipeline = pipeline(
+                task=Tasks.auto_speech_recognition, 
+                model=ASR_MODEL['model_id'], 
+                model_revision=ASR_MODEL['model_revision'],
+                device=device,
+                disable_pbar=True,
+                disable_update=True,
+            )
 
     for rec_id in rec_ids:
         rttm_path = os.path.join(sys_rttm_dir, rec_id+'.rttm')
