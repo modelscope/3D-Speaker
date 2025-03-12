@@ -87,7 +87,7 @@ class SpectralCluster:
         if k_oracle is None:
             k_oracle = self.k
 
-        lambdas, eig_vecs = scipy.linalg.eigh(L)
+        lambdas, eig_vecs = scipy.sparse.linalg.eigsh(L, k=min(self.max_num_spks+1, L.shape[0]), which='SM')
 
         if k_oracle is not None:
             num_of_spk = k_oracle
