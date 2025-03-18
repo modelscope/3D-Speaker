@@ -30,7 +30,7 @@ The EER results on VoxCeleb, CNCeleb and 3D-Speaker datasets for fully-supervise
 | ERes2Net-large | 22.46 M | **0.52%** | 6.17% | **6.34%** |
 
 The DER results on public and internal multi-speaker datasets for speaker diarization.
-| Test | DER | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
+| Test | 3D-Speaker | [pyannote.audio](https://github.com/pyannote/pyannote-audio) | [DiariZen_WavLM](https://github.com/BUTSpeechFIT/DiariZen) | 
 |:-----:|:------:|:------:|:------:|
 |[Aishell-4](https://arxiv.org/abs/2104.03603)|**10.30%**|12.2%|11.7%|
 |[Alimeeting](https://www.openslr.org/119/)|19.73%|24.4%|**17.6%**|
