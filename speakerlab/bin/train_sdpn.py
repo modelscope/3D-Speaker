@@ -100,6 +100,9 @@ def main():
     # Prepare optimizer
     params_groups = utils_rdino.get_params_groups(student)
     optimizer = torch.optim.SGD(params_groups, lr=0, momentum=0.9)
+    if prototypes is not None:
+        optimizer.add_param_group({'params': prototypes, 'weight_decay': 0, \
+                                   'lr': config.lr * (config.batch_size_per_gpu * utils_rdino.get_world_size()) / 256.})
 
     # Prepare learning rate schedule and weight decay scheduler
     lr_schedule = utils_rdino.cosine_scheduler(
@@ -132,6 +135,7 @@ def main():
         run_variables=to_restore,
         student=student,
         teacher=teacher,
+        prototypes=prototypes,
         optimizer=optimizer,
         sdpn_loss=sdpn_loss,
         keleo_loss=keleo_loss,
@@ -151,6 +155,7 @@ def main():
         save_dict = {
             'student': student.state_dict(),
             'teacher': teacher.state_dict(),
+            'prototypes': prototypes.data,
             'optimizer': optimizer.state_dict(),
             'epoch': epoch + 1,
             'sdpn_loss': sdpn_loss.state_dict(),
@@ -217,6 +222,7 @@ def train_one_epoch(student, teacher, sdpn_loss, keleo_loss, prototypes, proto_l
             optimizer.zero_grad()
             param_norms = None
             loss.backward()
+            prototypes.grad.data = utils_rdino.AllReduceSum.apply(prototypes.grad.data)
             if config.clip_grad:
                 param_norms = utils_rdino.clip_gradients(student, config.clip_grad)
             utils_rdino.cancel_gradients_last_layer(epoch, student, config.freeze_last_layer)
