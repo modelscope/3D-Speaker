@@ -35,6 +35,69 @@ def export_onnx_file(model, target_onnx_file):
 ```
 You can also export your own model to ONNX format and try it in our framework. If you have any questions, please contact us.
 
+Our environment is on Linux, and the key packages version like(`pip show torch onnx onnxruntime`):
+```text
+Name: torch
+Version: 1.13.1
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org/
+Author: PyTorch Team
+Author-email: packages@pytorch.org
+License: BSD-3
+Requires: nvidia-cublas-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cuda-runtime-cu11, nvidia-cudnn-cu11, typing-extensions
+Required-by: torchaudio
+---
+Name: onnx
+Version: 1.14.1
+Summary: Open Neural Network Exchange
+Home-page: https://github.com/onnx/onnx
+Author: ONNX
+Author-email: onnx-technical-discuss@lists.lfaidata.foundation
+License: Apache License v2.0
+Requires: numpy, protobuf, typing-extensions
+---
+Name: onnxruntime
+Version: 1.16.1
+Summary: ONNX Runtime is a runtime accelerator for Machine Learning models
+Home-page: https://onnxruntime.ai
+Author: Microsoft Corporation
+Author-email: onnxruntime@microsoft.com
+License: MIT License
+Requires: coloredlogs, flatbuffers, numpy, packaging, protobuf, sympy
+```
+
+There could be some problems when check the embeddings, you can change the code in `speakerlab/bin/export_speaker_embedding_onnx.py` to check whether the onnx version you exported is correct.
+```python
+def main():
+    args = get_args()
+    logger.info(f"{args}")
+
+    model_id = args.model_id
+    experiment_path = args.experiment_path
+    target_onnx_file = args.target_onnx_file
+    if model_id is not None:
+        speaker_embedding_model = build_model_from_modelscope_id(
+            model_id, experiment_path
+        )
+    else:
+        speaker_embedding_model = build_model_from_custom_work_path(
+            experiment_path
+        )
+
+    logger.info(f"Load speaker embedding finished, export to onnx")
+    # let function `export_onnx_file` return the random tensor
+    inputs = export_onnx_file(speaker_embedding_model, target_onnx_file)
+
+    with torch.no_grad():
+        res0 = speaker_embedding_model(inputs)
+    ort_sess = ort.InferenceSession(target_onnx_file)
+    res1 = ort_sess.run(None, {'feature': inputs.numpy()})[0]
+    res1 = torch.from_numpy(res1) # Here, convert it to torch
+
+    cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
+    print(cos(res0, res1))
+```
+
 
 2. Step-2: Compile ONNX Runtime Project
 ```shell
