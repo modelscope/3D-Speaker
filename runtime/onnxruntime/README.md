@@ -99,7 +99,7 @@ def main():
 ```
 
 
-1. Step-2: Compile ONNX Runtime Project
+2. Step-2: Compile ONNX Runtime Project
 ```shell
 # Please install cmake and gcc in your system before.
 cd runtime/onnxruntime/
