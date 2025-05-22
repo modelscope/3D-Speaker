@@ -35,7 +35,7 @@ def export_onnx_file(model, target_onnx_file):
 ```
 You can also export your own model to ONNX format and try it in our framework. If you have any questions, please contact us.
 
-Our environment is on Linux, and the key packages version like(`pip show torch onnx onnxruntime`):
+Our environment is on Linux, and the key packages' version are like(`pip show torch onnx onnxruntime`):
 ```text
 Name: torch
 Version: 1.13.1
@@ -66,7 +66,7 @@ License: MIT License
 Requires: coloredlogs, flatbuffers, numpy, packaging, protobuf, sympy
 ```
 
-There could be some problems when check the embeddings, you can change the code in `speakerlab/bin/export_speaker_embedding_onnx.py` to check whether the onnx version you exported is correct.
+There could be some problems when the environment is not matched, you can add the following code in `speakerlab/bin/export_speaker_embedding_onnx.py` to check whether the onnx model you export is correct.
 ```python
 def main():
     args = get_args()
@@ -92,14 +92,14 @@ def main():
         res0 = speaker_embedding_model(inputs)
     ort_sess = ort.InferenceSession(target_onnx_file)
     res1 = ort_sess.run(None, {'feature': inputs.numpy()})[0]
-    res1 = torch.from_numpy(res1) # Here, convert it to torch
+    res1 = torch.from_numpy(res1) # Here, convert it to torch.tensor
 
     cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
-    print(cos(res0, res1))
+    print(cos(res0, res1)) # The expected result should be tensor([1.0000])
 ```
 
 
-2. Step-2: Compile ONNX Runtime Project
+1. Step-2: Compile ONNX Runtime Project
 ```shell
 # Please install cmake and gcc in your system before.
 cd runtime/onnxruntime/
