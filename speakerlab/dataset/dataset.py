@@ -24,12 +24,11 @@ class WavSVDataset(BaseSVDataset):
         spkid = self.preprocessor['label_encoder'](spk, speed_index)
         wav = self.preprocessor['augmentations'](wav)
         feat = self.preprocessor['feature_extractor'](wav)
+        self.data_keys = list(self.data_points.keys())
 
         return feat, spkid
 
     def get_data(self, index):
-        if not hasattr(self, 'data_keys'):
-            self.data_keys = list(self.data_points.keys())
         key = self.data_keys[index]
 
         return self.data_points[key]
