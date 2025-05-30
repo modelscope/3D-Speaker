@@ -9,6 +9,7 @@ class BaseSVDataset(Dataset):
     def __init__(self, data_file: str,  preprocessor: dict):
         self.data_points = self.read_file(data_file)
         self.preprocessor = preprocessor
+        self.data_keys = list(self.data_points.keys())
 
     def __len__(self):
         return len(self.data_points)
@@ -24,7 +25,6 @@ class WavSVDataset(BaseSVDataset):
         spkid = self.preprocessor['label_encoder'](spk, speed_index)
         wav = self.preprocessor['augmentations'](wav)
         feat = self.preprocessor['feature_extractor'](wav)
-        self.data_keys = list(self.data_points.keys())
 
         return feat, spkid
 
