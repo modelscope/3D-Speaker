@@ -29,9 +29,9 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
   if [ ! -f "$video_list" ]; then
     echo "$(basename $0) Stage1: Prepare input videos..."
     mkdir -p $examples
-    wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\
+    wget "https://modelscope.cn/models/iic/speech_campplus_speaker-diarization_common/\
 resolve/master/examples/7speakers_example.mp4" -O $examples/7speakers_example.mp4
-    wget "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/\
+    wget "https://modelscope.cn/models/iic/speech_campplus_speaker-diarization_common/\
 resolve/master/examples/7speakers_example.rttm" -O $examples/7speakers_example.rttm
     echo "examples/7speakers_example.mp4" > $examples/video.list
     echo "examples/7speakers_example.rttm" > $examples/refrttm.list
@@ -47,7 +47,7 @@ if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
   for m in version-RFB-320.onnx asd.onnx fqa.onnx face_recog_ir101.onnx; do
     if [ ! -e $onnx_dir/$m ]; then
       echo "$(basename $0) Stage2: Download pretrained models $m"
-      wget -O $onnx_dir/$m "https://modelscope.cn/api/v1/models/iic/speech_campplus_speaker-diarization_common/resolve/master/onnx/$m"
+      wget -O $onnx_dir/$m "https://modelscope.cn/models/iic/speech_campplus_speaker-diarization_common/resolve/master/onnx/$m"
     fi
   done
   cat $video_list | while read video_file; do
