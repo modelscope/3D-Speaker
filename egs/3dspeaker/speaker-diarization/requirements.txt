@@ -1,11 +1,16 @@
 numba==0.56.2
+numpy==1.23.5
+fastcluster==1.2.6
+datasets==3.1.0
 umap-learn
 modelscope
 funasr
 transformers
 hdbscan
-fastcluster
 opencv-python
 python_speech_features
 onnxruntime-gpu
 pyannote.audio
+simplejson
+sortedcontainers
+addict
