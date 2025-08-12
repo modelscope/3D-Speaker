@@ -81,7 +81,7 @@ class NoiseReverbCorrupter(object):
     def __call__(self, wav, fs=16000):
         if self.reverb_prob > random.random():
             reverb_path =  self.reverb_data[random.choice(self.reverb_data_keys)]
-            reverb, fs_rir = torchaudio.load(reverb_path)
+            reverb, fs_rir = torchaudio.load(reverb_path, backend="sox")
             assert fs_rir == fs
             wav = self.add_reverb(wav, reverb[0])
         if self.noise_prob > random.random():
