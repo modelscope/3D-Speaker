@@ -9,6 +9,7 @@ class BaseSVDataset(Dataset):
     def __init__(self, data_file: str,  preprocessor: dict):
         self.data_points = self.read_file(data_file)
         self.preprocessor = preprocessor
+        self.data_keys = list(self.data_points.keys())
 
     def __len__(self):
         return len(self.data_points)
@@ -28,8 +29,6 @@ class WavSVDataset(BaseSVDataset):
         return feat, spkid
 
     def get_data(self, index):
-        if not hasattr(self, 'data_keys'):
-            self.data_keys = list(self.data_points.keys())
         key = self.data_keys[index]
 
         return self.data_points[key]
