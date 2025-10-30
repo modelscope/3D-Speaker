@@ -402,7 +402,7 @@ class IterWavList(IterableDataset):
     def load_wav(self, wav_path, obj_fs=16000, chunk_size=10, max_load_len=90):
         wav, fs = torchaudio.load(wav_path)
         if fs != obj_fs:
-            print(f'[WARNING]: The sample rate of {wav_file} is not {obj_fs}, resample it.')
+            print(f'[WARNING]: The sample rate of {wav_path} is not {obj_fs}, resample it.')
             wav, fs = torchaudio.sox_effects.apply_effects_tensor(
                 wav, fs, effects=[['rate', str(obj_fs)]]
             )
