@@ -234,7 +234,7 @@ class Diarization3Dspeaker():
     def chunk(self, st, ed, dur=1.5, step=0.75):
         chunks = []
         subseg_st = st
-        while subseg_st + dur < ed + step:
+        while subseg_st < ed:
             subseg_ed = min(subseg_st + dur, ed)
             chunks.append([subseg_st, subseg_ed])
             subseg_st += step
