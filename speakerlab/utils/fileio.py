@@ -8,6 +8,7 @@ import json
 import torch
 import torchaudio
 import numpy as np
+import soundfile as sf
 
 
 def load_yaml(yaml_path):
@@ -104,7 +105,8 @@ def write_trans7time_list(fpath, trans7time_list):
 
 def load_audio(input, ori_fs=None, obj_fs=None):            
     if isinstance(input, str):
-        wav, fs = torchaudio.load(input)
+        wav_np, fs = sf.read(input, dtype='float32', always_2d=True)
+        wav = torch.from_numpy(wav_np.T)
         wav = wav.mean(dim=0, keepdim=True)
         if obj_fs is not None and fs != obj_fs:
             wav = torchaudio.functional.resample(wav, orig_freq=fs, new_freq=obj_fs)

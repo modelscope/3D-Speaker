@@ -11,15 +11,6 @@ import fastcluster
 from scipy.cluster.hierarchy import fcluster
 from scipy.spatial.distance import squareform
 
-try:
-    import umap, hdbscan
-except ImportError:
-    raise ImportError(
-        "Package \"umap\" or \"hdbscan\" not found. \
-        Please install them first by \"pip install umap-learn hdbscan\"."
-        )
-
-
 class SpectralCluster:
     """A spectral clustering method using unnormalized Laplacian of affinity matrix.
     This implementation is adapted from https://github.com/speechbrain/speechbrain.
@@ -129,6 +120,14 @@ class UmapHdbscan:
         self.metric = metric
 
     def __call__(self, X, **kwargs):
+        try:
+            import umap, hdbscan
+        except ImportError as e:
+            raise ImportError(
+                'Package "umap" or "hdbscan" not found. '
+                'Please install them first by "pip install umap-learn hdbscan".'
+            ) from e
+
         umap_X = umap.UMAP(
             n_neighbors=self.n_neighbors,
             min_dist=0.0,

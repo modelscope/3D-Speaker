@@ -37,8 +37,6 @@ warnings.filterwarnings("ignore")
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
-from pyannote.audio import Inference, Model
-
 parser = argparse.ArgumentParser(description='Speaker diarization inference.')
 parser.add_argument('--wav', type=str, required=True, help='Input wavs')
 parser.add_argument('--out_dir', type=str, required=True, help='Out results dir')
@@ -48,6 +46,7 @@ parser.add_argument('--hf_access_token', type=str, help='hf_access_token for pya
 parser.add_argument('--diable_progress_bar', action='store_true', help='Close the progress bar')
 parser.add_argument('--nprocs', default=None, type=int, help='Num of procs')
 parser.add_argument('--speaker_num', default=None, type=int, help='Oracle num of speaker')
+parser.add_argument('--model_cache_dir', default=None, type=str, help='Local ModelScope cache root')
 
 
 def get_speaker_embedding_model(device:torch.device = None, cache_dir:str = None):
@@ -121,6 +120,8 @@ def get_voice_activity_detection_model(device: torch.device=None, cache_dir:str 
     return vad_pipeline
 
 def get_segmentation_model(use_auth_token, device: torch.device=None):
+    from pyannote.audio import Inference, Model
+
     segmentation_params = {
         'segmentation':'pyannote/segmentation-3.0',
         'segmentation_batch_size':32,
@@ -424,7 +425,13 @@ def main_process(rank, nprocs, args, wav_list):
     else:
         ngpus = torch.cuda.device_count()
         device = torch.device('cuda:%d'%(rank%ngpus))
-    diarization = Diarization3Dspeaker(device, args.include_overlap, args.hf_access_token, args.speaker_num)
+    diarization = Diarization3Dspeaker(
+        device,
+        args.include_overlap,
+        args.hf_access_token,
+        args.speaker_num,
+        args.model_cache_dir,
+    )
     
     wav_list = wav_list[rank::nprocs]
     if rank == 0 and (not args.diable_progress_bar):
@@ -444,8 +451,8 @@ def main():
     if args.include_overlap and args.hf_access_token is None:
         parser.error("--hf_access_token is required when --include_overlap is specified.")
     
-    get_speaker_embedding_model()
-    get_voice_activity_detection_model()
+    get_speaker_embedding_model(cache_dir=args.model_cache_dir)
+    get_voice_activity_detection_model(cache_dir=args.model_cache_dir)
     get_cluster_backend()
     if args.include_overlap:
         get_segmentation_model(args.hf_access_token)
